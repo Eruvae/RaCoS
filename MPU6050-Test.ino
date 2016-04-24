@@ -37,14 +37,10 @@ void loop()
   float temp = mpu.readTemperature();
 
   // Output
-  Serial.print(" DR = ");
-  Serial.print(normGyro.XAxis);
-  Serial.print(" DP = ");
-  Serial.print(normGyro.YAxis);
-  Serial.print(" DY = ");
+  Serial.print(" RPM: ");
+  Serial.print(normGyro.ZAxis/6.0);
+  Serial.print(" DZ = ");
   Serial.print(normGyro.ZAxis);
-  Serial.print(" T = ");
-  Serial.print(temp);
   
   Serial.println();
   
