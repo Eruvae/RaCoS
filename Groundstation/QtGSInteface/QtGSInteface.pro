@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,42 +15,45 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    qneedleindicator.cpp \
-    thermometer.cpp \
-    abstractmeter.cpp \
-    widgetwithbackground.cpp \
-    functions.cpp \
-    chart.cpp \
-    chart/channel.cpp \
-    chart/chartdecorator.cpp \
-    chart/scalegrid.cpp \
-    chart/standard/channeldecorator.cpp \
-    chart/standard/glassdecorator.cpp \
-    chart/standard/labelsdecorator.cpp \
-    chart/standard/legenddecorator.cpp \
-    chart/standard/scalegriddecorator.cpp \
-    led.cpp \
-    commandwindow.cpp
+    commandwindow.cpp \
+    serialreceiver.cpp \
+    GUIWidgets/chart/standard/channeldecorator.cpp \
+    GUIWidgets/chart/standard/glassdecorator.cpp \
+    GUIWidgets/chart/standard/labelsdecorator.cpp \
+    GUIWidgets/chart/standard/legenddecorator.cpp \
+    GUIWidgets/chart/standard/scalegriddecorator.cpp \
+    GUIWidgets/chart/channel.cpp \
+    GUIWidgets/chart/chartdecorator.cpp \
+    GUIWidgets/chart/scalegrid.cpp \
+    GUIWidgets/abstractmeter.cpp \
+    GUIWidgets/chart.cpp \
+    GUIWidgets/functions.cpp \
+    GUIWidgets/led.cpp \
+    GUIWidgets/qneedleindicator.cpp \
+    GUIWidgets/thermometer.cpp \
+    GUIWidgets/widgetwithbackground.cpp
 
 HEADERS  += mainwindow.h \
-    qneedleindicator.h \
-    thermometer.h \
-    abstractmeter.h \
-    widgetwithbackground.h \
-    functions.h \
-    chart.h \
-    chart/channel.h \
-    chart/channeldata.h \
-    chart/chartdecorator.h \
-    chart/datacontainers.h \
-    chart/scalegrid.h \
-    chart/standard/channeldecorator.h \
-    chart/standard/glassdecorator.h \
-    chart/standard/labelsdecorator.h \
-    chart/standard/legenddecorator.h \
-    chart/standard/scalegriddecorator.h \
-    led.h \
-    commandwindow.h
+    commandwindow.h \
+    serialreceiver.h \
+    GUIWidgets/chart/standard/channeldecorator.h \
+    GUIWidgets/chart/standard/glassdecorator.h \
+    GUIWidgets/chart/standard/labelsdecorator.h \
+    GUIWidgets/chart/standard/legenddecorator.h \
+    GUIWidgets/chart/standard/scalegriddecorator.h \
+    GUIWidgets/chart/channel.h \
+    GUIWidgets/chart/channeldata.h \
+    GUIWidgets/chart/chartdecorator.h \
+    GUIWidgets/chart/datacontainers.h \
+    GUIWidgets/chart/scalegrid.h \
+    GUIWidgets/abstractmeter.h \
+    GUIWidgets/chart.h \
+    GUIWidgets/functions.h \
+    GUIWidgets/led.h \
+    GUIWidgets/qneedleindicator.h \
+    GUIWidgets/thermometer.h \
+    GUIWidgets/widgetwithbackground.h \
+    packages.h
 
 FORMS    += mainwindow.ui \
     commandwindow.ui

@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QObject>
 
-#include "windows.h"
+#include "serialreceiver.h"
 
 typedef vector<int> vint;
 typedef list <int>  lint;
@@ -21,37 +21,158 @@ vint  velocity;
 vint  times;
 ldouble rates;
 
-void fillChartData();
-void initCharts(Chart* widget);
-
-const double IMU1 = 12.23;
-const double IMU2 = 13.12;
-const double X1 = 3.41;
-const double X2 = 3.32;
-const double Y1 = 5.12;
-const double Y2 = 4.99;
-const double Z1 = 15.23;
-const double Z2 = 15.35;
-const double PRES_TANK = 196.6;
-const double PRES_PREV = 3.04;
-const double PRES_RP = 2.96;
-const double PRES_RM = 2.95;
-const double TEMP_TANK = 21.3;
-const double TEMP_NOZ1 = 16.5;
-const double TEMP_NOZ2 = 14.6;
-const double TEMP_NOZ3 = 15.3;
-const double TEMP_NOZ4 = 16.3;
-const double TEMP_PDU = 33.4;
-
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    menuSend_Command = ui->menuBar->addAction("Send Command");
-    connect(menuSend_Command, SIGNAL(triggered()), this, SLOT(sendCommand()));
     setWindowState(windowState() | Qt::WindowMaximized);
+
+    menuSendCommand = ui->menuBar->addAction("Send Command");
+    connect(menuSendCommand, SIGNAL(triggered()), this, SLOT(sendCommand()));
+
+    menuSelectCOM = ui->menuBar->addMenu("Serial COM");
+    menuConnect = menuSelectCOM->addMenu("Connect");
+
+    menuDisconnect = menuSelectCOM->addAction("Disconnect");
+    connect(menuDisconnect, SIGNAL(triggered()), this, SLOT(serialDisconnect()));
+
+    QList<QString> serialPortNames = SerialReceiver::getSerialPortNames();
+    foreach (const QString &name, serialPortNames)
+    {
+        menuConnectCOMS.append(menuConnect->addAction(name));
+        connect(menuConnectCOMS.last(), SIGNAL(triggered()), this, SLOT(serialConnect()));
+        menuConnectCOMS.last()->setCheckable(true);
+    }
+
+    status = new QLabel;
+    ui->statusBar->addWidget(status);
+    currentPort = -1;
+    status->setText("Disconnected");
+
+    serial = new QSerialPort(this);
+
+    connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleError(QSerialPort::SerialPortError)));
+    connect(serial, SIGNAL(readyRead()), this, SLOT(readData()));
+    // connect(console, SIGNAL(getData(QByteArray)), this, SLOT(writeData(QByteArray)));
+
+    //initActionsConnections();
+    initGUIWidgets();
+
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::sendCommand()
+{
+    commandWindow *w = new commandWindow(this);
+    w->show();
+}
+
+void MainWindow::serialConnect()
+{
+    QAction *com = (QAction*)sender();
+    int port = menuConnectCOMS.indexOf(com);
+
+    if (port == currentPort)
+        return;
+
+    if (currentPort != -1)
+    {
+       closeSerialPort();
+       menuConnectCOMS.at(currentPort)->setChecked(false);
+    }
+
+    openSerialPort(com->text());
+
+    currentPort = port;
+
+    status->setText("Connected to Port " + com->text());
+
+}
+
+void MainWindow::serialDisconnect()
+{
+    closeSerialPort();
+    menuConnectCOMS.at(currentPort)->setChecked(false);
+    currentPort = -1;
+    status->setText("Disconnected");
+}
+
+void MainWindow::openSerialPort(const QString &port)
+{
+    serial->setPortName(port);
+    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->open(QIODevice::ReadWrite);
+}
+
+void MainWindow::closeSerialPort()
+{
+    if (serial->isOpen())
+        serial->close();
+    // TODO
+}
+
+void MainWindow::writeData(const QByteArray &data)
+{
+    serial->write(data);
+}
+
+void MainWindow::readData()
+{
+    QByteArray data = serial->readAll();
+
+    QMessageBox msgBox;
+    msgBox.setText(data);
+    msgBox.exec();
+}
+
+void MainWindow::handleError(QSerialPort::SerialPortError error)
+{
+    if (error == QSerialPort::ResourceError) {
+        QMessageBox::critical(this, tr("Critical Error"), serial->errorString());
+        closeSerialPort();
+    }
+}
+
+
+void MainWindow::initActionsConnections()
+{
+    /*connect(ui->actionConnect, &QAction::triggered, this, &MainWindow::openSerialPort);
+    connect(ui->actionDisconnect, &QAction::triggered, this, &MainWindow::closeSerialPort);
+    connect(ui->actionQuit, &QAction::triggered, this, &MainWindow::close);
+    connect(ui->actionConfigure, &QAction::triggered, settings, &MainWindow::show);
+    connect(ui->actionClear, &QAction::triggered, console, &Console::clear);
+    connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
+    connect(ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);*/
+}
+
+void MainWindow::initGUIWidgets()
+{
+    // Test Values
+    const double IMU1 = 12.23;
+    const double IMU2 = 13.12;
+    const double X1 = 3.41;
+    const double X2 = 3.32;
+    const double Y1 = 5.12;
+    const double Y2 = 4.99;
+    const double Z1 = 15.23;
+    const double Z2 = 15.35;
+    const double PRES_TANK = 196.6;
+    const double PRES_PREV = 3.04;
+    const double PRES_RP = 2.96;
+    const double PRES_RM = 2.95;
+    const double TEMP_TANK = 21.3;
+    const double TEMP_NOZ1 = 16.5;
+    const double TEMP_NOZ2 = 14.6;
+    const double TEMP_NOZ3 = 15.3;
+    const double TEMP_NOZ4 = 16.3;
+    const double TEMP_PDU = 33.4;
+
     wTankPressure = new QNeedleIndicator(this);
     wPreValvesPressure = new QNeedleIndicator(this);
     wNozzlesRPPressure = new QNeedleIndicator(this);
@@ -191,19 +312,28 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gridLayout_13->addWidget(valve2);
 }
 
-MainWindow::~MainWindow()
+void MainWindow::initCharts(Chart* widget)
 {
-    delete ui;
+    QPen vPen;
+    //vPen.setColor(Qt::red);
+    vPen.setWidthF(2.0);
+    vPen.setColor(Qt::green);
+    Channel cAngRates (-50,50,new DoubleDataContainer<vint,ldouble>(times,rates), "Angular rate",vPen);
+    cAngRates.setShowScale(true);
+    //cAngRates.setMaximum(50);
+    //cAngRates.setMinimum(-50);
+    //cisnienie3.setShowScale(false);
+    //pozycja.showScale = predkosc.showScale = false ;
+    //chart->scaleGrid().showScale=false;
+    //chart->scaleGrid().showGrid=false;
+    widget->addChannel(cAngRates);
+    /*widget->addChannel(cisnienie3);
+    widget->addChannel(cisnienie);*/
+    //    chart->addChannel(pozycja);
+    //    chart->addChannel(predkosc);
 }
 
-void MainWindow::sendCommand()
-{
-    commandWindow *w = new commandWindow();
-    w->show();
-}
-
-
-void fillChartData()
+void MainWindow::fillChartData()
 {
     double curRate = 26.7;
     double randf;
@@ -216,27 +346,4 @@ void fillChartData()
         curRate += randf;
         rates.push_back(curRate);
     }
-}
-
-
-void initCharts(Chart* widget)
-{
-  QPen vPen;
-  //vPen.setColor(Qt::red);
-  vPen.setWidthF(2.0);
-  vPen.setColor(Qt::green);
-  Channel cAngRates (-50,50,new DoubleDataContainer<vint,ldouble>(times,rates), "Angular rate",vPen);
-  cAngRates.setShowScale(true);
-  //cAngRates.setMaximum(50);
-  //cAngRates.setMinimum(-50);
-  //cisnienie3.setShowScale(false);
-//pozycja.showScale = predkosc.showScale = false ;
-//chart->scaleGrid().showScale=false;
-//chart->scaleGrid().showGrid=false;
-  widget->addChannel(cAngRates);
-  /*widget->addChannel(cisnienie3);
-  widget->addChannel(cisnienie);*/
-//    chart->addChannel(pozycja);
-//    chart->addChannel(predkosc);
-
 }

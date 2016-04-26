@@ -2,11 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "qneedleindicator.h"
-#include "thermometer.h"
-#include "led.h"
-#include "chart.h"
-#include "chart/datacontainers.h"
+#include <QLabel>
+#include <QtSerialPort/QSerialPort>
+
+#include "GUIWidgets/qneedleindicator.h"
+#include "GUIWidgets/thermometer.h"
+#include "GUIWidgets/led.h"
+#include "GUIWidgets/chart.h"
+#include "GUIWidgets/chart/datacontainers.h"
+
+#include "serialsettings.h"
 
 namespace Ui {
 class MainWindow;
@@ -18,10 +23,20 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void openSerialPort(const QString &port);
+    void closeSerialPort();
+
     ~MainWindow();
 
 private:
+    void initActionsConnections();
+    void initGUIWidgets();
+    void initCharts(Chart* widget);
+    void fillChartData();
+
     Ui::MainWindow *ui;
+
+    // Widgets
     QNeedleIndicator *wTankPressure;
     QNeedleIndicator *wPreValvesPressure;
     QNeedleIndicator *wNozzlesRPPressure;
@@ -36,10 +51,26 @@ private:
     Led *valve2;
     Chart *wChart;
 
-    QAction *menuSend_Command;
+    QAction *menuSendCommand;
+    QMenu *menuSelectCOM;
+    QMenu *menuConnect;
+    QList<QAction*> menuConnectCOMS;
+    QAction *menuDisconnect;
+
+    // SerialSettings *settings;
+    QSerialPort *serial;
+    QLabel *status;
+
+    int currentPort;
+
 
 public slots:
+    void serialConnect();
+    void serialDisconnect();
     void sendCommand();
+    void writeData(const QByteArray &data);
+    void readData();
+    void handleError(QSerialPort::SerialPortError error);
 
 };
 
