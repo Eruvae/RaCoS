@@ -3,7 +3,12 @@
 
 #include <stdint.h>
 
-struct __attribute__((packed, aligned(1))) dpIMU
+#define SYNC_IMU    (char)0xA8 // 0b10101000
+#define SYNC_PT     (char)0xA4 // 0b10100100
+#define SYNC_CALC   (char)0xA2 //0b10100010
+
+#pragma pack(push,1)
+struct dpIMU
 {
     uint8_t sync;
     uint32_t time;
@@ -22,14 +27,12 @@ struct __attribute__((packed, aligned(1))) dpIMU
     uint32_t check;
 };
 
-struct __attribute__((packed, aligned(1))) dpPresTemp
+struct dpPresTemp
 {
     uint8_t sync;
     uint32_t time;
     uint16_t presTank;
-    uint16_t presPV;
-    uint16_t presRp;
-    uint16_t presRm;
+    uint16_t presValves;
     uint16_t tempTank;
     uint16_t tempNoz1;
     uint16_t tempNoz2;
@@ -39,7 +42,7 @@ struct __attribute__((packed, aligned(1))) dpPresTemp
     uint32_t check;
 };
 
-struct __attribute__((packed, aligned(1))) dpCalc
+struct dpCalc
 {
     uint8_t sync;
     uint32_t time;
@@ -49,5 +52,6 @@ struct __attribute__((packed, aligned(1))) dpCalc
     uint8_t valveState;
     uint32_t check;
 };
+#pragma pack(pop)
 
 #endif // PACKAGES_H

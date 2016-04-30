@@ -11,8 +11,6 @@
 #include "GUIWidgets/chart.h"
 #include "GUIWidgets/chart/datacontainers.h"
 
-#include "serialsettings.h"
-
 namespace Ui {
 class MainWindow;
 }
@@ -38,17 +36,15 @@ private:
 
     // Widgets
     QNeedleIndicator *wTankPressure;
-    QNeedleIndicator *wPreValvesPressure;
-    QNeedleIndicator *wNozzlesRPPressure;
-    QNeedleIndicator *wNozzlesRMPressure;
+    QNeedleIndicator *wValvePressure;
     ThermoMeter *wTankTemperature;
     ThermoMeter *wNozzle1Temperature;
     ThermoMeter *wNozzle2Temperature;
     ThermoMeter *wNozzle3Temperature;
     ThermoMeter *wNozzle4Temperature;
     ThermoMeter *wPDUTemperature;
-    Led *valve1;
-    Led *valve2;
+    Led *wValveRP;
+    Led *wValveRM;
     Chart *wChart;
 
     QAction *menuSendCommand;

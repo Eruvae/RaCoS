@@ -20,7 +20,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "chart/chartdecorator.h" 
+#include "GUIWidgets/chart/chartdecorator.h"
  
 using namespace chart;  
 

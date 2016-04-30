@@ -24,8 +24,8 @@
   			glassdecorator.cpp - Copyright coder
 **************************************************************************/
 #include <QtGui>
-#include "chart/standard/glassdecorator.h"
-#include "chart.h"
+#include "GUIWidgets/chart/standard/glassdecorator.h"
+#include "GUIWidgets/chart.h"
 
 using namespace Standard;
 

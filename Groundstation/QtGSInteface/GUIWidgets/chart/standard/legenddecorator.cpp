@@ -25,8 +25,8 @@
 **************************************************************************/
 #include <QtGui>
 #include <cmath>
-#include "chart/standard/legenddecorator.h"
-#include "chart.h"
+#include "GUIWidgets/chart/standard/legenddecorator.h"
+#include "GUIWidgets/chart.h"
 
 using namespace std;
 using namespace Standard;

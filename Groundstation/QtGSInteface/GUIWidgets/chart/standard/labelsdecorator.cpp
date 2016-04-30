@@ -24,8 +24,8 @@
   			labelsdecorator.cpp - Copyright coder
 **************************************************************************/
 
-#include "chart/standard/labelsdecorator.h"
-#include "chart.h"
+#include "GUIWidgets/chart/standard/labelsdecorator.h"
+#include "GUIWidgets/chart.h"
 
 using namespace Standard;
 

@@ -27,7 +27,7 @@
 #ifndef GLASSDECORATOR_H
 #define GLASSDECORATOR_H
 
-#include "chart/chartdecorator.h"
+#include "GUIWidgets/chart/chartdecorator.h"
 
 
 

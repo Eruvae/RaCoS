@@ -27,7 +27,7 @@
 #ifndef SCALESGRIDDECORATOR_H
 #define SCALESGRIDDECORATOR_H
 
-#include "chart/chartdecorator.h"
+#include "GUIWidgets/chart/chartdecorator.h"
 
 
 

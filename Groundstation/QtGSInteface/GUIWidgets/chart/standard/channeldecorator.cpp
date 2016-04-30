@@ -26,9 +26,9 @@
 
 #include <QtGui>
 #include <QPainterPath>
-#include "chart.h"
-#include "chart/channeldata.h" 
-#include "chart/standard/channeldecorator.h"
+#include "GUIWidgets/chart.h"
+#include "GUIWidgets/chart/channeldata.h"
+#include "GUIWidgets/chart/standard/channeldecorator.h"
 #include <cmath>
 #include <iostream>
 

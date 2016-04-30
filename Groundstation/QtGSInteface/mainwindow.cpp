@@ -10,6 +10,7 @@
 #include <QObject>
 
 #include "serialreceiver.h"
+#include "packages.h"
 
 typedef vector<int> vint;
 typedef list <int>  lint;
@@ -58,6 +59,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //initActionsConnections();
     initGUIWidgets();
+
+    /*QMessageBox msgBox;
+    msgBox.setText(QString::asprintf("%d", sizeof(dpIMU) ));
+    msgBox.exec();*/
 
 
 }
@@ -125,10 +130,70 @@ void MainWindow::writeData(const QByteArray &data)
 void MainWindow::readData()
 {
     QByteArray data = serial->readAll();
-
-    QMessageBox msgBox;
+    /*QMessageBox msgBox;
     msgBox.setText(data);
-    msgBox.exec();
+    msgBox.exec();*/
+
+    if (data.at(0) == SYNC_IMU && data.size() == sizeof(dpIMU))
+    {
+        const dpIMU* dataIMU = (const dpIMU*)data.constData();
+
+        ui->lcdIMU1roll->display(dataIMU->imu1_roll);
+        ui->lcdIMU1yaw->display(dataIMU->imu1_yaw);
+        ui->lcdIMU1pitch->display(dataIMU->imu1_pitch);
+        ui->lcdIMU2roll->display(dataIMU->imu2_roll);
+        ui->lcdIMU2yaw->display(dataIMU->imu2_yaw);
+        ui->lcdIMU2pitch->display(dataIMU->imu2_pitch);
+        ui->lcdIMU1accx->display(dataIMU->imu1_accx);
+        ui->lcdIMU1accy->display(dataIMU->imu1_accy);
+        ui->lcdIMU1accz->display(dataIMU->imu1_accz);
+        ui->lcdIMU2accx->display(dataIMU->imu2_accx);
+        ui->lcdIMU2accy->display(dataIMU->imu2_accy);
+        ui->lcdIMU2accz->display(dataIMU->imu2_accz);
+
+    }
+    else if (data.at(0) == SYNC_PT && data.size() == sizeof(dpPresTemp))
+    {
+        const dpPresTemp* dataPT = (const dpPresTemp*)data.constData();
+
+        ui->lcdTankPres->display(dataPT->presTank);
+        wTankPressure->setValue(dataPT->presTank);
+
+        ui->lcdValvePres->display(dataPT->presValves);
+        wValvePressure->setValue(dataPT->presValves);
+
+        wTankTemperature->setValue(dataPT->tempNoz1);
+        wNozzle1Temperature->setValue(dataPT->tempNoz1);
+        wNozzle2Temperature->setValue(dataPT->tempNoz2);
+        wNozzle3Temperature->setValue(dataPT->tempNoz3);
+        wNozzle4Temperature->setValue(dataPT->tempNoz4);
+        wPDUTemperature->setValue(dataPT->tempPDU);
+
+
+    }
+    else if (data.at(0) == SYNC_CALC && data.size() == sizeof(dpCalc))
+    {
+        const dpCalc* dataCalc = (const dpCalc*)data.constData();
+
+        if (dataCalc->valveState & 0b1)
+        {
+            wValveRM->setColor(Qt::green);
+        }
+        else
+        {
+            wValveRM->setColor(Qt::red);
+        }
+
+        if (dataCalc->valveState & 0b10)
+        {
+            wValveRM->setColor(Qt::green);
+        }
+        else
+        {
+            wValveRM->setColor(Qt::red);
+        }
+    }
+
 }
 
 void MainWindow::handleError(QSerialPort::SerialPortError error)
@@ -154,7 +219,7 @@ void MainWindow::initActionsConnections()
 void MainWindow::initGUIWidgets()
 {
     // Test Values
-    const double IMU1 = 12.23;
+    /*const double IMU1 = 12.23;
     const double IMU2 = 13.12;
     const double X1 = 3.41;
     const double X2 = 3.32;
@@ -171,20 +236,18 @@ void MainWindow::initGUIWidgets()
     const double TEMP_NOZ2 = 14.6;
     const double TEMP_NOZ3 = 15.3;
     const double TEMP_NOZ4 = 16.3;
-    const double TEMP_PDU = 33.4;
+    const double TEMP_PDU = 33.4;*/
 
     wTankPressure = new QNeedleIndicator(this);
-    wPreValvesPressure = new QNeedleIndicator(this);
-    wNozzlesRPPressure = new QNeedleIndicator(this);
-    wNozzlesRMPressure = new QNeedleIndicator(this);
+    wValvePressure = new QNeedleIndicator(this);
     wTankTemperature = new ThermoMeter(this);
     wNozzle1Temperature = new ThermoMeter(this);
     wNozzle2Temperature = new ThermoMeter(this);
     wNozzle3Temperature = new ThermoMeter(this);
     wNozzle4Temperature = new ThermoMeter(this);
     wPDUTemperature = new ThermoMeter(this);
-    valve1 = new Led(this);
-    valve2 = new Led(this);
+    wValveRP = new Led(this);
+    wValveRM = new Led(this);
     wChart = new Chart(this);
 
     wTankPressure->setRange(0, 300);
@@ -198,35 +261,15 @@ void MainWindow::initGUIWidgets()
     wTankPressure->setAnimated(false);
     //wTankPressure->setGapAngle(200);
 
-    wPreValvesPressure->setRange(0, 10);
-    wPreValvesPressure->setMajorTicks(11);
-    wPreValvesPressure->setMinorTicks(4);
-    wPreValvesPressure->setLabel(QString("Prev Pressure"));
-    wPreValvesPressure->setLabelOffset(0.75);
-    wPreValvesPressure->setLabelFont(QFont("Fixed", 10, QFont::Bold));
-    wPreValvesPressure->setDigitFont(QFont("Fixed", 10));
-    wPreValvesPressure->setDigitFormat("%.1f");
-    wPreValvesPressure->setAnimated(false);
-
-    wNozzlesRPPressure->setRange(0, 10);
-    wNozzlesRPPressure->setMajorTicks(11);
-    wNozzlesRPPressure->setMinorTicks(4);
-    wNozzlesRPPressure->setLabel(QString("Roll+ Pressure"));
-    wNozzlesRPPressure->setLabelOffset(0.75);
-    wNozzlesRPPressure->setLabelFont(QFont("Fixed", 10, QFont::Bold));
-    wNozzlesRPPressure->setDigitFont(QFont("Fixed", 10));
-    wNozzlesRPPressure->setDigitFormat("%.1f");
-    wNozzlesRPPressure->setAnimated(false);
-
-    wNozzlesRMPressure->setRange(0, 10);
-    wNozzlesRMPressure->setMajorTicks(11);
-    wNozzlesRMPressure->setMinorTicks(4);
-    wNozzlesRMPressure->setLabel(QString("Roll- Pressure"));
-    wNozzlesRMPressure->setLabelOffset(0.75);
-    wNozzlesRMPressure->setLabelFont(QFont("Fixed", 10, QFont::Bold));
-    wNozzlesRMPressure->setDigitFont(QFont("Fixed", 10));
-    wNozzlesRMPressure->setDigitFormat("%.1f");
-    wNozzlesRMPressure->setAnimated(false);
+    wValvePressure->setRange(0, 10);
+    wValvePressure->setMajorTicks(11);
+    wValvePressure->setMinorTicks(4);
+    wValvePressure->setLabel(QString("Prev Pressure"));
+    wValvePressure->setLabelOffset(0.75);
+    wValvePressure->setLabelFont(QFont("Fixed", 10, QFont::Bold));
+    wValvePressure->setDigitFont(QFont("Fixed", 10));
+    wValvePressure->setDigitFormat("%.1f");
+    wValvePressure->setAnimated(false);
 
     wTankTemperature->setSuffix(QString("°C"));
     wTankTemperature->setMaximum(50);
@@ -252,7 +295,7 @@ void MainWindow::initGUIWidgets()
     wPDUTemperature->setMaximum(50);
     wPDUTemperature->setMinimum(-30);
 
-    valve2->setColor(Qt::green);
+    //wValveRM->setColor(Qt::green);
 
 
     fillChartData();
@@ -269,7 +312,7 @@ void MainWindow::initGUIWidgets()
     //MessageBoxA(0, test, "Msg", MB_OK)
 
 
-    ui->lcdNumber->display(IMU1);
+    /*ui->lcdNumber->display(IMU1);
     ui->lcdNumber_7->display(IMU2);
     ui->lcdNumber_2->display(X1);
     ui->lcdNumber_5->display(X2);
@@ -282,34 +325,26 @@ void MainWindow::initGUIWidgets()
     wTankPressure->setValue(PRES_TANK);
 
     ui->lcdNumber_10->display(PRES_PREV);
-    wPreValvesPressure->setValue(PRES_PREV);
-
-    ui->lcdNumber_11->display(PRES_RP);
-    wNozzlesRPPressure->setValue(PRES_RP);
-
-    ui->lcdNumber_12->display(PRES_RM);
-    wNozzlesRMPressure->setValue(PRES_RM);
+    wValvePressure->setValue(PRES_PREV);
 
     wTankTemperature->setValue(TEMP_TANK);
     wNozzle1Temperature->setValue(TEMP_NOZ1);
     wNozzle2Temperature->setValue(TEMP_NOZ2);
     wNozzle3Temperature->setValue(TEMP_NOZ3);
     wNozzle4Temperature->setValue(TEMP_NOZ4);
-    wPDUTemperature->setValue(TEMP_PDU);
+    wPDUTemperature->setValue(TEMP_PDU);*/
 
-    ui->gridLayout->addWidget(wTankPressure);
-    ui->gridLayout_2->addWidget(wPreValvesPressure);
-    ui->gridLayout_3->addWidget(wTankTemperature);
-    ui->gridLayout_4->addWidget(wChart);
-    ui->gridLayout_5->addWidget(wNozzlesRMPressure);
-    ui->gridLayout_6->addWidget(wNozzlesRPPressure);
-    ui->gridLayout_7->addWidget(wNozzle1Temperature);
-    ui->gridLayout_8->addWidget(wNozzle2Temperature);
-    ui->gridLayout_9->addWidget(wNozzle3Temperature);
-    ui->gridLayout_10->addWidget(wNozzle4Temperature);
-    ui->gridLayout_11->addWidget(wPDUTemperature);
-    ui->gridLayout_12->addWidget(valve1);
-    ui->gridLayout_13->addWidget(valve2);
+    ui->gridTankPres->addWidget(wTankPressure);
+    ui->gridValvePres->addWidget(wValvePressure);
+    ui->gridTankTemp->addWidget(wTankTemperature);
+    ui->gridGraph->addWidget(wChart);
+    ui->gridNoz1Temp->addWidget(wNozzle1Temperature);
+    ui->gridNoz2Temp->addWidget(wNozzle2Temperature);
+    ui->gridNoz3Temp->addWidget(wNozzle3Temperature);
+    ui->gridNoz4Temp->addWidget(wNozzle4Temperature);
+    ui->gridPDUTemp->addWidget(wPDUTemperature);
+    ui->gridValveRP->addWidget(wValveRP);
+    ui->gridValveRM->addWidget(wValveRM);
 }
 
 void MainWindow::initCharts(Chart* widget)
