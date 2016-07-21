@@ -8,8 +8,9 @@
 
 #include <QMessageBox>
 #include <QObject>
+#include <QDateTime>
+#include <QSerialPortInfo>
 
-#include "serialreceiver.h"
 #include "packages.h"
 
 typedef vector<int> vint;
@@ -29,8 +30,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowState(windowState() | Qt::WindowMaximized);
 
-    menuSendCommand = ui->menuBar->addAction("Send Command");
-    connect(menuSendCommand, SIGNAL(triggered()), this, SLOT(sendCommand()));
+    // menuSendCommand = ui->menuBar->addAction("Send Command");
+    // connect(menuSendCommand, SIGNAL(triggered()), this, SLOT(sendCommand()));
+
+    menuSendCommand = ui->menuBar->addMenu("Send Command");
+
+    QList<QString> teleCommands;
+    teleCommands.append("DELETE_SD");
+    teleCommands.append("READ_SD");
+    teleCommands.append("SHUTDOWN");
+    teleCommands.append("MODE_STANDBY");
+    teleCommands.append("MODE_FLIGHT");
+    teleCommands.append("MODE_SECURE");
+    teleCommands.append("MODE_BD");
+    teleCommands.append("TEST_ENTER");
+    teleCommands.append("TEST_LEAVE");
+
+    foreach (const QString &name, teleCommands)
+    {
+       QAction *tmp = menuSendCommand->addAction(name);
+       connect(tmp, SIGNAL(triggered()), this, SLOT(sendCommand()));
+    }
 
     menuSelectCOM = ui->menuBar->addMenu("Serial COM");
     menuConnect = menuSelectCOM->addMenu("Connect");
@@ -38,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
     menuDisconnect = menuSelectCOM->addAction("Disconnect");
     connect(menuDisconnect, SIGNAL(triggered()), this, SLOT(serialDisconnect()));
 
-    QList<QString> serialPortNames = SerialReceiver::getSerialPortNames();
+    QList<QString> serialPortNames = getSerialPortNames();
     foreach (const QString &name, serialPortNames)
     {
         menuConnectCOMS.append(menuConnect->addAction(name));
@@ -57,6 +77,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(serial, SIGNAL(readyRead()), this, SLOT(readData()));
     // connect(console, SIGNAL(getData(QByteArray)), this, SLOT(writeData(QByteArray)));
 
+
+    ui->menuBar->addAction("Load file");
+
     //initActionsConnections();
     initGUIWidgets();
 
@@ -74,8 +97,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::sendCommand()
 {
-    commandWindow *w = new commandWindow(this);
-    w->show();
+    //commandWindow *w = new commandWindow(this);
+    //w->show();
+
+    if (!serial->isOpen())
+        return;
+
+    QAction *command = (QAction*)sender();
+
+    if (command->text() == "CLEAR_SD")
+    {
+       writeData(command->text().toUtf8());
+    }
+    else if (command->text() == "MODE_FLIGHT")
+    {
+       writeData(command->text().toUtf8());
+    }
+
 }
 
 void MainWindow::serialConnect()
@@ -90,6 +128,8 @@ void MainWindow::serialConnect()
     {
        closeSerialPort();
        menuConnectCOMS.at(currentPort)->setChecked(false);
+       if(file.isOpen())
+           file.close();
     }
 
     openSerialPort(com->text());
@@ -98,6 +138,24 @@ void MainWindow::serialConnect()
 
     status->setText("Connected to Port " + com->text());
 
+    QDateTime curTime = QDateTime::currentDateTime();
+
+
+    file.setFileName("telemetry_" + com->text() + "_" + curTime.toString("dd-MM-yyyy-hh-mm-ss") + ".bin");
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QMessageBox msgBox;
+        msgBox.setText("File " + file.fileName() + " not opened.");
+        msgBox.exec();
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("File " + file.fileName() + " opened.");
+        msgBox.exec();
+    }
+
 }
 
 void MainWindow::serialDisconnect()
@@ -105,6 +163,7 @@ void MainWindow::serialDisconnect()
     closeSerialPort();
     menuConnectCOMS.at(currentPort)->setChecked(false);
     currentPort = -1;
+    file.close();
     status->setText("Disconnected");
 }
 
@@ -194,6 +253,12 @@ void MainWindow::readData()
         }
     }
 
+    if (file.isOpen())
+    {
+        QDataStream out(&file);
+        out << data;
+    }
+
 }
 
 void MainWindow::handleError(QSerialPort::SerialPortError error)
@@ -204,6 +269,16 @@ void MainWindow::handleError(QSerialPort::SerialPortError error)
     }
 }
 
+QList<QString> MainWindow::getSerialPortNames()
+{
+    QList<QSerialPortInfo> ports = QSerialPortInfo::availablePorts();
+    QList<QString> portNames;
+    foreach (const QSerialPortInfo &portInfo, ports)
+    {
+        portNames.append(portInfo.portName());
+    }
+    return portNames;
+}
 
 void MainWindow::initActionsConnections()
 {
@@ -248,6 +323,7 @@ void MainWindow::initGUIWidgets()
     wPDUTemperature = new ThermoMeter(this);
     wValveRP = new Led(this);
     wValveRM = new Led(this);
+    wTestMode = new Led(this);
     wChart = new Chart(this);
 
     wTankPressure->setRange(0, 300);
@@ -260,6 +336,7 @@ void MainWindow::initGUIWidgets()
     wTankPressure->setDigitFormat("%.0f");
     wTankPressure->setAnimated(false);
     //wTankPressure->setGapAngle(200);
+    wTankPressure->setValue(0);
 
     wValvePressure->setRange(0, 10);
     wValvePressure->setMajorTicks(11);
@@ -270,6 +347,7 @@ void MainWindow::initGUIWidgets()
     wValvePressure->setDigitFont(QFont("Fixed", 10));
     wValvePressure->setDigitFormat("%.1f");
     wValvePressure->setAnimated(false);
+    wValvePressure->setValue(0);
 
     wTankTemperature->setSuffix(QString("°C"));
     wTankTemperature->setMaximum(50);
@@ -298,7 +376,7 @@ void MainWindow::initGUIWidgets()
     //wValveRM->setColor(Qt::green);
 
 
-    fillChartData();
+    //fillChartData();
     initCharts(wChart);
     wChart->setSize(450);
     //wChart->setBaseSize(160, 60);
@@ -345,6 +423,11 @@ void MainWindow::initGUIWidgets()
     ui->gridPDUTemp->addWidget(wPDUTemperature);
     ui->gridValveRP->addWidget(wValveRP);
     ui->gridValveRM->addWidget(wValveRM);
+    ui->gridTestMode->addWidget(wTestMode);
+
+    ui->txtMode->setDisabled(true);
+    ui->txtMode->zoomIn(4);
+    ui->txtMode->appendPlainText("Stand-by-mode");
 }
 
 void MainWindow::initCharts(Chart* widget)
@@ -353,7 +436,7 @@ void MainWindow::initCharts(Chart* widget)
     //vPen.setColor(Qt::red);
     vPen.setWidthF(2.0);
     vPen.setColor(Qt::green);
-    Channel cAngRates (-50,50,new DoubleDataContainer<vint,ldouble>(times,rates), "Angular rate",vPen);
+    Channel cAngRates (-50,50,new DoubleDataContainer<vint,ldouble>(times,rates), "Angular rate (°/s)",vPen);
     cAngRates.setShowScale(true);
     //cAngRates.setMaximum(50);
     //cAngRates.setMinimum(-50);

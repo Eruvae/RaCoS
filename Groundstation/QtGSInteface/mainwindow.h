@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include <QtSerialPort/QSerialPort>
+#include <QSerialPort>
 
 #include "GUIWidgets/qneedleindicator.h"
 #include "GUIWidgets/thermometer.h"
@@ -31,6 +31,7 @@ private:
     void initGUIWidgets();
     void initCharts(Chart* widget);
     void fillChartData();
+    QList<QString> getSerialPortNames();
 
     Ui::MainWindow *ui;
 
@@ -45,9 +46,11 @@ private:
     ThermoMeter *wPDUTemperature;
     Led *wValveRP;
     Led *wValveRM;
+    Led *wTestMode;
     Chart *wChart;
 
-    QAction *menuSendCommand;
+    // QAction *menuSendCommand;
+    QMenu *menuSendCommand;
     QMenu *menuSelectCOM;
     QMenu *menuConnect;
     QList<QAction*> menuConnectCOMS;
@@ -58,6 +61,9 @@ private:
     QLabel *status;
 
     int currentPort;
+
+    QFile file;
+
 
 
 public slots:

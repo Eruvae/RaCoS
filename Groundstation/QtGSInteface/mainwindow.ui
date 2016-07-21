@@ -792,8 +792,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="gridLayoutWidget_12">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>140</y>
+      <x>640</x>
+      <y>80</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -803,8 +803,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="gridLayoutWidget_13">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>220</y>
+      <x>640</x>
+      <y>140</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -814,8 +814,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_31">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>140</y>
+      <x>530</x>
+      <y>85</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -832,10 +832,10 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_32">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>220</y>
+      <x>530</x>
+      <y>146</y>
       <width>101</width>
-      <height>31</height>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -1034,6 +1034,63 @@ color: rgb(0, 0, 0);</string>
     <property name="text">
      <string>Pitch rate</string>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_35">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>230</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Mode</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="txtMode">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>230</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_36">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>300</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Test mode</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_14">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>290</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridTestMode"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

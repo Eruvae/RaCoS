@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT += serialport
+QT       += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,7 +16,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     commandwindow.cpp \
-    serialreceiver.cpp \
     GUIWidgets/chart/standard/channeldecorator.cpp \
     GUIWidgets/chart/standard/glassdecorator.cpp \
     GUIWidgets/chart/standard/labelsdecorator.cpp \
@@ -35,7 +34,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     commandwindow.h \
-    serialreceiver.h \
     GUIWidgets/chart/standard/channeldecorator.h \
     GUIWidgets/chart/standard/glassdecorator.h \
     GUIWidgets/chart/standard/labelsdecorator.h \

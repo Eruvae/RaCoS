@@ -19,6 +19,7 @@
 
 #include "qneedleindicator.h"
 #include <cmath>
+#include <QtMath>
 
 QNeedleIndicator::QNeedleIndicator(QWidget *parent) : QWidget(parent)
 {
