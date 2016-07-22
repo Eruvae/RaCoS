@@ -4,7 +4,7 @@
 #define SYNC_PT     (char)0xA4 // 0b10100100
 #define SYNC_CALC   (char)0xA2 // 0b10100010
 
-struct IMUdata __attribute__((packed))
+struct __attribute__((packed)) IMUdata
 {
 	uint16_t gyroData1[3];
 	uint16_t accData1[3];
@@ -15,7 +15,7 @@ struct IMUdata __attribute__((packed))
 	uint64_t sysTime;
 };
 
-struct hkData __attribute__((packed))
+struct __attribute__((packed)) hkData
 {
 	uint16_t tempTank;
 	uint16_t tempNoz1;
@@ -27,20 +27,20 @@ struct hkData __attribute__((packed))
 	uint64_t sysTime;
 };
 
-struct cmdData __attribute__((packed))
+struct __attribute__((packed)) cmdData
 {
 	uint8_t valveState;
 	uint16_t vot1;
 	uint16_t vot2;
 };
 
-struct tcData __attribute__((packed))
+struct __attribute__((packed)) tcData
 {
 	short moduleID;
 	int payload;
 };
 
-struct status __attribute__((packed))
+struct __attribute__((packed)) status
 {
 	short id; 
 	bool systemBad;
