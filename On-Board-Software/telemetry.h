@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TELEMETRY_H
+#define TELEMETRY_H
 
 #include "rodos.h"
 #include "topics.h"
@@ -12,11 +13,14 @@ class Telemetry : public Thread
 		cmdData calc;
 		uint8_t mode;
 		
-	public:
-		void init();
+    public:
 		void run();
 		int encodeIMU(char *buffer);
 		int encodePresTemp(char *buffer);
 		int encodeCalc(char *buffer);
 		int generateChecksum(char *buffer, int size);
 };
+
+extern Telemetry telemetry;
+
+#endif

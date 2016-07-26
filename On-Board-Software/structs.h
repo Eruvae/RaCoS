@@ -1,4 +1,7 @@
-#pragma once
+#ifndef STRUCTS_H
+#define STRUCTS_H
+
+#include "rodos.h"
 
 #define SYNC_IMU    (char)0xA8 // 0b10101000
 #define SYNC_PT     (char)0xA4 // 0b10100100
@@ -46,3 +49,5 @@ struct __attribute__((packed)) status
 	bool systemBad;
 	int errorcode;
 };
+
+#endif

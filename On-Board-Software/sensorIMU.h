@@ -1,6 +1,11 @@
-#pragma once
+#ifndef SENSORIMU_H
+#define SENSORIMU_H
 
 #include "rodos.h"
+
+#include "spihelper.h"
+#include "topics.h"
+#include "structs.h"
 
 extern HAL_SPI imu1;
 extern HAL_SPI imu2;
@@ -18,14 +23,18 @@ private:
 	IMUdata imu;
 
 public:
-	int initIMUs();
-	int configIMUs();
-	int getIMU1();
-	int getIMU2();
-	void fusionFilter();
-	void sendData();
-	void init();
+    //int initIMUs();
+    int configIMUs();
+    int getIMU1(uint16_t *buffer);
+    int getIMU2(uint16_t *buffer);
+    //void fusionFilter();
+    //void sendData();
+    //void init();
 	void run();
-	void sendStatus();
+    //void sendStatus();
 	
 };
+
+extern SensorIMU sensorIMU;
+
+#endif

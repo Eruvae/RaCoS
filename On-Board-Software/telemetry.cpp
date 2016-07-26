@@ -1,5 +1,7 @@
 #include "telemetry.h"
 
+Telemetry telemetry;
+
 void Telemetry::run()
 {
 	setPeriodicBeat(0, 500*MILLISECONDS);
@@ -74,7 +76,7 @@ int Telemetry::encodePresTemp(char *buffer)
 	
 	//memcpy(&buffer[6], &pres, sizeof(pres));
 	//memcpy(&buffer[10], &temp, sizeof(temp));
-	memcpy(&hkBuffer[6], &temp, 14);
+    memcpy(&buffer[6], &hk, 14);
 	
 	*(int32_t*)&buffer[22] = generateChecksum(buffer, 22);
 	
@@ -110,4 +112,9 @@ int Telemetry::encodeCalc(char *buffer)
 	
 	return 14;
 	
+}
+
+int Telemetry::generateChecksum(char *buffer, int size)
+{
+    return 0;
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TOPICS_H
+#define TOPICS_H
 
 #include "rodos.h"
 #include "structs.h"
@@ -17,3 +18,5 @@ extern CommBuffer<status> healthBuffer;
 
 extern Topic<tcData> tcTopic;
 extern CommBuffer<tcData> tcBuffer;
+
+#endif
