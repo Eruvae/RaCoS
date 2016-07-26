@@ -20,18 +20,18 @@ void Telemetry::run()
 
 int Telemetry::encodeIMU(char *buffer)
 {
+	IMUBuffer.get(imu);
+	
 	static uint16_t counter = 0;
 	
 	buffer[0] = SYNC_IMU;
 	
-	uint64_t time = NOW() / MILLISECONDS;
-	buffer[1] = time & 0xFF;
-	buffer[2] = time & 0xFF00;
-	buffer[3] = time & 0xFF0000;
+	//uint64_t time = NOW() / MILLISECONDS;
+	buffer[1] = imu.sysTime & 0xFF;
+	buffer[2] = imu.sysTime & 0xFF00;
+	buffer[3] = imu.sysTime & 0xFF0000;
 	
 	*(uint16_t*)&buffer[4] = counter;
-	
-	IMUBuffer.get(imu);
 	
 	memcpy(&buffer[6], &imu, 24);
 	
@@ -57,20 +57,20 @@ int Telemetry::encodeIMU(char *buffer)
 
 int Telemetry::encodePresTemp(char *buffer)
 {
+	//PressureBuffer.get(pres);
+	//TemperatureBuffer.get(temp);
+	hkBuffer.get(hk);
+	
 	static uint16_t counter = 0;
 	
 	buffer[0] = SYNC_PT;
 	
-	uint64_t time = NOW() / MILLISECONDS;
-	buffer[1] = time & 0xFF;
-	buffer[2] = time & 0xFF00;
-	buffer[3] = time & 0xFF0000;
+	//uint64_t time = NOW() / MILLISECONDS;
+	buffer[1] = hk.sysTime & 0xFF;
+	buffer[2] = hk.sysTime & 0xFF00;
+	buffer[3] = hk.sysTime & 0xFF0000;
 	
 	*(uint16_t*)&buffer[4] = counter;
-	
-	//PressureBuffer.get(pres);
-	//TemperatureBuffer.get(temp);
-	hkBuffer.get(hk);
 	
 	//memcpy(&buffer[6], &pres, sizeof(pres));
 	//memcpy(&buffer[10], &temp, sizeof(temp));
@@ -85,6 +85,9 @@ int Telemetry::encodePresTemp(char *buffer)
 
 int Telemetry::encodeCalc(char *buffer)
 {
+	controlBuffer.get(calc);
+	//ModeBuffer.get(mode);
+	
 	static uint16_t counter = 0;
 	
 	buffer[0] = SYNC_CALC;
@@ -95,9 +98,6 @@ int Telemetry::encodeCalc(char *buffer)
 	buffer[3] = time & 0xFF0000;
 	
 	*(uint16_t*)&buffer[4] = counter;
-	
-	controlBuffer.get(calc);
-	//ModeBuffer.get(mode);
 	
 	buffer[5] = mode;
 	
