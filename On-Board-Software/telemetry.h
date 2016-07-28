@@ -4,6 +4,7 @@
 #include "rodos.h"
 #include "topics.h"
 #include "structs.h"
+#include "comminterfaces.h"
 
 class Telemetry : public Thread
 {

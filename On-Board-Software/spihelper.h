@@ -5,7 +5,6 @@
 
 enum SPI_SS {IMU1, IMU2, SD};
 
-extern HAL_SPI spi_bus;
 /*HAL_GPIO ss_imu1;
 HAL_GPIO ss_imu2;
 HAL_GPIO ss_sd;*/

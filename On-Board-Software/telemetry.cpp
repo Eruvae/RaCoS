@@ -14,7 +14,9 @@ void Telemetry::run()
 		encodePresTemp(ptBuf);
 		encodeCalc(calcBuf);
 		
-		// TODO send Data
+        teleUART.write(imuBuf, 34);
+        teleUART.write(ptBuf, 26);
+        teleUART.write(calcBuf, 14);
 		
 		suspendUntilNextBeat();
 	}

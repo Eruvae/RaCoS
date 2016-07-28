@@ -12,13 +12,19 @@ HEADERS += \
     telemetry.h \
     structs.h \
     sensorIMU.h \
-    spihelper.h
+    spihelper.h \
+    comminterfaces.h \
+    sensorhousekeeping.h \
+    telecommand.h
 
 SOURCES += \
     topics.cpp \
     telemetry.cpp \
     sensorIMU.cpp \
-    spihelper.cpp
+    spihelper.cpp \
+    comminterfaces.cpp \
+    sensorhousekeeping.cpp \
+    telecommand.cpp
 
 OTHER_FILES += \
     flash_script

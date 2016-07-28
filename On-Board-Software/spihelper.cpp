@@ -2,7 +2,6 @@
 
 SPIHelper spiHelper;
 
-HAL_SPI spi_bus(SPI_IDX2);
 HAL_GPIO ss_imu1(GPIO_015); //TODO
 HAL_GPIO ss_imu2(GPIO_016); //TODO
 HAL_GPIO ss_sd(GPIO_017); //TODO
@@ -14,7 +13,6 @@ SPIHelper::SPIHelper()
 
 void SPIHelper::init()
 {
-    spi_bus.init(); // TODO (optional): Buadrade angeben, Mode per config; TODO: error handling
     ss_imu1.init(true, 1, 0);
     ss_imu2.init(true, 1, 0);
     ss_sd.init(true, 1, 0);

@@ -3,12 +3,10 @@
 
 #include "rodos.h"
 
+#include "comminterfaces.h"
 #include "spihelper.h"
 #include "topics.h"
 #include "structs.h"
-
-extern HAL_SPI imu1;
-extern HAL_SPI imu2;
 
 class SensorIMU : public Thread
 {
