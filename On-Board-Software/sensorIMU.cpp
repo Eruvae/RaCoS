@@ -39,28 +39,38 @@ int SensorIMU::configIMUs()
 	return 0;
 }
 
-int SensorIMU::getIMU1(uint16_t *buffer)
+int SensorIMU::getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc)
 {
     spiHelper.selectSlave(IMU1);
 
-    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)buffer, 6) == -1)
+    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
     {
         spiHelper.disableSlaves();
 		return -1;
+    }
+    if (spi_bus.writeRead(readAccAddr, 1, (uint8_t*)bufferAcc, 6) == -1)
+    {
+        spiHelper.disableSlaves();
+        return -1;
     }
 	
     spiHelper.disableSlaves();
 	return 0;
 }
 
-int SensorIMU::getIMU2(uint16_t *buffer)
+int SensorIMU::getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc)
 {
     spiHelper.selectSlave(IMU2);
 
-    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)buffer, 6) == -1)
+    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
     {
         spiHelper.disableSlaves();
 		return -1;
+    }
+    if (spi_bus.writeRead(readAccAddr, 1, (uint8_t*)bufferAcc, 6) == -1)
+    {
+        spiHelper.disableSlaves();
+        return -1;
     }
 	
     spiHelper.disableSlaves();
@@ -77,10 +87,8 @@ void SensorIMU::run()
 	uint16_t accBuffer2[3];
 	while(1)
 	{
-		getIMU1(gyroBuffer1);
-		getIMU1(accBuffer1);
-		getIMU2(gyroBuffer2);
-		getIMU2(accBuffer2);
+        getIMU1(gyroBuffer1, accBuffer1);
+        getIMU2(gyroBuffer2, accBuffer2);
 		
 		memcpy(imu.gyroData1, gyroBuffer1, 6);
 		memcpy(imu.gyroData2, gyroBuffer2, 6);

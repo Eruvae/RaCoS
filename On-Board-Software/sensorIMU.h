@@ -23,8 +23,8 @@ private:
 public:
     //int initIMUs();
     int configIMUs();
-    int getIMU1(uint16_t *buffer);
-    int getIMU2(uint16_t *buffer);
+    int getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc);
+    int getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc);
     //void fusionFilter();
     //void sendData();
     //void init();
