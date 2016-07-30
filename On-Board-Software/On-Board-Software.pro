@@ -15,7 +15,8 @@ HEADERS += \
     spihelper.h \
     comminterfaces.h \
     sensorhousekeeping.h \
-    telecommand.h
+    telecommand.h \
+    actuatorhandler.h
 
 SOURCES += \
     topics.cpp \
@@ -24,7 +25,8 @@ SOURCES += \
     spihelper.cpp \
     comminterfaces.cpp \
     sensorhousekeeping.cpp \
-    telecommand.cpp
+    telecommand.cpp \
+    actuatorhandler.cpp
 
 OTHER_FILES += \
     flash_script
