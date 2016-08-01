@@ -16,7 +16,8 @@ HEADERS += \
     comminterfaces.h \
     sensorhousekeeping.h \
     telecommand.h \
-    actuatorhandler.h
+    actuatorhandler.h \
+    storagecontroller.h
 
 SOURCES += \
     topics.cpp \
@@ -26,7 +27,8 @@ SOURCES += \
     comminterfaces.cpp \
     sensorhousekeeping.cpp \
     telecommand.cpp \
-    actuatorhandler.cpp
+    actuatorhandler.cpp \
+    storagecontroller.cpp
 
 OTHER_FILES += \
     flash_script
