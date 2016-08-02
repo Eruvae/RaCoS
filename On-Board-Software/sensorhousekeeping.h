@@ -8,12 +8,15 @@
 class SensorHousekeeping : public Thread
 {
     hkData hk;
+    uint8_t crc8(const void *vptr, int len);
 public:
     SensorHousekeeping();
     void configADC();
     void getTankPressure(uint16_t *presTank);
     void getValvesPressure(uint16_t *presValves);
-    void getTemperatureData();
+    void configTempSensor(uint64_t *rom_code);
+    int16_t getTemperatureData(uint64_t *rom_code);
+    float convertTemperature(int16_t temp);
     void run();
 };
 
