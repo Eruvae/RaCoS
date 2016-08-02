@@ -5,6 +5,7 @@
 #include "topics.h"
 #include "structs.h"
 #include "comminterfaces.h"
+#include "murmur.h"
 
 class Telemetry : public Thread
 {

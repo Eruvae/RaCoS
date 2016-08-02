@@ -3,7 +3,7 @@
 
 #include "rodos.h"
 
-class ActuatorHandler : public Thread
+class ActuatorHandler : public Initiator
 {
 public:
     ActuatorHandler();

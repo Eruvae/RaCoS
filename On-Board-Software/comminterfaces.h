@@ -6,6 +6,7 @@
 extern HAL_SPI spi_bus;
 extern HAL_I2C i2c_bus;
 extern HAL_UART teleUART;
+extern HAL_UART oneWire;
 
 class CommInterfaces : public Initiator
 {

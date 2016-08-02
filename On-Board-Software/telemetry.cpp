@@ -118,5 +118,5 @@ int Telemetry::encodeCalc(char *buffer)
 
 int Telemetry::generateChecksum(char *buffer, int size)
 {
-    return 0;
+    return Murmur::mm_hash_32((uint8_t*)buffer, size);
 }

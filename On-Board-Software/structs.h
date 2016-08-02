@@ -6,6 +6,18 @@
 #define SYNC_IMU    (char)0xA8 // 0b10101000
 #define SYNC_PT     (char)0xA4 // 0b10100100
 #define SYNC_CALC   (char)0xA2 // 0b10100010
+#define SYNC_COMM   (char)0xA1 // 0b10100001
+
+#define DELETE_SD         0x00
+#define SHUTDOWN        0x01
+#define RESTART         0x02
+#define MODE_STANDBY    0x03
+#define MODE_FLIGHT     0x04
+#define MODE_SECURE     0x05
+#define MODE_BD         0x06
+#define TEST_ACTIVATE   0x07
+#define TEST_LEAVE      0x08
+
 
 struct __attribute__((packed)) IMUdata
 {
@@ -48,6 +60,14 @@ struct __attribute__((packed)) status
 	short id; 
 	bool systemBad;
 	int errorcode;
+};
+
+struct __attribute__((packed)) dpCommand
+{
+    uint8_t sync;
+    uint8_t id;
+    uint16_t counter;
+    uint16_t check;
 };
 
 #endif

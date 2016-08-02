@@ -5,13 +5,14 @@
 #include "topics.h"
 #include "structs.h"
 #include "comminterfaces.h"
+#include "murmur.h"
 
 class Telecommand : public Thread
 {
 public:
     Telecommand();
     void run();
-    int decodeCommand();
+    int decodeCommand(dpCommand comPack);
 };
 
 #endif // TELECOMMAND_H

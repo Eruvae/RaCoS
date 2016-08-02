@@ -13,9 +13,9 @@
 
 #define ADC_CONFIG_PTV_LSB 0b10000011
 
-uint8_t adc_config_pt = {ADC_CONFIG_REG, ADC_CONFIG_PT_MSB, ADC_CONFIG_PTV_LSB};
-uint8_t adc_config_pv = {ADC_CONFIG_REG, ADC_CONFIG_PV_MSB, ADC_CONFIG_PTV_LSB};
-uint8_t adc_read_mode = {ADC_CONV_REG};
+uint8_t adc_config_pt[] = {ADC_CONFIG_REG, ADC_CONFIG_PT_MSB, ADC_CONFIG_PTV_LSB};
+uint8_t adc_config_pv[] = {ADC_CONFIG_REG, ADC_CONFIG_PV_MSB, ADC_CONFIG_PTV_LSB};
+uint8_t adc_read_mode[] = {ADC_CONV_REG};
 
 SensorHousekeeping::SensorHousekeeping()
 {
@@ -26,24 +26,46 @@ void SensorHousekeeping::getTemperatureData()
 
 }
 
-void SensorHousekeeping::getPressureData(uint16_t *presTank, uint16_t *presValve)
+void SensorHousekeeping::getTankPressure(uint16_t *presTank)
 {
-    i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3);
+    // read tank pressure
     i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
     i2c_bus.writeRead(ADC_ITC_READ, 0, 0, (uint8_t*)presTank, 2);
 
+    // config ADC for valves pressure
     i2c_bus.write(ADC_ITC_WRITE, adc_config_pv, 3);
-    i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
-    i2c_bus.writeRead(ADC_ITC_READ, 0, 0, (uint8_t*)presTank, 2);
+}
 
+void SensorHousekeeping::getValvesPressure(uint16_t *presValves)
+{   
+    // read valves pressure
+    i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
+    i2c_bus.writeRead(ADC_ITC_READ, 0, 0, (uint8_t*)presValves, 2);
+
+    // config ADC for tank pressure
+    i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3);
 }
 
 void SensorHousekeeping::configADC()
 {
+    // config ADC for tank pressure
     i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3);
 }
 
 void SensorHousekeeping::run()
 {
-
+    configADC();
+    setPeriodicBeat(0, 100*MILLISECONDS);
+    bool presCycle = false;
+    while(1)
+    {
+        if (!presCycle)
+            getTankPressure(&(hk.presTank));
+        else
+        {
+            getValvesPressure(&(hk.presValves));
+            hkTopic.publish(hk);
+        }
+        suspendUntilNextBeat();
+    }
 }

@@ -17,7 +17,8 @@ HEADERS += \
     sensorhousekeeping.h \
     telecommand.h \
     actuatorhandler.h \
-    storagecontroller.h
+    storagecontroller.h \
+    murmur.h
 
 SOURCES += \
     topics.cpp \
@@ -28,7 +29,8 @@ SOURCES += \
     sensorhousekeeping.cpp \
     telecommand.cpp \
     actuatorhandler.cpp \
-    storagecontroller.cpp
+    storagecontroller.cpp \
+    murmur.cpp
 
 OTHER_FILES += \
     flash_script

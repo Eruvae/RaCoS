@@ -3,6 +3,7 @@
 HAL_SPI spi_bus(SPI_IDX2);
 HAL_I2C i2c_bus(I2C_IDX1);
 HAL_UART teleUART(UART_IDX1);
+HAL_UART oneWire(UART_IDX2);
 
 CommInterfaces commInit;
 
@@ -15,4 +16,5 @@ void CommInterfaces::init()
     spi_bus.init(); // TODO (optional): Buadrade angeben, Mode per config; TODO: error handling
     i2c_bus.init();
     teleUART.init();
+    oneWire.init(); // TODO: config to oneWire
 }
