@@ -37,13 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QList<QString> teleCommands;
     teleCommands.append("DELETE_SD");
-    teleCommands.append("READ_SD");
     teleCommands.append("SHUTDOWN");
+    teleCommands.append("RESTART");
     teleCommands.append("MODE_STANDBY");
     teleCommands.append("MODE_FLIGHT");
     teleCommands.append("MODE_SECURE");
     teleCommands.append("MODE_BD");
-    teleCommands.append("TEST_ENTER");
+    teleCommands.append("TEST_ACTIVATE");
     teleCommands.append("TEST_LEAVE");
 
     foreach (const QString &name, teleCommands)
@@ -99,20 +99,63 @@ void MainWindow::sendCommand()
 {
     //commandWindow *w = new commandWindow(this);
     //w->show();
+    static int counter = 0;
 
     if (!serial->isOpen())
         return;
 
     QAction *command = (QAction*)sender();
 
-    if (command->text() == "CLEAR_SD")
+    dpCommand comPack;
+    comPack.sync = SYNC_COMM;
+
+    if (command->text() == "DELETE_SD")
     {
-       writeData(command->text().toUtf8());
+        comPack.id = DELETE_SD;
+    }
+    else if (command->text() == "SHUTDOWN")
+    {
+        comPack.id = SHUTDOWN;
+    }
+    else if (command->text() == "RESTART")
+    {
+        comPack.id = RESTART;
+    }
+    else if (command->text() == "MODE_STANDBY")
+    {
+        comPack.id = MODE_STANDBY;
     }
     else if (command->text() == "MODE_FLIGHT")
     {
-       writeData(command->text().toUtf8());
+        comPack.id = MODE_FLIGHT;
     }
+    else if (command->text() == "MODE_SECURE")
+    {
+        comPack.id = MODE_SECURE;
+    }
+    else if (command->text() == "MODE_BD")
+    {
+        comPack.id = MODE_BD;
+    }
+    else if (command->text() == "TEST_ACTIVATE")
+    {
+        comPack.id = TEST_ACTIVATE;
+    }
+    else if (command->text() == "TEST_LEAVE")
+    {
+        comPack.id = TEST_LEAVE;
+    }
+
+    comPack.counter = counter;
+    counter++;
+
+    comPack.check = 0; //TODO
+
+    QByteArray commArray;
+    QDataStream stream(&commArray, QIODevice::WriteOnly);
+    stream << comPack.sync << comPack.id << comPack.counter << comPack.check;
+
+    writeData(commArray);
 
 }
 
