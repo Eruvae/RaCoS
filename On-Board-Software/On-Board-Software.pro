@@ -18,7 +18,8 @@ HEADERS += \
     telecommand.h \
     actuatorhandler.h \
     storagecontroller.h \
-    murmur.h
+    murmur.h \
+    healthwatchdog.h
 
 SOURCES += \
     topics.cpp \
@@ -30,7 +31,8 @@ SOURCES += \
     telecommand.cpp \
     actuatorhandler.cpp \
     storagecontroller.cpp \
-    murmur.cpp
+    murmur.cpp \
+    healthwatchdog.cpp
 
 OTHER_FILES += \
     flash_script

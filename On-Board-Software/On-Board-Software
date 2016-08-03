@@ -1,6 +1,0 @@
-#!/bin/bash
-cd $HOME/rodos/rodos-core
-source make/rodosenvs
-cd /home/rodos/workspace_qt/RaCoS/On-Board-Software
-stm32f4-load
-
