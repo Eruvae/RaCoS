@@ -13,33 +13,44 @@ SPIHelper::SPIHelper()
 
 void SPIHelper::init()
 {
-    ss_imu1.init(true, 1, 0);
-    ss_imu2.init(true, 1, 0);
-    ss_sd.init(true, 1, 0);
+    ss_imu1.init(true, 1, 1);
+    ss_imu2.init(true, 1, 1);
+    ss_sd.init(true, 1, 1);
+
+    slaveSelected = false;
 }
 
-void SPIHelper::selectSlave(SPI_SS select)
+int SPIHelper::selectSlave(SPI_SS select)
 {
+    if (slaveSelected)
+        return -1;
+
+    slaveSelected = true;
+
     switch(select)
     {
     case IMU1:
-        ss_imu2.setPins(false);
-        ss_sd.setPins(false);
-        ss_imu1.setPins(true);
-    case IMU2:
-        ss_imu1.setPins(false);
-        ss_sd.setPins(false);
         ss_imu2.setPins(true);
-    case SD:
-        ss_imu1.setPins(false);
-        ss_imu2.setPins(false);
         ss_sd.setPins(true);
+        ss_imu1.setPins(false);
+    case IMU2:
+        ss_imu1.setPins(true);
+        ss_sd.setPins(true);
+        ss_imu2.setPins(false);
+    case SD:
+        ss_imu1.setPins(true);
+        ss_imu2.setPins(true);
+        ss_sd.setPins(false);
     }
+
+    return 0;
 }
 
 void SPIHelper::disableSlaves()
 {
-    ss_imu1.setPins(false);
-    ss_imu2.setPins(false);
-    ss_sd.setPins(false);
+    ss_imu1.setPins(true);
+    ss_imu2.setPins(true);
+    ss_sd.setPins(true);
+
+    slaveSelected = false;
 }

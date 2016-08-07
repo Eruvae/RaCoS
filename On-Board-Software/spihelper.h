@@ -11,9 +11,10 @@ HAL_GPIO ss_sd;*/
 
 class SPIHelper : public Initiator
 {
+    bool slaveSelected;
 public:
     SPIHelper();
-    void selectSlave(SPI_SS select);
+    int selectSlave(SPI_SS select);
     void disableSlaves();
 
     void init();

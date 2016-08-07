@@ -95,12 +95,28 @@ void  SensorHousekeeping::configTempSensor(uint64_t *rom_code)
     for (int i = 0; i < 13; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
 }
 
+void SensorHousekeeping::initTemperatureConv()
+{
+    uint8_t sendBuf[2];
+    sendBuf[0] = SKIP_ROM;
+    sendBuf[1] = CONVERT_T;
+
+    // Reset, Presence (done by protocoll?)
+    oneWire.write((const char*)sendBuf, 2);
+    oneWire.suspendUntilWriteFinished();
+    //while((oneWire.getcharNoWait()) >=0); // clear buffer
+    for (int i = 0; i < 2; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
+
+}
+
 int16_t SensorHousekeeping::getTemperatureData(uint64_t *rom_code)
 {
     uint8_t sendBuf[10];
     sendBuf[0] = MATCH_ROM;
     memcpy(&sendBuf[1], rom_code, 8);
-    sendBuf[9] = CONVERT_T;
+
+    //Init single conversion below, moved to initTemperatureConv()
+    /*sendBuf[9] = CONVERT_T;
 
     // Reset, Presence (done by protocoll?)
     oneWire.write((const char*)sendBuf, 10);
@@ -109,6 +125,7 @@ int16_t SensorHousekeeping::getTemperatureData(uint64_t *rom_code)
     for (int i = 0; i < 10; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
     suspendCallerUntil(NOW() + 94*MILLISECONDS); // wait for conversion (TODO: possibly change time)
     // oneWire.suspendUntilDataReady(NOW() + 10*MILLISECONDS); // or this (may work) - probably not
+    */
 
     sendBuf[9] = READ_SCRATCHPAD;
 
@@ -174,6 +191,7 @@ void SensorHousekeeping::run()
     configADC();
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
+    int tempCycle = 0;
     while(1)
     {
         if (!presCycle)
@@ -181,8 +199,27 @@ void SensorHousekeeping::run()
         else
         {
             getValvesPressure(&(hk.presValves));
+
+            hk.sysTime = NOW();
             hkTopic.publish(hk);
         }
+
+        if (tempCycle == 0)
+            initTemperatureConv();
+        else //if (tempCycle == 1)
+        {
+            hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
+            hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
+            hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
+            hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
+            hk.tempTank = getTemperatureData(TS_TANK_ROM);
+
+            hk.sysTime = NOW();
+            hkTopic.publish(hk);
+        }
+
+        presCycle = !presCycle;
+        tempCycle = ++tempCycle < 2 ? tempCycle : 0;
         suspendUntilNextBeat();
     }
 }

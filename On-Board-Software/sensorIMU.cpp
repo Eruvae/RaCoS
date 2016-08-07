@@ -28,6 +28,8 @@ int SensorIMU::configIMUs()
     if (spi_bus.write(accelConfig, 2) == -1)
         return -1;
 
+    spiHelper.disableSlaves();
+
     spiHelper.selectSlave(IMU2);
     if (spi_bus.write(gyroConfig, 2) == -1)
 		return -1;
