@@ -19,7 +19,8 @@ HEADERS += \
     actuatorhandler.h \
     storagecontroller.h \
     murmur.h \
-    healthwatchdog.h
+    healthwatchdog.h \
+    sdcomm.h
 
 SOURCES += \
     topics.cpp \
@@ -32,7 +33,8 @@ SOURCES += \
     actuatorhandler.cpp \
     storagecontroller.cpp \
     murmur.cpp \
-    healthwatchdog.cpp
+    healthwatchdog.cpp \
+    sdcomm.cpp
 
 OTHER_FILES += \
     flash_script

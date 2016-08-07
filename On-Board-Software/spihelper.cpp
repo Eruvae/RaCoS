@@ -6,6 +6,8 @@ HAL_GPIO ss_imu1(GPIO_015); //TODO
 HAL_GPIO ss_imu2(GPIO_016); //TODO
 HAL_GPIO ss_sd(GPIO_017); //TODO
 
+Semaphore spi_comm_running;
+
 SPIHelper::SPIHelper()
 {
 

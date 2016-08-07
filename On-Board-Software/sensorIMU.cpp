@@ -22,6 +22,8 @@ uint8_t accelConfig[] = {ACCEL_CONFIG, 0b00011000};
 
 int SensorIMU::configIMUs()
 {
+    spi_comm_running.enter();
+
     spiHelper.selectSlave(IMU1);
     if (spi_bus.write(gyroConfig, 2) == -1)
         return -1;
@@ -37,12 +39,16 @@ int SensorIMU::configIMUs()
         return -1;
 	
     spiHelper.disableSlaves();
+
+    spi_comm_running.leave();
 
 	return 0;
 }
 
 int SensorIMU::getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc)
 {
+    spi_comm_running.enter();
+
     spiHelper.selectSlave(IMU1);
 
     if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
@@ -57,11 +63,16 @@ int SensorIMU::getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc)
     }
 	
     spiHelper.disableSlaves();
+
+    spi_comm_running.leave();
+
 	return 0;
 }
 
 int SensorIMU::getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc)
 {
+    spi_comm_running.enter();
+
     spiHelper.selectSlave(IMU2);
 
     if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
@@ -76,6 +87,9 @@ int SensorIMU::getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc)
     }
 	
     spiHelper.disableSlaves();
+
+    spi_comm_running.leave();
+
 	return 0;
 }
 
