@@ -38,6 +38,7 @@ const uint64_t TS_NOZ2_ROM = 0x0000000000000000ULL;
 const uint64_t TS_NOZ3_ROM = 0x0000000000000000ULL;
 const uint64_t TS_NOZ4_ROM = 0x0000000000000000ULL;
 const uint64_t TS_TANK_ROM = 0x0000000000000000ULL;
+const uint64_t TS_PDU_ROM = 0x0000000000000000ULL;
 
 #define TS_TH               0b01010101 // High-Temperature alarm, 85 degrees celsius
 #define TS_TL               0b11001001 // Low-Temperature alarm, -55 degrees celsius
@@ -79,11 +80,11 @@ uint8_t SensorHousekeeping::crc8(const void *vptr, int len)
     return crc;
 }
 
-void  SensorHousekeeping::configTempSensor(uint64_t *rom_code)
+void  SensorHousekeeping::configTempSensor(uint64_t rom_code)
 {
     uint8_t sendBuf[13];
     sendBuf[0] = MATCH_ROM;
-    memcpy(&sendBuf[1], rom_code, 8);
+    memcpy(&sendBuf[1], &rom_code, 8);
     sendBuf[9] = WRITE_SCRATCHPAD;
     sendBuf[10] = TS_TH;
     sendBuf[11] = TS_TL;
@@ -109,11 +110,11 @@ void SensorHousekeeping::initTemperatureConv()
 
 }
 
-int16_t SensorHousekeeping::getTemperatureData(uint64_t *rom_code)
+int16_t SensorHousekeeping::getTemperatureData(uint64_t rom_code)
 {
     uint8_t sendBuf[10];
     sendBuf[0] = MATCH_ROM;
-    memcpy(&sendBuf[1], rom_code, 8);
+    memcpy(&sendBuf[1], &rom_code, 8);
 
     //Init single conversion below, moved to initTemperatureConv()
     /*sendBuf[9] = CONVERT_T;
@@ -162,7 +163,7 @@ void SensorHousekeeping::getTankPressure(uint16_t *presTank)
     i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
     i2c_bus.read(ADC_ITC_READ, (uint8_t*)presTank, 2);
 
-    *presTank = swapShort(*presTank);
+    *presTank = swap16(*presTank);
 
     // config ADC for valves pressure
     i2c_bus.write(ADC_ITC_WRITE, adc_config_pv, 3);
@@ -174,7 +175,7 @@ void SensorHousekeeping::getValvesPressure(uint16_t *presValves)
     i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
     i2c_bus.read(ADC_ITC_READ,(uint8_t*)presValves, 2);
 
-    *presValves = swapShort(*presValves);
+    *presValves = swap16(*presValves);
 
     // config ADC for tank pressure
     i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3);
@@ -213,6 +214,7 @@ void SensorHousekeeping::run()
             hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
             hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
             hk.tempTank = getTemperatureData(TS_TANK_ROM);
+            hk.tempPDU = getTemperatureData(TS_PDU_ROM);
 
             hk.sysTime = NOW();
             hkTopic.publish(hk);

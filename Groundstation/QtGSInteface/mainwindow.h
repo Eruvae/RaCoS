@@ -11,6 +11,9 @@
 #include "GUIWidgets/chart.h"
 #include "GUIWidgets/chart/datacontainers.h"
 
+#include "packages.h"
+#include "murmur.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -31,6 +34,11 @@ private:
     void initGUIWidgets();
     void initCharts(Chart* widget);
     void fillChartData();
+    void decodeIMU(const dpIMU *dataIMU);
+    void decodePT(const dpPresTemp *dataPT);
+    void decodeCalc(const dpCalc *dataCalc);
+
+
     QList<QString> getSerialPortNames();
 
     Ui::MainWindow *ui;

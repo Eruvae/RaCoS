@@ -4,19 +4,32 @@ Telemetry telemetry;
 
 void Telemetry::run()
 {
-	setPeriodicBeat(0, 500*MILLISECONDS);
+	int sendCycle = 0;
+	setPeriodicBeat(0, 500*MILLISECONDS / 3);
 	while(1)
 	{
 		char imuBuf[34];
 		char ptBuf[26];
-		char calcBuf[14];
+		char calcBuf[16];
 		encodeIMU(imuBuf);
 		encodePresTemp(ptBuf);
 		encodeCalc(calcBuf);
 		
-        teleUART.write(imuBuf, 34);
-        teleUART.write(ptBuf, 26);
-        teleUART.write(calcBuf, 14);
+		if (sendCycle == 0)
+		{
+			teleUART.write(ptBuf, 26);
+			sendCycle++;
+		}
+		else if (sendCycle == 1)
+		{
+			teleUART.write(imuBuf, 34);
+			sendCycle++;
+		}
+		else if (sendCycle == 2)
+		{
+			teleUART.write(calcBuf, 16);
+			sendCycle = 0;
+		}
 		
 		suspendUntilNextBeat();
 	}
@@ -78,7 +91,7 @@ int Telemetry::encodePresTemp(char *buffer)
 	
 	//memcpy(&buffer[6], &pres, sizeof(pres));
 	//memcpy(&buffer[10], &temp, sizeof(temp));
-    memcpy(&buffer[6], &hk, 14);
+    memcpy(&buffer[6], &hk, 16);
 	
 	*(int32_t*)&buffer[22] = generateChecksum(buffer, 22);
 	
@@ -103,16 +116,16 @@ int Telemetry::encodeCalc(char *buffer)
 	
 	*(uint16_t*)&buffer[4] = counter;
 	
-	buffer[5] = mode;
+	buffer[6] = mode;
 	
-	memcpy(&buffer[6], &calc, 5);
+	memcpy(&buffer[7], &calc, 5);
 	
 	
-	*(int32_t*)&buffer[10] = generateChecksum(buffer, 10);
+	*(int32_t*)&buffer[12] = generateChecksum(buffer, 12);
 	
 	counter++;
 	
-	return 14;
+	return 16;
 	
 }
 

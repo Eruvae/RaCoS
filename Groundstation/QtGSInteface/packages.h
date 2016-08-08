@@ -3,10 +3,10 @@
 
 #include <stdint.h>
 
-#define SYNC_IMU    (char)0xA8 // 0b10101000
-#define SYNC_PT     (char)0xA4 // 0b10100100
-#define SYNC_CALC   (char)0xA2 // 0b10100010
-#define SYNC_COMM   (char)0xA1 // 0b10100001
+#define SYNC_IMU    (uint8_t)0xA8 // 0b10101000
+#define SYNC_PT     (uint8_t)0xA4 // 0b10100100
+#define SYNC_CALC   (uint8_t)0xA2 // 0b10100010
+#define SYNC_COMM   (uint8_t)0xA1 // 0b10100001
 
 #define DELETE_SD         0x00
 #define SHUTDOWN        0x01
