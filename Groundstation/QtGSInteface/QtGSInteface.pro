@@ -13,8 +13,9 @@ TARGET = QtGSInteface
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main.cpp \
+    murmur.cpp \
+    mainwindow.cpp \
     commandwindow.cpp \
     GUIWidgets/chart/standard/channeldecorator.cpp \
     GUIWidgets/chart/standard/glassdecorator.cpp \
@@ -30,9 +31,10 @@ SOURCES += main.cpp\
     GUIWidgets/led.cpp \
     GUIWidgets/qneedleindicator.cpp \
     GUIWidgets/thermometer.cpp \
-    GUIWidgets/widgetwithbackground.cpp
+    GUIWidgets/widgetwithbackground.cpp \
 
 HEADERS  += mainwindow.h \
+    murmur.h \
     commandwindow.h \
     GUIWidgets/chart/standard/channeldecorator.h \
     GUIWidgets/chart/standard/glassdecorator.h \

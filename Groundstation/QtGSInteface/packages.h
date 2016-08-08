@@ -39,7 +39,7 @@ struct dpIMU
     int16_t imu2_accy;
     int16_t imu2_accz;
 
-    uint16_t check;
+    uint32_t check;
 };
 
 struct dpPresTemp
@@ -57,7 +57,7 @@ struct dpPresTemp
     int16_t tempNoz4;
     int16_t tempPDU;
 
-    uint16_t check;
+    uint32_t check;
 };
 
 struct dpCalc
@@ -71,7 +71,7 @@ struct dpCalc
     uint16_t vot2;
     uint8_t valveState;
 
-    uint16_t check;
+    uint32_t check;
 };
 
 struct dpCommand
@@ -79,7 +79,7 @@ struct dpCommand
     uint8_t sync;
     uint8_t id;
     uint16_t counter;
-    uint16_t check;
+    uint32_t check;
 };
 
 #pragma pack(pop)

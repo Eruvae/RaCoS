@@ -12,6 +12,11 @@
 #include <QSerialPortInfo>
 
 #include "packages.h"
+#include "murmur.h"
+
+#define GYRO_FACTOR         0.00762939453125    // Max. Scale: 250 deg/s
+#define ACC_FACTOR          0.00048828125       // Max. Scale: 8g
+#define TEMP_FACTOR        0.0625
 
 typedef vector<int> vint;
 typedef list <int>  lint;
@@ -149,7 +154,7 @@ void MainWindow::sendCommand()
     comPack.counter = counter;
     counter++;
 
-    comPack.check = 0; //TODO
+    comPack.check = Murmur::mm_hash_32((uint8_t*)&comPack, 4); //TODO
 
     QByteArray commArray;
     QDataStream stream(&commArray, QIODevice::WriteOnly);
@@ -231,75 +236,155 @@ void MainWindow::writeData(const QByteArray &data)
 
 void MainWindow::readData()
 {
+    static int i = 0;
     QByteArray data = serial->readAll();
     /*QMessageBox msgBox;
     msgBox.setText(data);
     msgBox.exec();*/
 
-    if (data.at(0) == SYNC_IMU && data.size() == sizeof(dpIMU))
+    for (int i = 0; i < data.size(); i++)
     {
-        const dpIMU* dataIMU = (const dpIMU*)data.constData();
-
-        ui->lcdIMU1roll->display(dataIMU->imu1_roll);
-        ui->lcdIMU1yaw->display(dataIMU->imu1_yaw);
-        ui->lcdIMU1pitch->display(dataIMU->imu1_pitch);
-        ui->lcdIMU2roll->display(dataIMU->imu2_roll);
-        ui->lcdIMU2yaw->display(dataIMU->imu2_yaw);
-        ui->lcdIMU2pitch->display(dataIMU->imu2_pitch);
-        ui->lcdIMU1accx->display(dataIMU->imu1_accx);
-        ui->lcdIMU1accy->display(dataIMU->imu1_accy);
-        ui->lcdIMU1accz->display(dataIMU->imu1_accz);
-        ui->lcdIMU2accx->display(dataIMU->imu2_accx);
-        ui->lcdIMU2accy->display(dataIMU->imu2_accy);
-        ui->lcdIMU2accz->display(dataIMU->imu2_accz);
-
-    }
-    else if (data.at(0) == SYNC_PT && data.size() == sizeof(dpPresTemp))
-    {
-        const dpPresTemp* dataPT = (const dpPresTemp*)data.constData();
-
-        ui->lcdTankPres->display(dataPT->presTank);
-        wTankPressure->setValue(dataPT->presTank);
-
-        ui->lcdValvePres->display(dataPT->presValves);
-        wValvePressure->setValue(dataPT->presValves);
-
-        wTankTemperature->setValue(dataPT->tempNoz1);
-        wNozzle1Temperature->setValue(dataPT->tempNoz1);
-        wNozzle2Temperature->setValue(dataPT->tempNoz2);
-        wNozzle3Temperature->setValue(dataPT->tempNoz3);
-        wNozzle4Temperature->setValue(dataPT->tempNoz4);
-        wPDUTemperature->setValue(dataPT->tempPDU);
-
-
-    }
-    else if (data.at(0) == SYNC_CALC && data.size() == sizeof(dpCalc))
-    {
-        const dpCalc* dataCalc = (const dpCalc*)data.constData();
-
-        if (dataCalc->valveState & 0b1)
+        if (data.at(i) == SYNC_IMU && data.size() - i  >= sizeof(dpIMU))
         {
-            wValveRM->setColor(Qt::green);
-        }
-        else
-        {
-            wValveRM->setColor(Qt::red);
-        }
+            const dpIMU* dataIMU = (const dpIMU*)(data.constData() + i);
 
-        if (dataCalc->valveState & 0b10)
-        {
-            wValveRM->setColor(Qt::green);
-        }
-        else
-        {
-            wValveRM->setColor(Qt::red);
-        }
-    }
+            int checksum = Murmur::mm_hash_32((uint8_t*)dataIMU, sizeof(dpIMU) - 4);
 
-    if (file.isOpen())
-    {
-        QDataStream out(&file);
-        out << data;
+            if (checksum != dataIMU->check)
+                return;
+
+            ui->lcdIMU1roll->display(dataIMU->imu1_roll * GYRO_FACTOR);
+            ui->lcdIMU1yaw->display(dataIMU->imu1_yaw * GYRO_FACTOR);
+            ui->lcdIMU1pitch->display(dataIMU->imu1_pitch * GYRO_FACTOR);
+            ui->lcdIMU2roll->display(dataIMU->imu2_roll * GYRO_FACTOR);
+            ui->lcdIMU2yaw->display(dataIMU->imu2_yaw * GYRO_FACTOR);
+            ui->lcdIMU2pitch->display(dataIMU->imu2_pitch * GYRO_FACTOR);
+            ui->lcdIMU1accx->display(dataIMU->imu1_accx * ACC_FACTOR);
+            ui->lcdIMU1accy->display(dataIMU->imu1_accy * ACC_FACTOR);
+            ui->lcdIMU1accz->display(dataIMU->imu1_accz * ACC_FACTOR);
+            ui->lcdIMU2accx->display(dataIMU->imu2_accx * ACC_FACTOR);
+            ui->lcdIMU2accy->display(dataIMU->imu2_accy * ACC_FACTOR);
+            ui->lcdIMU2accz->display(dataIMU->imu2_accz * ACC_FACTOR);
+
+            double roll_rate = ((double)dataIMU->imu1_roll + (double)dataIMU->imu2_roll)*GYRO_FACTOR/2;
+
+            times.push_back(i++);
+            rates.push_back(roll_rate);
+
+            if (file.isOpen())
+            {
+                QDataStream out(&file);
+                out << dataIMU->sync
+                //<< ((*(uint32_t*)dataIMU->time) & 0xFFFFFF);
+                << dataIMU->time[0]
+                << dataIMU->time[1]
+                << dataIMU->time[2]
+                << dataIMU->counter
+                << dataIMU->imu1_roll
+                << dataIMU->imu1_yaw
+                << dataIMU->imu1_pitch
+                << dataIMU->imu1_accx
+                << dataIMU->imu1_accy
+                << dataIMU->imu1_accz
+                << dataIMU->imu2_roll
+                << dataIMU->imu2_yaw
+                << dataIMU->imu2_pitch
+                << dataIMU->imu2_accx
+                << dataIMU->imu2_accy
+                << dataIMU->imu2_accz
+                << dataIMU->check
+                << "\n";
+            }
+
+            i += sizeof(dpIMU);
+        }
+        else if (data.at(i) == SYNC_PT && data.size() - i >= sizeof(dpPresTemp))
+        {
+            const dpPresTemp* dataPT = (const dpPresTemp*)(data.constData() + i);
+
+            int checksum = Murmur::mm_hash_32((uint8_t*)dataPT, sizeof(dpPresTemp) - 4);
+
+            if (checksum != dataPT->check)
+                return;
+
+            ui->lcdTankPres->display(dataPT->presTank);
+            wTankPressure->setValue(dataPT->presTank);
+
+            ui->lcdValvePres->display(dataPT->presValves);
+            wValvePressure->setValue(dataPT->presValves);
+
+            wTankTemperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);
+            wNozzle1Temperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);
+            wNozzle2Temperature->setValue(dataPT->tempNoz2 * TEMP_FACTOR);
+            wNozzle3Temperature->setValue(dataPT->tempNoz3 * TEMP_FACTOR);
+            wNozzle4Temperature->setValue(dataPT->tempNoz4 * TEMP_FACTOR);
+            wPDUTemperature->setValue(dataPT->tempPDU * TEMP_FACTOR);
+
+            if (file.isOpen())
+            {
+                QDataStream out(&file);
+                out << dataPT->sync
+                << dataPT->time[0]
+                << dataPT->time[1]
+                << dataPT->time[2]
+                << dataPT->counter
+                << dataPT->presTank
+                << dataPT->presValves
+                << dataPT->tempTank
+                << dataPT->tempNoz1
+                << dataPT->tempNoz2
+                << dataPT->tempNoz3
+                << dataPT->tempNoz4
+                << dataPT->tempPDU
+                << dataPT->check;
+            }
+
+            i += sizeof(dpPresTemp);
+        }
+        else if (data.at(i) == SYNC_CALC && data.size() - i >= sizeof(dpCalc))
+        {
+            const dpCalc* dataCalc = (const dpCalc*)(data.constData() + i);
+
+            int checksum = Murmur::mm_hash_32((uint8_t*)dataCalc, sizeof(dpCalc) - 4);
+
+            if (checksum != dataCalc->check)
+                return;
+
+            if (dataCalc->valveState & 0b1)
+            {
+                wValveRM->setColor(Qt::green);
+            }
+            else
+            {
+                wValveRM->setColor(Qt::red);
+            }
+
+            if (dataCalc->valveState & 0b10)
+            {
+                wValveRM->setColor(Qt::green);
+            }
+            else
+            {
+                wValveRM->setColor(Qt::red);
+            }
+
+            if (file.isOpen())
+            {
+                QDataStream out(&file);
+                out << dataCalc->sync
+                << dataCalc->time[0]
+                << dataCalc->time[1]
+                << dataCalc->time[2]
+                << dataCalc->counter
+                << dataCalc->mode
+                << dataCalc->vot1
+                << dataCalc->vot2
+                << dataCalc->valveState
+                << dataCalc->check;
+            }
+
+            i += sizeof(dpCalc);
+        }
     }
 
 }
