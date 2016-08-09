@@ -2,6 +2,8 @@
 #define STORAGECONTROLLER_H
 
 #include "rodos.h"
+#include "fatfs/ff.h"
+#include "sdcomm.h"
 
 class StorageController : public Thread
 {

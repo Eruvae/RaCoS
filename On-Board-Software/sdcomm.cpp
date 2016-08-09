@@ -1,5 +1,7 @@
 #include "sdcomm.h"
 
+SDComm sdcomm;
+
 //SD-Command-List
         // Abbreviation         // Index        // Functionality                        Argument        Response
 //---------------------------------------------------------------------------------------------------------------
@@ -14,6 +16,7 @@
 
 SDComm::SDComm()
 {
+	is_initialized = false;
 }
 
 int SDComm::sendCommand(uint8_t command, uint32_t argument, uint8_t crc)
@@ -48,7 +51,7 @@ int SDComm::sendCommand(uint8_t command, uint32_t argument, uint8_t crc)
     return result;
 }
 
-void SDComm::init()
+int SDComm::init()
 {
     // TODO: Might be necessary to change Baudrate/Clock Speed; maybe sleep
     sendCommand(GO_IDLE_STATE, 0, 0x95);
@@ -56,6 +59,17 @@ void SDComm::init()
     //Alt: sendCommand(APP_SEND_OP_COND, 1<<30, 0xFF)
     sendCommand(SET_BLOCKLEN, 512, 0xFF);
 
+    is_initialized = true;
+    return 0;
+
+}
+
+int SDComm::get_status()
+{
+	if (is_initialized)
+		return -1;
+
+	return 0;
 }
 
 int SDComm::read_sector_segment(uint32_t sector, uint8_t *buf)
@@ -112,7 +126,7 @@ int SDComm::read_sector_segment(uint32_t sector, uint8_t *buf)
     return 0;
 }
 
-int SDComm::write_sector_segment(uint32_t sector, uint8_t *buf)
+int SDComm::write_sector_segment(uint32_t sector, const uint8_t *buf)
 {
     int result = -1;
 
@@ -136,6 +150,8 @@ int SDComm::write_sector_segment(uint32_t sector, uint8_t *buf)
     }
 
     spi_bus.write(buf, 512);
+
+    spi_bus.suspendUntilWriteFinished();
 
     return 0;
 }

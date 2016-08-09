@@ -60,7 +60,9 @@ storagecontroller.o: ../storagecontroller.cpp ../storagecontroller.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_adc.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
- C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h
+ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
+ ../fatfs/ff.h ../fatfs/integer.h ../fatfs/ffconf.h ../sdcomm.h \
+ ../comminterfaces.h ../spihelper.h
 
 ../storagecontroller.h:
 
@@ -187,3 +189,15 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterface
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h:
 
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h:
+
+../fatfs/ff.h:
+
+../fatfs/integer.h:
+
+../fatfs/ffconf.h:
+
+../sdcomm.h:
+
+../comminterfaces.h:
+
+../spihelper.h:

@@ -1,6 +1,6 @@
 #include "sensorIMU.h"
 
-#define DEBUG_DUMMY_DATA
+#define DEBUG_IMU_DUMMY_DATA
 
 SensorIMU sensorIMU;
 
@@ -24,7 +24,7 @@ uint8_t accelConfig[] = {ACCEL_CONFIG, 0b00011000};
 #define GYRO_FACTOR         0.00762939453125    // Max. Scale: 250 deg/s
 #define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
 
-#ifdef DEBUG_DUMMY_DATA
+#ifdef DEBUG_IMU_DUMMY_DATA
 
 double dummy_gyro1_roll[] = {30.1, 28.6, 25.4, 22.3, 20.1, 26.7};
 double dummy_gyro2_roll[] = {30.5, 27.8, 25.6, 22.1, 19.9, 27.0};
@@ -134,7 +134,7 @@ void SensorIMU::run()
 		memcpy(imu.accData1, accBuffer1, 6);
 		memcpy(imu.accData2, accBuffer2, 6);
 		
-		#ifdef DEBUG_DUMMY_DATA
+		#ifdef DEBUG_IMU_DUMMY_DATA
 
 		imu.gyroData1[0] = (uint16_t)(dummy_gyro1_roll[dummy_cycle] / GYRO_FACTOR);
 		imu.gyroData1[1] = (uint16_t)(dummy_gyro1_pitch[dummy_cycle] / GYRO_FACTOR);

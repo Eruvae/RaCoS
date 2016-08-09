@@ -1,5 +1,7 @@
 #include "telemetry.h"
 
+#define DEBUG_SEND_NO_TELEMETRY
+
 Telemetry telemetry;
 
 void Telemetry::run()
@@ -15,6 +17,8 @@ void Telemetry::run()
 		encodePresTemp(ptBuf);
 		encodeCalc(calcBuf);
 		
+		#ifndef DEBUG_SEND_NO_TELEMETRY
+
 		if (sendCycle == 0)
 		{
 			teleUART.write(ptBuf, 26);
@@ -31,6 +35,8 @@ void Telemetry::run()
 			sendCycle = 0;
 		}
 		
+		#endif
+
 		suspendUntilNextBeat();
 	}
 }

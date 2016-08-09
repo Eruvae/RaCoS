@@ -10,7 +10,7 @@ Semaphore spi_comm_running;
 
 SPIHelper::SPIHelper()
 {
-
+	slaveSelected = false;
 }
 
 void SPIHelper::init()
@@ -35,14 +35,17 @@ int SPIHelper::selectSlave(SPI_SS select)
         ss_imu2.setPins(true);
         ss_sd.setPins(true);
         ss_imu1.setPins(false);
+        break;
     case IMU2:
         ss_imu1.setPins(true);
         ss_sd.setPins(true);
         ss_imu2.setPins(false);
+        break;
     case SD:
         ss_imu1.setPins(true);
         ss_imu2.setPins(true);
         ss_sd.setPins(false);
+        break;
     }
 
     return 0;
