@@ -14,6 +14,10 @@
 #define GYRO_FACTOR         0.00762939453125    // Max. Scale: 250 deg/s
 #define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
 #define TEMP_FACTOR        0.0625
+#define PRES_HIGH_FACTOR	0.009695752453125 // bar/bit
+#define PRES_HIGH_OFFSET	24.841810875 // bar
+#define PRES_LOW_FACTOR		0.0008079796875 // bar/bit
+#define PRES_LOW_OFFSET		2.1546125 // bar
 
 typedef vector<int> vint;
 typedef list <int>  lint;
@@ -295,11 +299,11 @@ void MainWindow::decodePT(const dpPresTemp *dataPT)
     if (checksum != dataPT->check)
         return;
 
-    ui->lcdTankPres->display(dataPT->presTank);
-    wTankPressure->setValue(dataPT->presTank);
+    ui->lcdTankPres->display(dataPT->presTank * PRES_HIGH_FACTOR - PRES_HIGH_OFFSET);
+    wTankPressure->setValue(dataPT->presTank * PRES_HIGH_FACTOR - PRES_HIGH_OFFSET);
 
-    ui->lcdValvePres->display(dataPT->presValves);
-    wValvePressure->setValue(dataPT->presValves);
+    ui->lcdValvePres->display(dataPT->presValves * PRES_LOW_FACTOR - PRES_LOW_OFFSET);
+    wValvePressure->setValue(dataPT->presValves * PRES_LOW_FACTOR - PRES_LOW_OFFSET);
 
     wTankTemperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);
     wNozzle1Temperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);

@@ -1,10 +1,20 @@
 #include "healthwatchdog.h"
 
-healthWatchdog::healthWatchdog()
+//HealthWatchdog healthWatchdog;
+
+HealthWatchdog::HealthWatchdog()
 {
+	housekeepingPending = false;
+	sensorIMUpending = false;
+	actuatorHandlerpending = false;
+	controlLoopPending = false;
+	pending = false;
+	badCount = 0;
+	noCriticalErrorOccurred = false;
+	emergencyCutoff = false;
 }
 
-void healthWatchdog::run()
+void HealthWatchdog::run()
 {
     setPeriodicBeat(0, 500*MILLISECONDS);
     while(1){
@@ -22,7 +32,7 @@ void healthWatchdog::run()
     }
 }
 
-bool healthWatchdog::selfcheck()
+bool HealthWatchdog::selfcheck()
 {
     bool t1 = housekeepingPending;
     bool t2 = sensorIMUpending;
@@ -52,12 +62,12 @@ bool healthWatchdog::selfcheck()
     return success;
 }
 
-bool healthWatchdog::emergencyCutoffCheck()
+bool HealthWatchdog::emergencyCutoffCheck()
 {
     return emergencyCutoff;
 }
 
-void healthWatchdog::sendCutoff(bool state)
+void HealthWatchdog::sendCutoff(bool state)
 {
     cmdData out;
     out.valveState = state? AH_EmergencyOpen:AH_EmergencyClose;

@@ -15,6 +15,6 @@ public:
     void init();
 };
 
-// extern CommInterfaces commInit;
+extern CommInterfaces commInit;
 
 #endif // COMMINTERFACES_H

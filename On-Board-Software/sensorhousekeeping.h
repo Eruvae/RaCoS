@@ -21,4 +21,6 @@ public:
     void run();
 };
 
+extern SensorHousekeeping sensorHousekeeping;
+
 #endif // SENSORHOUSEKEEPING_H

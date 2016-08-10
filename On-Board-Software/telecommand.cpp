@@ -1,15 +1,20 @@
 #include "telecommand.h"
 
+Telecommand telecommand;
+
 Telecommand::Telecommand()
 {
 }
 
-int Telecommand::decodeCommand(dpCommand comPack)
+int Telecommand::decodeCommand(dpCommand &comPack)
 {
     if (comPack.sync != SYNC_COMM)
         return -1;
 
-    //TODO checksum, command counter
+    if (Murmur::mm_hash_32((uint8_t*)&comPack, 4) != comPack.sync)
+    	return -1;
+
+    //TODO command counter
 
     switch(comPack.id)
     {

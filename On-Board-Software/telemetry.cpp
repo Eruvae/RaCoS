@@ -1,6 +1,6 @@
 #include "telemetry.h"
 
-#define DEBUG_SEND_NO_TELEMETRY
+//#define DEBUG_SEND_NO_TELEMETRY
 
 Telemetry telemetry;
 

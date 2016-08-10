@@ -12,4 +12,6 @@ public:
     void run();
 };
 
+extern StorageController storageController;
+
 #endif // STORAGECONTROLLER_H

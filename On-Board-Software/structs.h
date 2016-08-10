@@ -68,7 +68,7 @@ struct __attribute__((packed)) dpCommand
     uint8_t sync;
     uint8_t id;
     uint16_t counter;
-    uint16_t check;
+    uint32_t check;
 };
 
 #endif

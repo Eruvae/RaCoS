@@ -12,7 +12,7 @@
 #include "structs.h"
 
 
-class healthWatchdog : public Thread
+class HealthWatchdog : public Thread
 {
 private:
     bool housekeepingPending;
@@ -24,11 +24,13 @@ private:
     bool noCriticalErrorOccurred;
     bool emergencyCutoff;
 public:
-    healthWatchdog();
+    HealthWatchdog();
     void run();
     bool selfcheck();
     bool emergencyCutoffCheck();
     void sendCutoff(bool state);
 };
+
+// extern HealthWatchdog healthWatchdog;
 
 #endif // HEALTHWATCHDOG_H

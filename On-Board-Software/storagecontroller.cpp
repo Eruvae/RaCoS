@@ -1,6 +1,8 @@
 #include "storagecontroller.h"
 
-#define DEBUG_READ_TEST_MSG
+//#define DEBUG_READ_TEST_MSG
+
+StorageController storageController;
 
 StorageController::StorageController()
 {

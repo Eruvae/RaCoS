@@ -1,5 +1,10 @@
 #include "sensorhousekeeping.h"
 
+#define DEBUG_TEMP_DUMMY_DATA
+#define DEBUG_PRES_DUMMY_DATA
+
+SensorHousekeeping sensorHousekeeping;
+
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011
 #define ADC_ITC_READ 0b10010001
@@ -45,6 +50,32 @@ const uint64_t TS_PDU_ROM = 0x0000000000000000ULL;
 #define TS_CONFIG           0b00011111 // 9-bit configuration (93.75ms conversion time)
 
 #define TEMP_DIVIDER        16
+#define PRES_HIGH_FACTOR	0.009695752453125 // bar/bit
+#define PRES_HIGH_OFFSET	24.841810875 // bar
+#define PRES_LOW_FACTOR		0.0008079796875 // bar/bit
+#define PRES_LOW_OFFSET		2.1546125 // bar
+
+#ifdef DEBUG_TEMP_DUMMY_DATA
+
+double dummy_temp_noz1[] = {20.3, 18.5, 21.4, 20.0};
+double dummy_temp_noz2[] = {14.2, 15.3, 16.8, 15.0};
+double dummy_temp_noz3[] = {22.4, 23.1, 24.5, 22.1};
+double dummy_temp_noz4[] = {17.5, 18.2, 16.3, 16.9};
+double dummy_temp_tank[] = {-13.4, -10.2, -11.2, -12.7};
+double dummy_temp_pdu[] = {40.5, 38.2, 39.1, 42.3};
+
+int dummy_temp_cycle = 0;
+
+#endif
+
+#ifdef DEBUG_PRES_DUMMY_DATA
+
+double dummy_pres_valves[] = {3.6, 3.5, 3.7, 3.4};
+double dummy_pres_tank[] = {100.2, 101.3, 95.6, 98.6};
+
+int dummy_pres_cycle = 0;
+
+#endif
 
 SensorHousekeeping::SensorHousekeeping()
 {
@@ -201,6 +232,17 @@ void SensorHousekeeping::run()
         {
             getValvesPressure(&(hk.presValves));
 
+			#ifdef DEBUG_PRES_DUMMY_DATA
+
+            hk.presTank = (dummy_pres_tank[dummy_pres_cycle] + PRES_HIGH_OFFSET) / PRES_HIGH_FACTOR;
+            hk.presValves = (dummy_pres_valves[dummy_pres_cycle] + PRES_LOW_OFFSET) / PRES_LOW_FACTOR;
+
+            dummy_pres_cycle++;
+            if (dummy_pres_cycle > 3)
+            	dummy_pres_cycle = 0;
+
+			#endif
+
             hk.sysTime = NOW();
             hkTopic.publish(hk);
         }
@@ -215,6 +257,21 @@ void SensorHousekeeping::run()
             hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
             hk.tempTank = getTemperatureData(TS_TANK_ROM);
             hk.tempPDU = getTemperatureData(TS_PDU_ROM);
+
+			#ifdef DEBUG_TEMP_DUMMY_DATA
+
+            hk.tempNoz1 = dummy_temp_noz1[dummy_temp_cycle] * TEMP_DIVIDER;
+			hk.tempNoz2 = dummy_temp_noz2[dummy_temp_cycle] * TEMP_DIVIDER;
+			hk.tempNoz3 = dummy_temp_noz3[dummy_temp_cycle] * TEMP_DIVIDER;
+			hk.tempNoz4 = dummy_temp_noz4[dummy_temp_cycle] * TEMP_DIVIDER;
+			hk.tempTank = dummy_temp_tank[dummy_temp_cycle] * TEMP_DIVIDER;
+			hk.tempPDU = dummy_temp_pdu[dummy_temp_cycle] * TEMP_DIVIDER;
+
+			dummy_temp_cycle++;
+			if (dummy_temp_cycle > 3)
+				dummy_temp_cycle = 0;
+
+			#endif
 
             hk.sysTime = NOW();
             hkTopic.publish(hk);
