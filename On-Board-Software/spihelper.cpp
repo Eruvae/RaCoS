@@ -2,9 +2,9 @@
 
 SPIHelper spiHelper;
 
-HAL_GPIO ss_imu1(GPIO_015); //TODO
-HAL_GPIO ss_imu2(GPIO_016); //TODO
-HAL_GPIO ss_sd(GPIO_017); //TODO
+HAL_GPIO ss_imu1(GPIO_038); // PC06
+HAL_GPIO ss_imu2(GPIO_039); // PC07
+HAL_GPIO ss_sd(GPIO_028); // PB12
 
 Semaphore spi_comm_running;
 
