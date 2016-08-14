@@ -12,8 +12,9 @@
 #include <QSerialPortInfo>
 
 #define GYRO_FACTOR         0.00762939453125    // Max. Scale: 250 deg/s
-#define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
-#define TEMP_FACTOR        0.0625
+//#define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
+#define ACC_FACTOR          0.00006103515625
+#define TEMP_FACTOR         0.0625
 #define PRES_HIGH_FACTOR	0.009695752453125 // bar/bit
 #define PRES_HIGH_OFFSET	24.841810875 // bar
 #define PRES_LOW_FACTOR		0.0008079796875 // bar/bit

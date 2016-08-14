@@ -44,7 +44,8 @@ void StorageController::run()
 {
     // TODO: may be necessary to wait for SD-card to initialize
 	suspendCallerUntil(NOW() + 1*SECONDS);
-	sdcomm.init();
+
+	PRINTF("fail %d\n", sdcomm.init());
 
 	#ifdef DEBUG_READ_TEST_MSG
 
@@ -58,10 +59,12 @@ void StorageController::run()
 
 	f_open(&fil, "message.txt", FA_READ);
 	f_read(&fil, readBuf, 64, &readBytes);
+	readBuf[readBytes] = '\0';
 
 	while(1)
 	{
-		teleUART.write(readBuf, readBytes);
+		//teleUART.write(readBuf, readBytes);
+		PRINTF("%s; %d\n", readBuf, readBytes);
 		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 

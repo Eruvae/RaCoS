@@ -32,7 +32,6 @@ int SDComm::sendCommand(uint8_t command, uint32_t argument, uint8_t crc)
 
     spiHelper.selectSlave(SD);
     spi_bus.write(buff, 6);
-    spiHelper.disableSlaves();
 
     int result = -1;
     uint8_t ff = 0xFF;
@@ -46,6 +45,7 @@ int SDComm::sendCommand(uint8_t command, uint32_t argument, uint8_t crc)
         }
     }
 
+    spiHelper.disableSlaves();
     spi_comm_running.leave();
 
     return result;
@@ -54,10 +54,13 @@ int SDComm::sendCommand(uint8_t command, uint32_t argument, uint8_t crc)
 int SDComm::init()
 {
     // TODO: Might be necessary to change Baudrate/Clock Speed; maybe sleep
-    sendCommand(GO_IDLE_STATE, 0, 0x95);
-    sendCommand(SEND_OP_COND, 0, 0xFF);
+	if (sendCommand(GO_IDLE_STATE, 0, 0x95) == -1)
+		return -1;
+    if (sendCommand(SEND_OP_COND, 0, 0xFF) == -1)
+    	return -2;
     //Alt: sendCommand(APP_SEND_OP_COND, 1<<30, 0xFF)
-    sendCommand(SET_BLOCKLEN, 512, 0xFF);
+    if (sendCommand(SET_BLOCKLEN, 512, 0xFF) == -1)
+    	return -3;
 
     is_initialized = true;
     return 0;

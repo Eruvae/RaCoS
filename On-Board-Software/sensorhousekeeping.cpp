@@ -220,17 +220,19 @@ void SensorHousekeeping::configADC()
 
 void SensorHousekeeping::run()
 {
-    configADC();
+    //configADC();
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
     int tempCycle = 0;
     while(1)
     {
         if (!presCycle)
-            getTankPressure(&(hk.presTank));
+        {
+            //getTankPressure(&(hk.presTank));
+        }
         else
         {
-            getValvesPressure(&(hk.presValves));
+            //getValvesPressure(&(hk.presValves));
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
 
@@ -248,15 +250,17 @@ void SensorHousekeeping::run()
         }
 
         if (tempCycle == 0)
-            initTemperatureConv();
+        {
+            //initTemperatureConv();
+        }
         else //if (tempCycle == 1)
         {
-            hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
+            /*hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
             hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
             hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
             hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
             hk.tempTank = getTemperatureData(TS_TANK_ROM);
-            hk.tempPDU = getTemperatureData(TS_PDU_ROM);
+            hk.tempPDU = getTemperatureData(TS_PDU_ROM);*/
 
 			#ifdef DEBUG_TEMP_DUMMY_DATA
 

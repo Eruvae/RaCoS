@@ -8,6 +8,14 @@
 #include "topics.h"
 #include "structs.h"
 
+struct __attribute__((packed)) IMUReadStruct
+{
+	uint8_t dummy;
+	int16_t accData[3];
+	int16_t tempData;
+	int16_t gyroData[3];
+};
+
 class SensorIMU : public Thread
 {
 private:
@@ -22,9 +30,8 @@ private:
 
 public:
     //int initIMUs();
-    int configIMUs();
-    int getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc);
-    int getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc);
+    int configIMU(SPI_SS id);
+    int getIMU(SPI_SS id, IMUReadStruct *buffer);
     //void fusionFilter();
     //void sendData();
     //void init();

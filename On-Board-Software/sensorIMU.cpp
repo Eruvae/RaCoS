@@ -1,19 +1,28 @@
 #include "sensorIMU.h"
 
-#define DEBUG_IMU_DUMMY_DATA
+//#define DEBUG_IMU_DUMMY_DATA
+//#define DEBUG_WHO_AM_I
 
 SensorIMU sensorIMU;
 
-#define GYRO_OUT		0x43
-#define ACC_OUT			0x3B
+#define GYRO_OUT		(0x43 | 0x80)
+#define ACC_OUT			(0x3B | 0x80)
 
 #define CONFIG			0x1A
 #define GYRO_CONFIG		0x1B
 #define ACCEL_CONFIG	0x1C
 #define ACCEL_CONFIG2	0x1D
+#define PWR_MGMT_1		0x6B
+
+#define WHO_AM_I		(0x75 | 0x80)
 
 uint8_t readGyroAddr[] = {GYRO_OUT};
 uint8_t readAccAddr[] = {ACC_OUT};
+
+uint8_t resetIMU[] = {PWR_MGMT_1, 0x80};
+uint8_t readReset[2] = {PWR_MGMT_1 | 0x80, 0xFF};
+
+uint8_t powerConfig[] = {PWR_MGMT_1, 0};
 
 uint8_t gyroConfig[] = {GYRO_CONFIG, 0b00000000};
 // 7-5: X/Y/Z Gyro self-test; 4-3: Full Scale (00 - 250, 11 - 2000); 2: reserved; 1-0: DLPF
@@ -22,7 +31,8 @@ uint8_t accelConfig[] = {ACCEL_CONFIG, 0b00011000};
 // 7-5: X/Y/Z Accel self-test; 4-3: Full Scale (00 - 2g, 11 - 16g)
 
 #define GYRO_FACTOR         0.00762939453125    // Max. Scale: 250 deg/s
-#define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
+//#define ACC_FACTOR          0.00048828125       // Max. Scale: 16g
+#define ACC_FACTOR          0.00006103515625
 
 #ifdef DEBUG_IMU_DUMMY_DATA
 
@@ -43,24 +53,47 @@ int dummy_cycle = 0;
 
 #endif
 
-int SensorIMU::configIMUs()
+int SensorIMU::configIMU(SPI_SS id)
 {
+	if (!(id == IMU1 || id == IMU2))
+		return -1;
+
     spi_comm_running.enter();
 
-    spiHelper.selectSlave(IMU1);
+    spiHelper.selectSlave(id);
+
+    if (spi_bus.write(resetIMU, 2) == -1)
+    	return -1;
+
+    uint8_t buffer[2] = {0xFF, 0xFF};
+
+    while(1)
+    {
+    	spi_bus.writeRead(readReset, 2, buffer, 2);
+    	if (!(buffer[1] & 0x80))
+    		break;
+    }
+
+    //suspendCallerUntil(NOW() + 1*SECONDS);
+
+    if (spi_bus.write(powerConfig, 2) == -1)
+    	return -1;
+
+    spi_bus.suspendUntilWriteFinished();
+    //suspendCallerUntil(NOW() + 1*SECONDS);
+
     if (spi_bus.write(gyroConfig, 2) == -1)
         return -1;
+
+    spi_bus.suspendUntilWriteFinished();
+    //suspendCallerUntil(NOW() + 1*SECONDS);
+
     if (spi_bus.write(accelConfig, 2) == -1)
         return -1;
 
-    spiHelper.disableSlaves();
+    spi_bus.suspendUntilWriteFinished();
+    //suspendCallerUntil(NOW() + 1*SECONDS);
 
-    spiHelper.selectSlave(IMU2);
-    if (spi_bus.write(gyroConfig, 2) == -1)
-		return -1;
-    if (spi_bus.write(accelConfig, 2) == -1)
-        return -1;
-	
     spiHelper.disableSlaves();
 
     spi_comm_running.leave();
@@ -68,72 +101,60 @@ int SensorIMU::configIMUs()
 	return 0;
 }
 
-int SensorIMU::getIMU1(uint16_t *bufferGyro, uint16_t *bufferAcc)
+int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buffer)
 {
+	if (!(id == IMU1 || id == IMU2))
+		return -1;
+
     spi_comm_running.enter();
 
-    spiHelper.selectSlave(IMU1);
+    spiHelper.selectSlave(id);
 
-    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
-    {
-        spiHelper.disableSlaves();
+    if (spi_bus.writeRead(readAccAddr, 1, (uint8_t*)buffer, sizeof(IMUReadStruct)) == -1)
+	{
+		spiHelper.disableSlaves();
 		return -1;
-    }
-    if (spi_bus.writeRead(readAccAddr, 1, (uint8_t*)bufferAcc, 6) == -1)
-    {
-        spiHelper.disableSlaves();
-        return -1;
-    }
-	
+	}
+
     spiHelper.disableSlaves();
 
     spi_comm_running.leave();
 
-	return 0;
-}
-
-int SensorIMU::getIMU2(uint16_t *bufferGyro, uint16_t *bufferAcc)
-{
-    spi_comm_running.enter();
-
-    spiHelper.selectSlave(IMU2);
-
-    if (spi_bus.writeRead(readGyroAddr, 1, (uint8_t*)bufferGyro, 6) == -1)
-    {
-        spiHelper.disableSlaves();
-		return -1;
-    }
-    if (spi_bus.writeRead(readAccAddr, 1, (uint8_t*)bufferAcc, 6) == -1)
-    {
-        spiHelper.disableSlaves();
-        return -1;
-    }
-	
-    spiHelper.disableSlaves();
-
-    spi_comm_running.leave();
+    buffer->gyroData[0] = swap16(buffer->gyroData[0]);
+    buffer->gyroData[1] = swap16(buffer->gyroData[1]);
+    buffer->gyroData[2] = swap16(buffer->gyroData[2]);
+    // buffer->tempData = swap16(buffer->tempData); // Temperature not needed
+    buffer->accData[0] = swap16(buffer->accData[0]);
+	buffer->accData[1] = swap16(buffer->accData[1]);
+	buffer->accData[2] = swap16(buffer->accData[2]);
 
 	return 0;
 }
 
 void SensorIMU::run()
 {
-	configIMUs();
+	configIMU(IMU1);
+	configIMU(IMU2);
 	setPeriodicBeat(0, 50*MILLISECONDS);
-	uint16_t gyroBuffer1[3];
-	uint16_t accBuffer1[3];
-	uint16_t gyroBuffer2[3];
-	uint16_t accBuffer2[3];
+	IMUReadStruct imu1_buf, imu2_buf;
 	while(1)
 	{
-        getIMU1(gyroBuffer1, accBuffer1);
-        getIMU2(gyroBuffer2, accBuffer2);
+        getIMU(IMU1, &imu1_buf);
+        getIMU(IMU2, &imu2_buf);
 		
-		memcpy(imu.gyroData1, gyroBuffer1, 6);
-		memcpy(imu.gyroData2, gyroBuffer2, 6);
-		memcpy(imu.accData1, accBuffer1, 6);
-		memcpy(imu.accData2, accBuffer2, 6);
-		
+		memcpy(imu.gyroData1, imu1_buf.gyroData, 6);
+		memcpy(imu.gyroData2, imu2_buf.gyroData, 6);
+		memcpy(imu.accData1, imu1_buf.accData, 6);
+		memcpy(imu.accData2, imu2_buf.accData, 6);
+
+		/*PRINTF("Acc1: %d\n", imu1_buf.accData[0]);
+		PRINTF("Acc2: %d\n", imu1_buf.accData[1]);
+		PRINTF("Acc3: %d\n", imu1_buf.accData[2]);
+
+		PRINTF("Gyro1: %d\n", imu1_buf.gyroData[0]);
+		PRINTF("Gyro2: %d\n", imu1_buf.gyroData[1]);
+		PRINTF("Gyro3: %d\n", imu1_buf.gyroData[2]);*/
+
 		#ifdef DEBUG_IMU_DUMMY_DATA
 
 		imu.gyroData1[0] = (uint16_t)(dummy_gyro1_roll[dummy_cycle] / GYRO_FACTOR);
@@ -154,6 +175,32 @@ void SensorIMU::run()
 		if (dummy_cycle > 5) dummy_cycle = 0;
 
 		#endif
+
+
+		#ifdef DEBUG_WHO_AM_I
+		spi_comm_running.enter();
+
+		spiHelper.selectSlave(IMU1);
+
+		uint8_t whoami[2] = {WHO_AM_I, 0xFF};
+		uint8_t answer[2];
+
+		spi_bus.writeRead(whoami, 2, answer, 2);
+
+		PRINTF("Device 1: I am %d, %d\n", answer[0], answer[1]);
+
+		spiHelper.disableSlaves();
+		spiHelper.selectSlave(IMU2);
+
+		spi_bus.writeRead(whoami, 2, answer, 2);
+
+		PRINTF("Device 2: I am %d, %d\n", answer[0], answer[1]);
+
+		spiHelper.disableSlaves();
+
+		spi_comm_running.leave();
+		#endif
+
 
 		// TODO Filter
 		
