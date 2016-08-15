@@ -10,7 +10,6 @@
 
 struct __attribute__((packed)) IMUReadStruct
 {
-	uint8_t dummy;
 	int16_t accData[3];
 	int16_t tempData;
 	int16_t gyroData[3];
@@ -30,8 +29,10 @@ private:
 
 public:
     //int initIMUs();
-    int configIMU(SPI_SS id);
+	int configReg(SPI_SS id, uint8_t reg, uint8_t config);
+    int initIMU(SPI_SS id);
     int getIMU(SPI_SS id, IMUReadStruct *buffer);
+    int resetIMU(SPI_SS id);
     //void fusionFilter();
     //void sendData();
     //void init();
