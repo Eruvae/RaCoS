@@ -22,8 +22,8 @@ CommInterfaces::CommInterfaces()
 void CommInterfaces::init()
 {
     spi_bus.init(); // TODO (optional): Buadrade angeben, Mode per config; TODO: error handling
-    //spi_bus.config(SPI_PARAMETER_BAUDRATE, 400000);
-    //spi_bus.config(SPI_PARAMETER_MODE, 0);
+    spi_bus.config(SPI_PARAMETER_BAUDRATE, 400000);
+    spi_bus.config(SPI_PARAMETER_MODE, 0);
     i2c_bus.init();
     teleUART.init();
     oneWire.init(); // TODO: config to oneWire

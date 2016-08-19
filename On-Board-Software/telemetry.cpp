@@ -31,7 +31,7 @@ void Telemetry::run()
 		}
 		else if (sendCycle == 2)
 		{
-			teleUART.write(calcBuf, 16);
+			teleUART.write(calcBuf, 18);
 			sendCycle = 0;
 		}
 		
@@ -71,7 +71,7 @@ int Telemetry::encodeIMU(char *buffer)
 	*(uint16_t*)&buffer[26] = imu.accData2[1];
 	*(uint16_t*)&buffer[28] = imu.accData2[2];*/
 	
-	*(int32_t*)&buffer[30] = generateChecksum(buffer, 30);
+	*(uint32_t*)&buffer[30] = generateChecksum(buffer, 30);
 	
 	counter++;
 	
@@ -99,7 +99,7 @@ int Telemetry::encodePresTemp(char *buffer)
 	//memcpy(&buffer[10], &temp, sizeof(temp));
     memcpy(&buffer[6], &hk, 16);
 	
-	*(int32_t*)&buffer[22] = generateChecksum(buffer, 22);
+	*(uint32_t*)&buffer[22] = generateChecksum(buffer, 22);
 	
 	counter++;
 	
@@ -109,7 +109,8 @@ int Telemetry::encodePresTemp(char *buffer)
 int Telemetry::encodeCalc(char *buffer)
 {
 	controlBuffer.get(calc);
-	//ModeBuffer.get(mode);
+	modeBuffer.get(mode);
+	testBuffer.get(testMode);
 	
 	static uint16_t counter = 0;
 	
@@ -122,12 +123,14 @@ int Telemetry::encodeCalc(char *buffer)
 	
 	*(uint16_t*)&buffer[4] = counter;
 	
-	buffer[6] = mode;
+	buffer[6] = (uint8_t)mode | (testMode << 7);
+
+	*(uint16_t*)&buffer[7] = 0;
+
+	memcpy(&buffer[9], &calc, 5);
 	
-	memcpy(&buffer[7], &calc, 5);
 	
-	
-	*(int32_t*)&buffer[12] = generateChecksum(buffer, 12);
+	*(uint32_t*)&buffer[14] = generateChecksum(buffer, 14);
 	
 	counter++;
 	
@@ -135,7 +138,7 @@ int Telemetry::encodeCalc(char *buffer)
 	
 }
 
-int Telemetry::generateChecksum(char *buffer, int size)
+uint32_t Telemetry::generateChecksum(char *buffer, int size)
 {
     return Murmur::mm_hash_32((uint8_t*)buffer, size);
 }

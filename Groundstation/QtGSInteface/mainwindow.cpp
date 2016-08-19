@@ -162,6 +162,8 @@ void MainWindow::sendCommand()
     QDataStream stream(&commArray, QIODevice::WriteOnly);
     stream << comPack.sync << comPack.id << comPack.counter << comPack.check;
 
+    qDebug("Sync: %X\nID: %X\n", commArray.at(0) & 0xFF, commArray.at(1) & 0xFF);
+
     writeData(commArray);
 
 }
@@ -244,7 +246,7 @@ void MainWindow::decodeIMU(const dpIMU *dataIMU)
 {
     static int graph_index = 0;
 
-    int checksum = Murmur::mm_hash_32((uint8_t*)dataIMU, sizeof(dpIMU) - 4);
+    uint32_t checksum = Murmur::mm_hash_32((uint8_t*)dataIMU, sizeof(dpIMU) - 4);
 
     if (checksum != dataIMU->check)
         return;
@@ -295,7 +297,7 @@ void MainWindow::decodeIMU(const dpIMU *dataIMU)
 
 void MainWindow::decodePT(const dpPresTemp *dataPT)
 {
-    int checksum = Murmur::mm_hash_32((uint8_t*)dataPT, sizeof(dpPresTemp) - 4);
+    uint32_t checksum = Murmur::mm_hash_32((uint8_t*)dataPT, sizeof(dpPresTemp) - 4);
 
     if (checksum != dataPT->check)
         return;
@@ -335,7 +337,7 @@ void MainWindow::decodePT(const dpPresTemp *dataPT)
 
 void MainWindow::decodeCalc(const dpCalc *dataCalc)
 {
-    int checksum = Murmur::mm_hash_32((uint8_t*)dataCalc, sizeof(dpCalc) - 4);
+    uint32_t checksum = Murmur::mm_hash_32((uint8_t*)dataCalc, sizeof(dpCalc) - 4);
 
     if (checksum != dataCalc->check)
         return;
@@ -358,6 +360,27 @@ void MainWindow::decodeCalc(const dpCalc *dataCalc)
         wValveRM->setColor(Qt::red);
     }
 
+    switch (dataCalc->mode & 0x7F)
+    {
+    case MODE_STANDBY:
+        ui->txtMode->setPlainText("Stand-by-mode");
+        break;
+    case MODE_FLIGHT:
+        ui->txtMode->setPlainText("Flight-mode");
+        break;
+    case MODE_SECURE:
+        ui->txtMode->setPlainText("Secure-mode");
+        break;
+    case MODE_BD:
+        ui->txtMode->setPlainText("Blowdown-mode");
+        break;
+    }
+
+    if (dataCalc->mode & 0x80)
+        wTestMode->setColor(Qt::green);
+    else
+        wTestMode->setColor(Qt::red);
+
     if (file.isOpen())
     {
         QDataStream out(&file);
@@ -367,6 +390,7 @@ void MainWindow::decodeCalc(const dpCalc *dataCalc)
         << dataCalc->time[2]
         << dataCalc->counter
         << dataCalc->mode
+        << dataCalc->modulStates
         << dataCalc->vot1
         << dataCalc->vot2
         << dataCalc->valveState
@@ -450,7 +474,7 @@ void MainWindow::readData()
 
     static int noti = 0;
 
-    qDebug("%i\n",data.size());
+    //Debug("%i\n",data.size());
 
     //qDebug("Sizes: %i, %i, %i\n", sizeof(dpIMU), sizeof(dpPresTemp), sizeof(dpCalc));
 
@@ -459,7 +483,7 @@ void MainWindow::readData()
         //qDebug("%X ", (uint8_t)data.at(i));
         if ((uint8_t)data.at(i) == SYNC_IMU && data.size() - i  >= sizeof(dpIMU))
         {
-            qDebug("IMU received %i\n", noti++);
+            //qDebug("IMU received %i\n", noti++);
             const dpIMU* dataIMU = (const dpIMU*)(data.constData() + i);
 
             decodeIMU(dataIMU);
@@ -654,7 +678,27 @@ void MainWindow::initGUIWidgets()
 
     ui->txtMode->setDisabled(true);
     ui->txtMode->zoomIn(4);
-    ui->txtMode->appendPlainText("Stand-by-mode");
+    ui->txtMode->setPlainText("Stand-by-mode");
+
+    ui->txtIMUState->setDisabled(true);
+    ui->txtIMUState->zoomIn(4);
+    ui->txtIMUState->setPlainText("ok");
+
+    ui->txtHkState->setDisabled(true);
+    ui->txtHkState->zoomIn(4);
+    ui->txtHkState->setPlainText("ok");
+
+    ui->txtControlState->setDisabled(true);
+    ui->txtControlState->zoomIn(4);
+    ui->txtControlState->setPlainText("ok");
+
+    ui->txtStorageState->setDisabled(true);
+    ui->txtStorageState->zoomIn(4);
+    ui->txtStorageState->setPlainText("ok");
+
+    ui->txtTMState->setDisabled(true);
+    ui->txtTMState->zoomIn(4);
+    ui->txtTMState->setPlainText("ok");
 }
 
 void MainWindow::initCharts(Chart* widget)

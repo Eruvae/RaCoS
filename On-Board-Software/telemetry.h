@@ -11,16 +11,17 @@ class Telemetry : public Thread
 {
 	private:
 		IMUdata imu;
-		hkData hk;
-		cmdData calc;
-		uint8_t mode;
+		HkData hk;
+		CmdData calc;
+		Mode mode;
+		bool testMode;
 		
     public:
 		void run();
 		int encodeIMU(char *buffer);
 		int encodePresTemp(char *buffer);
 		int encodeCalc(char *buffer);
-		int generateChecksum(char *buffer, int size);
+		uint32_t generateChecksum(char *buffer, int size);
 };
 
 extern Telemetry telemetry;

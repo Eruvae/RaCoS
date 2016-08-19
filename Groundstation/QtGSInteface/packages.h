@@ -67,6 +67,7 @@ struct dpCalc
     uint16_t counter;
 
     uint8_t mode;
+    uint16_t modulStates;
     uint16_t vot1;
     uint16_t vot2;
     uint8_t valveState;

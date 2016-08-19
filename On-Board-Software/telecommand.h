@@ -12,7 +12,7 @@ class Telecommand : public Thread
 public:
     Telecommand();
     void run();
-    int decodeCommand(dpCommand &comPack);
+    int decodeCommand(DpCommand &comPack);
 };
 
 extern Telecommand telecommand;

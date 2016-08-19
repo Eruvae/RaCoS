@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../ControlLoop.cpp \
 ../actuatorhandler.cpp \
 ../comminterfaces.cpp \
 ../healthwatchdog.cpp \
@@ -18,6 +19,7 @@ CPP_SRCS += \
 ../topics.cpp 
 
 OBJS += \
+./ControlLoop.o \
 ./actuatorhandler.o \
 ./comminterfaces.o \
 ./healthwatchdog.o \
@@ -32,6 +34,7 @@ OBJS += \
 ./topics.o 
 
 CPP_DEPS += \
+./ControlLoop.d \
 ./actuatorhandler.d \
 ./comminterfaces.d \
 ./healthwatchdog.d \

@@ -183,11 +183,6 @@ int16_t SensorHousekeeping::getTemperatureData(uint64_t rom_code)
 
 }
 
-float SensorHousekeeping::convertTemperature(int16_t temp)
-{
-    return (float)temp / TEMP_DIVIDER;
-}
-
 void SensorHousekeeping::getTankPressure(uint16_t *presTank)
 {
     // read tank pressure

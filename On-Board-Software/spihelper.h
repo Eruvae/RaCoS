@@ -4,7 +4,7 @@
 #include "rodos.h"
 
 enum SPI_SS {IMU1, IMU2, SD};
-extern Semaphore spi_comm_running;
+//extern Semaphore spi_comm_running;
 
 /*HAL_GPIO ss_imu1;
 HAL_GPIO ss_imu2;

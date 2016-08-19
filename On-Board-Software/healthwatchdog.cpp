@@ -16,19 +16,22 @@ HealthWatchdog::HealthWatchdog()
 
 void HealthWatchdog::run()
 {
+	modulStateTopic.publishConst(0);
     setPeriodicBeat(0, 500*MILLISECONDS);
-    while(1){
+    while(1)
+    {
         badCount += housekeepingPending? 1:0;
         badCount += sensorIMUpending? 1:0;
         badCount += actuatorHandlerpending? 1:0;
         badCount += controlLoopPending? 1:0;
         if(badCount>HWTD_ErrorThreshold){
-            status stat;
+            Status stat;
             stat.errorcode = Timeout;
             stat.id = HWTD_ID;
             stat.systemBad = true;
             healthTopic.publish(stat);
         }
+        suspendUntilNextBeat();
     }
 }
 
@@ -69,7 +72,7 @@ bool HealthWatchdog::emergencyCutoffCheck()
 
 void HealthWatchdog::sendCutoff(bool state)
 {
-    cmdData out;
+    CmdData out;
     out.valveState = state? AH_EmergencyOpen:AH_EmergencyClose;
     out.vot1 = 0;
     out.vot2 = 0;

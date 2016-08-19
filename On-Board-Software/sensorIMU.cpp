@@ -3,7 +3,7 @@
 //#define DEBUG_IMU_DUMMY_DATA
 //#define DEBUG_WHO_AM_I
 
-SensorIMU sensorIMU;
+//SensorIMU sensorIMU;
 
 #define READ_FLAG		0x80
 
@@ -61,13 +61,11 @@ int SensorIMU::resetIMU(SPI_SS id)
 	uint8_t resetIMU[] = {PWR_MGMT_1, 0x80};
 	uint8_t readReset[2] = {PWR_MGMT_1 | 0x80, 0xFF};
 
-	spi_comm_running.enter();
 	spiHelper.selectSlave(id);
 
 	if (spi_bus.write(resetIMU, 2) == -1)
 	{
 		spiHelper.disableSlaves();
-		spi_comm_running.leave();
 		return -1;
 	}
 
@@ -86,7 +84,6 @@ int SensorIMU::resetIMU(SPI_SS id)
 	}
 
 	spiHelper.disableSlaves();
-	spi_comm_running.leave();
 
 	return retVal;
 }
@@ -98,7 +95,6 @@ int SensorIMU::configReg(SPI_SS id, uint8_t reg, uint8_t config)
 
 	uint8_t regConfig[] = {reg, config};
 
-	spi_comm_running.enter();
 	spiHelper.selectSlave(id);
 
 	int retVal = 0;
@@ -107,7 +103,6 @@ int SensorIMU::configReg(SPI_SS id, uint8_t reg, uint8_t config)
 		retVal = -1;
 
 	spiHelper.disableSlaves();
-	spi_comm_running.leave();
 
 	return retVal;
 }
@@ -143,8 +138,6 @@ int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buffer)
 	if (!(id == IMU1 || id == IMU2))
 		return -1;
 
-    spi_comm_running.enter();
-
     spiHelper.selectSlave(id);
 
     uint8_t readAddr = ACC_OUT | READ_FLAG;
@@ -154,12 +147,10 @@ int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buffer)
     if (spi_bus.read((uint8_t*)buffer, sizeof(IMUReadStruct)) == -1)
 	{
 		spiHelper.disableSlaves();
-		spi_comm_running.leave();
 		return -1;
 	}
 
     spiHelper.disableSlaves();
-    spi_comm_running.leave();
 
     buffer->gyroData[0] = swap16(buffer->gyroData[0]);
     buffer->gyroData[1] = swap16(buffer->gyroData[1]);
@@ -210,7 +201,6 @@ void SensorIMU::run()
 		#endif
 
 		#ifdef DEBUG_WHO_AM_I
-		spi_comm_running.enter();
 
 		spiHelper.selectSlave(IMU1);
 
@@ -230,7 +220,6 @@ void SensorIMU::run()
 
 		spiHelper.disableSlaves();
 
-		spi_comm_running.leave();
 		#endif
 
 

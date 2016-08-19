@@ -7,7 +7,7 @@
 
 class SensorHousekeeping : public Thread
 {
-    hkData hk;
+	HkData hk;
     uint8_t crc8(const void *vptr, int len);
 public:
     SensorHousekeeping();
@@ -17,7 +17,6 @@ public:
     void configTempSensor(uint64_t rom_code);
     void initTemperatureConv();
     int16_t getTemperatureData(uint64_t rom_code);
-    float convertTemperature(int16_t temp);
     void run();
 };
 

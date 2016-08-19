@@ -7,16 +7,25 @@
 extern Topic<IMUdata> IMUTopic;
 extern CommBuffer<IMUdata> IMUBuffer;
 
-extern Topic<hkData> hkTopic;
-extern CommBuffer<hkData> hkBuffer;
+extern Topic<HkData> hkTopic;
+extern CommBuffer<HkData> hkBuffer;
 
-extern Topic<cmdData> controlTopic;
-extern CommBuffer<cmdData> controlBuffer;
+extern Topic<CmdData> controlTopic;
+extern CommBuffer<CmdData> controlBuffer;
 
-extern Topic<status> healthTopic;
-extern CommBuffer<status> healthBuffer;
+extern Topic<Status> healthTopic;
+extern CommBuffer<Status> healthBuffer;
 
-extern Topic<tcData> tcTopic;
-extern CommBuffer<tcData> tcBuffer;
+extern Topic<TcData> tcTopic;
+extern CommBuffer<TcData> tcBuffer;
+
+extern Topic<Mode> modeTopic;
+extern CommBuffer<Mode> modeBuffer;
+
+extern Topic<bool> testTopic;
+extern CommBuffer<bool> testBuffer;
+
+extern Topic<uint16_t> modulStateTopic;
+extern CommBuffer<uint16_t> modulStateBuffer;
 
 #endif

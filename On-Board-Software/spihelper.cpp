@@ -24,6 +24,8 @@ void SPIHelper::init()
 
 int SPIHelper::selectSlave(SPI_SS select)
 {
+	spi_comm_running.enter();
+
     if (slaveSelected)
         return -1;
 
@@ -58,4 +60,6 @@ void SPIHelper::disableSlaves()
     ss_sd.setPins(true);
 
     slaveSelected = false;
+
+    spi_comm_running.leave();
 }
