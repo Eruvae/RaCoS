@@ -1,6 +1,6 @@
 #include "sensorhousekeeping.h"
 
-#define DEBUG_TEMP_DUMMY_DATA
+//#define DEBUG_TEMP_DUMMY_DATA
 #define DEBUG_PRES_DUMMY_DATA
 
 SensorHousekeeping sensorHousekeeping;
@@ -38,8 +38,8 @@ uint8_t adc_read_mode[] = {ADC_CONV_REG};
 #define READ_POWER_SUPPLY   0xB4    // Signals DS18B20 power supply mode to the master, DS18B20 transmits supply status to master
 
 // TODO: Update these values with ROM-Codes
-const uint64_t TS_NOZ1_ROM = 0x0000000000000000ULL;
-const uint64_t TS_NOZ2_ROM = 0x0000000000000000ULL;
+const uint64_t TS_NOZ1_ROM = 0x28766CD70400001DULL;
+const uint64_t TS_NOZ2_ROM = 0x1D000004D76C7628ULL;
 const uint64_t TS_NOZ3_ROM = 0x0000000000000000ULL;
 const uint64_t TS_NOZ4_ROM = 0x0000000000000000ULL;
 const uint64_t TS_TANK_ROM = 0x0000000000000000ULL;
@@ -123,7 +123,7 @@ void  SensorHousekeeping::configTempSensor(uint64_t rom_code)
 
     // Reset, Presence (done by protocoll?)
     oneWire.write((const char*)sendBuf, 13);
-    oneWire.suspendUntilWriteFinished();
+    //oneWire.suspendUntilWriteFinished();
     for (int i = 0; i < 13; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
 }
 
@@ -135,7 +135,7 @@ void SensorHousekeeping::initTemperatureConv()
 
     // Reset, Presence (done by protocoll?)
     oneWire.write((const char*)sendBuf, 2);
-    oneWire.suspendUntilWriteFinished();
+    //oneWire.suspendUntilWriteFinished();
     //while((oneWire.getcharNoWait()) >=0); // clear buffer
     for (int i = 0; i < 2; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
 
@@ -167,7 +167,7 @@ int16_t SensorHousekeeping::getTemperatureData(uint64_t rom_code)
     {
         // Reset, Presence (done by protocoll?)
         oneWire.write((const char*)sendBuf, 10);
-        oneWire.suspendUntilWriteFinished();
+        //oneWire.suspendUntilWriteFinished();
         for (int i = 0; i < 10; i++) oneWire.getcharNoWait(); // safer(?) clear buffer
         oneWire.suspendUntilDataReady(NOW() + 1*MILLISECONDS); // wait for data
 
@@ -216,6 +216,8 @@ void SensorHousekeeping::configADC()
 void SensorHousekeeping::run()
 {
     //configADC();
+	configTempSensor(TS_NOZ1_ROM);
+	//configTempSensor(TS_NOZ2_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
     int tempCycle = 0;
@@ -246,16 +248,16 @@ void SensorHousekeeping::run()
 
         if (tempCycle == 0)
         {
-            //initTemperatureConv();
+            initTemperatureConv();
         }
         else //if (tempCycle == 1)
         {
-            /*hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
-            hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
-            hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
-            hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
-            hk.tempTank = getTemperatureData(TS_TANK_ROM);
-            hk.tempPDU = getTemperatureData(TS_PDU_ROM);*/
+            hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
+            //hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
+            //hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
+            //hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
+            //hk.tempTank = getTemperatureData(TS_TANK_ROM);
+            //hk.tempPDU = getTemperatureData(TS_PDU_ROM);
 
 			#ifdef DEBUG_TEMP_DUMMY_DATA
 

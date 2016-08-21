@@ -308,7 +308,7 @@ void MainWindow::decodePT(const dpPresTemp *dataPT)
     ui->lcdValvePres->display(dataPT->presValves * PRES_LOW_FACTOR - PRES_LOW_OFFSET);
     wValvePressure->setValue(dataPT->presValves * PRES_LOW_FACTOR - PRES_LOW_OFFSET);
 
-    wTankTemperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);
+    wTankTemperature->setValue(dataPT->tempTank * TEMP_FACTOR);
     wNozzle1Temperature->setValue(dataPT->tempNoz1 * TEMP_FACTOR);
     wNozzle2Temperature->setValue(dataPT->tempNoz2 * TEMP_FACTOR);
     wNozzle3Temperature->setValue(dataPT->tempNoz3 * TEMP_FACTOR);
@@ -474,7 +474,7 @@ void MainWindow::readData()
 
     static int noti = 0;
 
-    //Debug("%i\n",data.size());
+    qDebug("%i\n",data.size());
 
     //qDebug("Sizes: %i, %i, %i\n", sizeof(dpIMU), sizeof(dpPresTemp), sizeof(dpCalc));
 
@@ -492,6 +492,7 @@ void MainWindow::readData()
         }
         else if ((uint8_t)data.at(i) == SYNC_PT && data.size() - i >= sizeof(dpPresTemp))
         {
+            qDebug("presdata\n");
             const dpPresTemp* dataPT = (const dpPresTemp*)(data.constData() + i);
 
             decodePT(dataPT);

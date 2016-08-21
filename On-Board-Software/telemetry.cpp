@@ -8,30 +8,29 @@ void Telemetry::run()
 {
 	int sendCycle = 0;
 	setPeriodicBeat(0, 500*MILLISECONDS / 3);
+	char imuBuf[34];
+	char ptBuf[26];
+	char calcBuf[16];
 	while(1)
 	{
-		char imuBuf[34];
-		char ptBuf[26];
-		char calcBuf[16];
-		encodeIMU(imuBuf);
-		encodePresTemp(ptBuf);
-		encodeCalc(calcBuf);
-		
 		#ifndef DEBUG_SEND_NO_TELEMETRY
 
-		if (sendCycle == 0)
+		if (sendCycle <= 0)
 		{
+			encodePresTemp(ptBuf);
 			teleUART.write(ptBuf, 26);
 			sendCycle++;
 		}
 		else if (sendCycle == 1)
 		{
-			teleUART.write(imuBuf, 34);
+			encodeIMU(imuBuf);
+			//teleUART.write(imuBuf, 34);
 			sendCycle++;
 		}
-		else if (sendCycle == 2)
+		else if (sendCycle >= 2)
 		{
-			teleUART.write(calcBuf, 18);
+			encodeCalc(calcBuf);
+			//teleUART.write(calcBuf, 18);
 			sendCycle = 0;
 		}
 		
@@ -95,8 +94,6 @@ int Telemetry::encodePresTemp(char *buffer)
 	
 	*(uint16_t*)&buffer[4] = counter;
 	
-	//memcpy(&buffer[6], &pres, sizeof(pres));
-	//memcpy(&buffer[10], &temp, sizeof(temp));
     memcpy(&buffer[6], &hk, 16);
 	
 	*(uint32_t*)&buffer[22] = generateChecksum(buffer, 22);
