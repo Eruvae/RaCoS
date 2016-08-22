@@ -3,7 +3,7 @@
 //#define DEBUG_TEMP_DUMMY_DATA
 #define DEBUG_PRES_DUMMY_DATA
 
-SensorHousekeeping sensorHousekeeping;
+//SensorHousekeeping sensorHousekeeping;
 
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011

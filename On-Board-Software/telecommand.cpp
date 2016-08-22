@@ -1,6 +1,6 @@
 #include "telecommand.h"
 
-Telecommand telecommand;
+//Telecommand telecommand;
 
 Telecommand::Telecommand()
 {

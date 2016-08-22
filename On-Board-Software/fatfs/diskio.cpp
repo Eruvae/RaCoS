@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"		/* FatFs lower layer API */
-#include "../sdcomm.h"
+#include "../storagecontroller.h"
 
 /* Definitions of physical drive number for each drive */
 #define DEV_SD		0
@@ -27,7 +27,7 @@ DSTATUS disk_status (
 
 	if (pdrv == DEV_SD)
 	{
-		result = sdcomm.get_status();
+		result = storageController.get_status();
 
 		if (result == -1)
 			stat = STA_NOINIT;
@@ -54,7 +54,7 @@ DSTATUS disk_initialize (
 
 	if (pdrv == DEV_SD)
 	{
-		result = sdcomm.init();
+		result = storageController.initSD();
 
 		stat = result;
 
@@ -86,7 +86,7 @@ DRESULT disk_read (
 
 		for (int i = 0; i < count; i++)
 		{
-			result = sdcomm.read_sector_segment(sector + i, buff + 512*i);
+			result = storageController.read_sector_segment(sector + i, buff + 512*i);
 			if (result == -1)
 				break;
 		}
@@ -125,7 +125,7 @@ DRESULT disk_write (
 
 		for (int i = 0; i < count; i++)
 		{
-			result = sdcomm.write_sector_segment(sector + i, buff + 512*i);
+			result = storageController.write_sector_segment(sector + i, buff + 512*i);
 			if (result == -1)
 				break;
 		}

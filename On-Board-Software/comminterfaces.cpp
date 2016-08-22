@@ -13,6 +13,8 @@ HAL_UART teleUART(UART_IDX1, GPIO_009, GPIO_010, GPIO_012, GPIO_011); // TX: PA9
 #endif
 HAL_UART oneWire(UART_IDX3, GPIO_042, GPIO_043, GPIO_030, GPIO_059); // TX: PC10, RX: PC11
 
+// UART_DEBUG: UART_IDX5,  // TX: PC12, RX: PD2
+
 CommInterfaces commInit;
 
 CommInterfaces::CommInterfaces()
@@ -22,7 +24,7 @@ CommInterfaces::CommInterfaces()
 void CommInterfaces::init()
 {
     spi_bus.init(); // TODO (optional): Buadrade angeben, Mode per config; TODO: error handling
-    spi_bus.config(SPI_PARAMETER_BAUDRATE, 400000);
+    spi_bus.config(SPI_PARAMETER_BAUDRATE, 200000);
     spi_bus.config(SPI_PARAMETER_MODE, 0);
     i2c_bus.init();
     teleUART.init();
