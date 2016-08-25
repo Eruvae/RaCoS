@@ -1,5 +1,5 @@
-#ifndef CONTROLLOOP_H_
-#define CONTROLLOOP_H_
+#ifndef CONTROLLOOP_H
+#define CONTROLLOOP_H
 
 #include "rodos.h"
 #include "topics.h"
@@ -12,4 +12,4 @@ public:
 	void run();
 };
 
-#endif /* CONTROLLOOP_H_ */
+#endif /* CONTROLLOOP_H */

@@ -1,4 +1,4 @@
-ControlLoop.o: ../ControlLoop.cpp ../ControlLoop.h \
+controlloop.o: ../controlloop.cpp ../controlloop.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos-apis.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/hw_predefines.h \
@@ -63,7 +63,7 @@ ControlLoop.o: ../ControlLoop.cpp ../ControlLoop.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
  ../topics.h ../structs.h
 
-../ControlLoop.h:
+../controlloop.h:
 
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h:
 

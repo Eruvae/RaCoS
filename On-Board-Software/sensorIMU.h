@@ -41,6 +41,6 @@ public:
 	
 };
 
-extern SensorIMU sensorIMU;
+//extern SensorIMU sensorIMU;
 
 #endif
