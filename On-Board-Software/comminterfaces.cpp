@@ -28,6 +28,6 @@ void CommInterfaces::init()
     spi_bus.config(SPI_PARAMETER_MODE, 0);
     i2c_bus.init();
     teleUART.init();
-    oneWire.init(19200); // TODO: config to oneWire
+    oneWire.init(16667); // TODO: config to oneWire
     oneWire.config(UART_PARAMETER_MODE, UART_MODE_ONEWIRE);
 }

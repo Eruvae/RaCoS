@@ -24,6 +24,6 @@ class Telemetry : public Thread
 		uint32_t generateChecksum(char *buffer, int size);
 };
 
-extern Telemetry telemetry;
+//extern Telemetry telemetry;
 
 #endif

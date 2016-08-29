@@ -3,7 +3,7 @@
 
 #define DEBUG_READ_TEST_MSG
 
-//StorageController storageController("Storage Controller", 100);
+StorageController storageController("Storage Controller", 100);
 
 //SD-Command-List
         // Abbreviation         // Index        // Functionality                        Argument        									Response
@@ -486,6 +486,7 @@ void StorageController::run()
 	{
 		PRINTF("%x|%c\n", buf[i], buf[i]);
 	}
+
 	/*for (int i = 0; i < 1000000; i++)
 	{
 		int result = read_sector_segment(i, buf);

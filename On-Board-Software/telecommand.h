@@ -15,6 +15,6 @@ public:
     int decodeCommand(DpCommand &comPack);
 };
 
-extern Telecommand telecommand;
+//extern Telecommand telecommand;
 
 #endif // TELECOMMAND_H

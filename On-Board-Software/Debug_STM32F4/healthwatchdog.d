@@ -61,7 +61,10 @@ healthwatchdog.o: ../healthwatchdog.cpp ../healthwatchdog.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
- ../topics.h ../structs.h
+ ../topics.h ../structs.h ../sensorhousekeeping.h ../comminterfaces.h \
+ ../sensorIMU.h ../spihelper.h ../telecommand.h ../murmur.h \
+ ../telemetry.h ../controlloop.h ../storagecontroller.h ../fatfs/ff.h \
+ ../fatfs/integer.h ../fatfs/ffconf.h
 
 ../healthwatchdog.h:
 
@@ -192,3 +195,27 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/sc
 ../topics.h:
 
 ../structs.h:
+
+../sensorhousekeeping.h:
+
+../comminterfaces.h:
+
+../sensorIMU.h:
+
+../spihelper.h:
+
+../telecommand.h:
+
+../murmur.h:
+
+../telemetry.h:
+
+../controlloop.h:
+
+../storagecontroller.h:
+
+../fatfs/ff.h:
+
+../fatfs/integer.h:
+
+../fatfs/ffconf.h:

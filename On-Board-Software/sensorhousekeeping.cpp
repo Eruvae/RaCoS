@@ -215,6 +215,39 @@ void SensorHousekeeping::configADC()
 
 void SensorHousekeeping::run()
 {
+	/*char sendBuf[20] = {0};
+	char readBuf[20] = {0};
+	char readBuf2[20] = {0};
+
+	while(1)
+	{
+		oneWire.putcharNoWait(0xFF);
+		oneWire.getcharNoWait();
+		oneWire.suspendUntilDataReady(NOW() + 240*MICROSECONDS);
+		PRINTF("Received: %d\n", oneWire.read(readBuf, 20));
+		//PRINTF("Presence: %d\n", oneWire.getcharNoWait());
+		sendBuf[0] = READ_ROM;
+		PRINTF("Write result: %d\n", oneWire.write(sendBuf, 1));
+		oneWire.suspendUntilDataReady(NOW() + 480*MICROSECONDS);
+		PRINTF("Read result: %d\n", oneWire.read(readBuf2, 20));
+		//PRINTF("Read data: %d\n", readBuf[0]);
+		//PRINTF("Read result: %d\n", oneWire.read(readBuf, 20));
+
+		PRINTF("Buffer: ");
+		for (int i = 0; i < 20; i++)
+			PRINTF("%x ", (uint8_t)readBuf[i]);
+
+		PRINTF("\n");
+
+		PRINTF("Buffer 2: ");
+		for (int i = 0; i < 20; i++)
+			PRINTF("%x ", (uint8_t)readBuf2[i]);
+
+		PRINTF("\n");
+		suspendCallerUntil(NOW() + 0.5*SECONDS);
+	}*/
+
+
     //configADC();
 	configTempSensor(TS_NOZ1_ROM);
 	//configTempSensor(TS_NOZ2_ROM);
