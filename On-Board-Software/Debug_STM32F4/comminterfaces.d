@@ -60,7 +60,8 @@ comminterfaces.o: ../comminterfaces.cpp ../comminterfaces.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_adc.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
- C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h
+ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
+ ../onewire/onewire.h
 
 ../comminterfaces.h:
 
@@ -187,3 +188,5 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterface
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h:
 
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h:
+
+../onewire/onewire.h:

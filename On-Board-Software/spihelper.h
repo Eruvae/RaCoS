@@ -5,6 +5,7 @@
 
 enum SPI_SS {IMU1, IMU2, SD};
 //extern Semaphore spi_comm_running;
+extern const uint8_t xff[512];
 
 /*HAL_GPIO ss_imu1;
 HAL_GPIO ss_imu2;
@@ -15,6 +16,7 @@ class SPIHelper : public Initiator
     bool slaveSelected;
 public:
     SPIHelper();
+    bool isSlaveSelected();
     int selectSlave(SPI_SS select);
     void disableSlaves();
 

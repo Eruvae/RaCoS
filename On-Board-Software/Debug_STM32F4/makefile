@@ -8,6 +8,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include sdspicard/subdir.mk
+-include onewire/arduino_lib/subdir.mk
+-include onewire/subdir.mk
 -include fatfs/option/subdir.mk
 -include fatfs/subdir.mk
 -include subdir.mk

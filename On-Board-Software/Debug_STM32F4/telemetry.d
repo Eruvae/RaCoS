@@ -61,7 +61,8 @@ telemetry.o: ../telemetry.cpp ../telemetry.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
- ../topics.h ../structs.h ../comminterfaces.h ../murmur.h
+ ../topics.h ../structs.h ../comminterfaces.h ../onewire/onewire.h \
+ ../murmur.h
 
 ../telemetry.h:
 
@@ -194,5 +195,7 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/sc
 ../structs.h:
 
 ../comminterfaces.h:
+
+../onewire/onewire.h:
 
 ../murmur.h:

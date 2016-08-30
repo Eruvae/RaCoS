@@ -14,9 +14,9 @@ public:
     void configADC();
     void getTankPressure(uint16_t *presTank);
     void getValvesPressure(uint16_t *presValves);
-    void configTempSensor(uint64_t rom_code);
+    void configTempSensor(const uint8_t *rom_code);
     void initTemperatureConv();
-    int16_t getTemperatureData(uint64_t rom_code);
+    int16_t getTemperatureData(const uint8_t *rom_code);
     void run();
 };
 
