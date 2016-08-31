@@ -8,11 +8,13 @@
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"		/* FatFs lower layer API */
-#include "../storagecontroller.h"
+#include "../sdspicard/sdspicard.h"
 //#include "../healthwatchdog.h"
 
 /* Definitions of physical drive number for each drive */
 #define DEV_SD		0
+
+SdSpiCard sd;
 
 
 /*-----------------------------------------------------------------------*/
@@ -28,16 +30,18 @@ DSTATUS disk_status (
 
 	if (pdrv == DEV_SD)
 	{
-		result = storageController.get_status();
+		result = sd.errorCode();
 
-		if (result == -1)
+		if (result == SD_CARD_ERROR_INIT_NOT_CALLED)
 			stat = STA_NOINIT;
+		else if (result != 0)
+			stat = STA_PROTECT;
 		else
 			stat = 0;
 
 		return stat;
 	}
-	return STA_NOINIT;
+	return STA_NODISK;
 }
 
 
@@ -51,18 +55,18 @@ DSTATUS disk_initialize (
 )
 {
 	DSTATUS stat;
-	int result;
+	bool result;
 
 	if (pdrv == DEV_SD)
 	{
-		result = storageController.initSD();
+		result = sd.begin();
 
-		stat = result;
+		stat = result == true ? 0 : STA_NOINIT;
 
 		return stat;
 
 	}
-	return STA_NOINIT;
+	return STA_NODISK;
 }
 
 
@@ -78,21 +82,21 @@ DRESULT disk_read (
 	UINT count		/* Number of sectors to read */
 )
 {
-	DRESULT res;
-	int result;
+	DRESULT res = RES_PARERR;
+	bool result = false;
 
 	if (pdrv == DEV_SD)
 	{
 		// translate the arguments here
 
-		for (int i = 0; i < count; i++)
-		{
-			result = storageController.read_sector_segment(sector + i, buff + 512*i);
-			if (result == -1)
-				break;
-		}
+		if (count == 1)
+			result = sd.readBlock(sector, buff);
+		else if (count > 1)
+			result = sd.readBlocks(sector, buff, count);
+		else
+			return RES_PARERR;
 
-		if (result == -1)
+		if (result == false)
 			res = RES_ERROR;
 		else
 			res = RES_OK;
@@ -117,21 +121,21 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write */
 )
 {
-	DRESULT res;
-	int result;
+	DRESULT res = RES_PARERR;
+	bool result = false;
 
 	if (pdrv == DEV_SD)
 	{
 		// translate the arguments here
 
-		for (int i = 0; i < count; i++)
-		{
-			result = storageController.write_sector_segment(sector + i, buff + 512*i);
-			if (result == -1)
-				break;
-		}
+		if (count == 1)
+			result = sd.writeBlock(sector, buff);
+		else if (count > 1)
+			result = sd.writeBlocks(sector, buff, count);
+		else
+			return RES_PARERR;
 
-		if (result == -1)
+		if (result == false)
 			res = RES_ERROR;
 		else
 			res = RES_OK;
