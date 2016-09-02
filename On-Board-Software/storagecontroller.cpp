@@ -1,5 +1,6 @@
 #include "storagecontroller.h"
 #include "sdspicard/sdspicard.h"
+#include "fatfs/diskio.h"
 #include <cstdio>
 
 #define DEBUG_READ_TEST_MSG
@@ -39,12 +40,13 @@ FRESULT scan_files (char* path /* Start node to be scanned (***also used as work
 }
 
 char readBuf[64];
+char readBuf2[64];
 
-uint8_t buf[2048];
+const uint32_t wbSize = 2048;
+uint8_t workBuf[wbSize] = {0};
 
 void StorageController::run()
 {
-	memset(buf, 0xFF, 2048);
     // TODO: may be necessary to wait for SD-card to initialize
 	suspendCallerUntil(NOW() + 1*SECONDS);
 
@@ -88,11 +90,16 @@ void StorageController::run()
 			PRINTF("Sector: %d, Result: %d, Buf1: %d\n", i, result, buf[0]);
 	}*/
 
-
-	FATFS FatFs;
+	FATFS fs;
 	FIL fil;       // File object
 
-	PRINTF("Mount: %d\n", f_mount(&FatFs, "0:", 0));
+	memset(readBuf, 0, 64);
+
+	//PRINTF("Mount: %d\n", f_mount(&fs, "0:", 0));
+
+	//PRINTF("Result mkfs: %d\n", f_mkfs("0:", FS_FAT32, 0, workBuf, wbSize));
+
+	PRINTF("Mount: %d\n", f_mount(&fs, "0:", 0));
 
 	//f_mount(&FatFs, "0:", 0);
 
@@ -102,10 +109,17 @@ void StorageController::run()
 	f_read(&fil, readBuf, 64, &readBytes);
 	readBuf[readBytes] = '\0';
 
+	f_open(&fil, "datafile.dat", FA_WRITE | FA_CREATE_ALWAYS);
+	f_write(&fil, "Deine Mutter!", 14, &readBytes);
+	f_close(&fil);
+	f_open(&fil, "datafile.dat", FA_READ);
+	f_read(&fil, readBuf2, 64, &readBytes);
+
 	while(1)
 	{
 		//teleUART.write(readBuf, readBytes);
 		PRINTF("%s; %d\n", readBuf, readBytes);
+		PRINTF("%s; %d\n", readBuf2, readBytes);
 		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 

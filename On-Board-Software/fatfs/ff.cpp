@@ -3297,8 +3297,7 @@ FRESULT f_open (
 				}
 			}
 			if (res == FR_OK && (mode & FA_CREATE_ALWAYS)) {	/* Truncate it if overwrite mode */
-				dw = 0;//dw = GET_FATTIME();
-				//TODO
+				dw = GET_FATTIME();
 #if _FS_EXFAT
 				if (fs->fs_type == FS_EXFAT) {
 					/* Get current allocation info */

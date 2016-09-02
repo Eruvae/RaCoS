@@ -23,7 +23,7 @@
 #define RECALL_E            0xB8    // Recalls TH, TL, and configuration register data from EEPROM to the scratchpad, DS18B20 transmits recall status to master
 #define READ_POWER_SUPPLY   0xB4    // Signals DS18B20 power supply mode to the master, DS18B20 transmits supply status to master
 
-class OneWire : public Initiator
+class OneWire
 {
 private:
 	HAL_UART *onewire_uart;
@@ -45,7 +45,7 @@ public:
 
 	/** Initiate the OneWire UART and config to OneWire-Mode
 	 *
-	 * auto-called by scheduler
+	 * has to be called before communication
 	 */
 	void init();
 

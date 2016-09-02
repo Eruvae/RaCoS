@@ -64,7 +64,7 @@ storagecontroller.o: ../storagecontroller.cpp ../storagecontroller.h \
  ../comminterfaces.h ../onewire/onewire.h ../spihelper.h ../fatfs/ff.h \
  ../fatfs/integer.h ../fatfs/ffconf.h ../sdspicard/sdspicard.h \
  ../sdspicard/SdInfo.h ../sdspicard/../comminterfaces.h \
- ../sdspicard/../spihelper.h
+ ../sdspicard/../spihelper.h ../fatfs/diskio.h
 
 ../storagecontroller.h:
 
@@ -211,3 +211,5 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/sc
 ../sdspicard/../comminterfaces.h:
 
 ../sdspicard/../spihelper.h:
+
+../fatfs/diskio.h:

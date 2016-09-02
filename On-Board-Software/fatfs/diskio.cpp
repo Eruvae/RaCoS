@@ -8,8 +8,8 @@
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"		/* FatFs lower layer API */
-#include "../sdspicard/sdspicard.h"
 //#include "../healthwatchdog.h"
+#include "../sdspicard/sdspicard.h"
 
 /* Definitions of physical drive number for each drive */
 #define DEV_SD		0
@@ -159,13 +159,50 @@ DRESULT disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	DRESULT res;
+	PRINTF("disk_ioctl called\n");
+	DRESULT res = RES_PARERR;
 	int result;
 
 	if (pdrv == DEV_SD)
 	{
+		if (cmd == CTRL_SYNC)
+			res = RES_OK;
 
-		res = RES_OK;
+		else if (cmd == GET_SECTOR_COUNT)
+		{
+			*(uint32_t*)buff = sd.cardSize();
+			if (*(uint32_t*)buff > 0)
+			{
+				res = RES_OK;
+
+			}
+			else
+			{
+				PRINTF("Bloeder Fehler...\n");
+				res = RES_ERROR;
+			}
+		}
+
+		else if (cmd == GET_SECTOR_SIZE)
+		{
+			*(uint32_t*)buff = 512;
+			res = RES_OK;
+		}
+
+		else if (cmd == GET_BLOCK_SIZE)
+		{
+			*(uint32_t*)buff = 1;
+			res = RES_OK;
+		}
+
+		else if (cmd == CTRL_TRIM)
+		{
+			result = sd.erase(((uint32_t*)buff)[0], ((uint32_t*)buff)[1]);
+			if (result == true)
+				res = RES_OK;
+			else
+				res = RES_ERROR;
+		}
 
 		return res;
 	}

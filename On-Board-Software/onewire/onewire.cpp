@@ -93,16 +93,16 @@ void OneWire::writeByte(uint8_t byte)
     	writeBit((bitMask & byte) ? 1 : 0);
 }
 
-void OneWire::write(const void *sendBuf, int len)
-{
-	for (int i = 0; i < len; i++)
-	    writeByte(((const uint8_t*)sendBuf)[i]);
-}
-
 void OneWire::read(void *recBuf, int len)
 {
 	for (int i = 0; i < len; i++)
 		((uint8_t*)recBuf)[i] = readByte();
+}
+
+void OneWire::write(const void *sendBuf, int len)
+{
+	for (int i = 0; i < len; i++)
+	    writeByte(((const uint8_t*)sendBuf)[i]);
 }
 
 uint8_t OneWire::crc8(const void *vptr, int len)

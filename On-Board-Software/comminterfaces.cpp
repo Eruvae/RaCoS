@@ -28,4 +28,5 @@ void CommInterfaces::init()
     spi_bus.config(SPI_PARAMETER_MODE, 0);
     i2c_bus.init();
     teleUART.init();
+    oneWire.init();
 }

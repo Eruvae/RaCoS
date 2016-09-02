@@ -11,7 +11,6 @@ extern "C" {
 
 #include "integer.h"
 
-
 /* Status of Disk Functions */
 typedef BYTE	DSTATUS;
 

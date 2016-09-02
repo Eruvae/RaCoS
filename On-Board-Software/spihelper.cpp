@@ -44,7 +44,7 @@ const uint8_t xff[512] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 
 
 SPIHelper::SPIHelper()
 {
-	slaveSelected = false;
+	selectedSlave = NO_SLAVE;
 }
 
 void SPIHelper::init()
@@ -53,22 +53,22 @@ void SPIHelper::init()
     ss_imu2.init(true, 1, 1);
     ss_sd.init(true, 1, 1);
 
-    slaveSelected = false;
+    selectedSlave = NO_SLAVE;
 }
 
-bool SPIHelper::isSlaveSelected()
+bool SPIHelper::isSlaveSelected(SPI_SS slave)
 {
-	return slaveSelected;
+	return (selectedSlave == slave);
 }
 
 int SPIHelper::selectSlave(SPI_SS select)
 {
 	spi_comm_running.enter();
 
-    if (slaveSelected)
+    if (selectedSlave != NO_SLAVE)
         return -1;
 
-    slaveSelected = true;
+    selectedSlave = select;
 
     switch(select)
     {
@@ -100,7 +100,7 @@ void SPIHelper::disableSlaves()
 
     spi_bus.write(xff, 1);
 
-    slaveSelected = false;
+    selectedSlave = NO_SLAVE;
 
     spi_comm_running.leave();
 }
