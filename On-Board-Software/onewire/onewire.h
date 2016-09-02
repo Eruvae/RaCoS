@@ -92,6 +92,8 @@ public:
 	void convertT();
 
 	void readScratchpad(void *recBuf);
+
+	void writeScratchpad(const uint8_t th, const uint8_t tl, const uint8_t config);
 };
 
 #endif /* ONEWIRE_ONEWIRE_H_ */

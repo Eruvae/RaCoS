@@ -3,7 +3,7 @@
 //#define DEBUG_TEMP_DUMMY_DATA
 #define DEBUG_PRES_DUMMY_DATA
 
-//SensorHousekeeping sensorHousekeeping;
+SensorHousekeeping sensorHousekeeping;
 
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011
@@ -71,7 +71,7 @@ void  SensorHousekeeping::configTempSensor(const uint8_t *rom_code)
 {
     uint8_t sendBuf[13];
     sendBuf[0] = MATCH_ROM;
-    memcpy(&sendBuf[1], &rom_code, 8);
+    memcpy(&sendBuf[1], rom_code, 8);
     sendBuf[9] = WRITE_SCRATCHPAD;
     sendBuf[10] = TS_TH;
     sendBuf[11] = TS_TL;
@@ -97,7 +97,7 @@ int16_t SensorHousekeeping::getTemperatureData(const uint8_t *rom_code)
 	uint8_t sendBuf[10];
 	uint8_t recBuf[9];
 	sendBuf[0] = MATCH_ROM;
-	memcpy(&sendBuf[1], &rom_code, 8);
+	memcpy(&sendBuf[1], rom_code, 8);
 	sendBuf[9] = READ_SCRATCHPAD;
 
 	for (int i = 0; i < 3; i++)
@@ -147,21 +147,31 @@ void SensorHousekeeping::configADC()
 
 void SensorHousekeeping::run()
 {
+	/*
 	uint8_t sendBuf[20] = {0};
 	uint8_t readBuf[20] = {0};
 	uint8_t readBuf2[20] = {0};
 
+	uint8_t rom_to_read[8];
+
 	while(1)
 	{
-		uint8_t rom_to_read[8];
 		oneWire.reset();
-		oneWire.selectROM(TS_NOZ1_ROM);
+		//oneWire.selectROM(TS_NOZ1_ROM);
+		oneWire.skipROM();
+		oneWire.writeScratchpad(0x4B, 0x46, 0x3F);
+		//configTempSensor(TS_NOZ1_ROM);
+
+		PRINTF("Reset %d\n", oneWire.reset());
+		//oneWire.selectROM(TS_NOZ1_ROM);
+		oneWire.skipROM();
 		oneWire.convertT();
 
 		suspendCallerUntil(NOW() + 1500*MILLISECONDS);
 
-		oneWire.reset();
-		oneWire.selectROM(TS_NOZ1_ROM);
+		PRINTF("Reset %d\n", oneWire.reset());
+		//oneWire.selectROM(TS_NOZ1_ROM);
+		oneWire.skipROM();
 		oneWire.readScratchpad(readBuf);
 
 		int16_t temp = *(int16_t*)readBuf;
@@ -173,12 +183,12 @@ void SensorHousekeeping::run()
 
 		PRINTF("\n");
 
-		PRINTF("CRC result: %d\n", oneWire.crc8(readBuf, 8));
+		PRINTF("CRC result: %x\n", oneWire.crc8(readBuf, 8));
 
 		suspendCallerUntil(NOW() + 0.5*SECONDS);
 	}
+	*/
 
-	/*
     //configADC();
 	configTempSensor(TS_NOZ1_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
@@ -245,5 +255,5 @@ void SensorHousekeeping::run()
         tempCycle = ++tempCycle < 2 ? tempCycle : 0;
         suspendUntilNextBeat();
     }
-	*/
+
 }

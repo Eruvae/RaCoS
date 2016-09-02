@@ -61,7 +61,7 @@ comminterfaces.o: ../comminterfaces.cpp ../comminterfaces.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
- ../onewire/onewire.h
+ ../onewire/onewire.h ../userconfs/racosconfig.h
 
 ../comminterfaces.h:
 
@@ -190,3 +190,5 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h:
 
 ../onewire/onewire.h:
+
+../userconfs/racosconfig.h:

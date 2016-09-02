@@ -40,7 +40,9 @@ bool OneWire::reset()
 	onewire_uart->suspendUntilWriteFinished();
 	uint8_t result = onewire_uart->getcharNoWait();	// Get Presence Pulse
 
-	if (result >= 0x10 && result <= 0x90)
+	//PRINTF("Presence: %d\n", result);
+
+	if (result != 0xF0)
 		return true;
 
 	return false;
@@ -53,6 +55,8 @@ uint8_t OneWire::readBit()
 	onewire_uart->putcharNoWait(0xFF);
 	onewire_uart->suspendUntilWriteFinished();
 	uint8_t result = onewire_uart->getcharNoWait();	// Get Bit
+
+	//PRINTF("Bit: %d\n", result);
 
 	if (result == 0xFF)
 		return 1;
@@ -108,12 +112,25 @@ void OneWire::write(const void *sendBuf, int len)
 uint8_t OneWire::crc8(const void *vptr, int len)
 {
     uint8_t *addr = (uint8_t*)vptr;
-    uint8_t crc = 0;
+    /*uint8_t crc = 0;
 
     while (len--)
         crc = dscrc_table[crc ^ *addr++];
 
-    return crc;
+    return crc;*/
+
+    uint8_t crc = 0;
+	while (len--)
+	{
+		uint8_t inbyte = *addr++;
+		for (uint8_t i = 8; i; i--) {
+			uint8_t mix = (crc ^ inbyte) & 0x01;
+			crc >>= 1;
+			if (mix) crc ^= 0x8C;
+			inbyte >>= 1;
+		}
+	}
+	return crc;
 }
 
 void OneWire::readROM(uint8_t *rom)
@@ -142,4 +159,12 @@ void OneWire::readScratchpad(void *recBuf)
 {
 	writeByte(READ_SCRATCHPAD);
 	read(recBuf, 9);
+}
+
+void OneWire::writeScratchpad(const uint8_t th, const uint8_t tl, const uint8_t config)
+{
+	writeByte(WRITE_SCRATCHPAD);
+	writeByte(th);
+	writeByte(tl);
+	writeByte(config);
 }
