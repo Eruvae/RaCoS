@@ -2,7 +2,8 @@
 #define TRIGGER_THRESHOLD 30
 
 ControlLoop controlLoop;
-HAL_GPIO buzzer(GPIO_033);
+
+
 void ControlLoop::init()
 {
 
@@ -19,7 +20,6 @@ void ControlLoop::run()
 
 	while(1)
 	{
-		buzzer.setPins(1);
 		modeBuffer.get(mode);
 		IMUdata imu;
 		IMUBuffer.get(imu);

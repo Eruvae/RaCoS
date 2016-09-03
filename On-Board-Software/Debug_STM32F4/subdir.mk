@@ -6,6 +6,7 @@
 CPP_SRCS += \
 ../ControlLoop.cpp \
 ../actuatorhandler.cpp \
+../buzzer.cpp \
 ../comminterfaces.cpp \
 ../healthwatchdog.cpp \
 ../murmur.cpp \
@@ -20,6 +21,7 @@ CPP_SRCS += \
 OBJS += \
 ./ControlLoop.o \
 ./actuatorhandler.o \
+./buzzer.o \
 ./comminterfaces.o \
 ./healthwatchdog.o \
 ./murmur.o \
@@ -34,6 +36,7 @@ OBJS += \
 CPP_DEPS += \
 ./ControlLoop.d \
 ./actuatorhandler.d \
+./buzzer.d \
 ./comminterfaces.d \
 ./healthwatchdog.d \
 ./murmur.d \
