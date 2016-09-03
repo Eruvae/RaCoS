@@ -1,7 +1,7 @@
 #include "sensorhousekeeping.h"
 
 //#define DEBUG_TEMP_DUMMY_DATA
-#define DEBUG_PRES_DUMMY_DATA
+//#define DEBUG_PRES_DUMMY_DATA
 
 SensorHousekeeping sensorHousekeeping;
 
@@ -118,7 +118,7 @@ int16_t SensorHousekeeping::getTemperatureData(const uint8_t *rom_code)
 void SensorHousekeeping::getTankPressure(uint16_t *presTank)
 {
     // read tank pressure
-    i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1);
+    PRINTF("I2c write result: %d\n", i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1));
     i2c_bus.read(ADC_ITC_READ, (uint8_t*)presTank, 2);
 
     *presTank = swap16(*presTank);
@@ -188,8 +188,9 @@ void SensorHousekeeping::run()
 		suspendCallerUntil(NOW() + 0.5*SECONDS);
 	}
 	*/
-
-    //configADC();
+	i2c_bus.init();
+	suspendCallerUntil(NOW()+1*SECONDS);
+    configADC();
 	configTempSensor(TS_NOZ1_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
@@ -198,11 +199,11 @@ void SensorHousekeeping::run()
     {
         if (!presCycle)
         {
-            //getTankPressure(&(hk.presTank));
+            getTankPressure(&(hk.presTank));
         }
         else
         {
-            //getValvesPressure(&(hk.presValves));
+            getValvesPressure(&(hk.presValves));
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
 

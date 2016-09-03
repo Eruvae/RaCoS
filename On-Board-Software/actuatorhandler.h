@@ -2,7 +2,6 @@
 #define ACTUATORHANDLER_H
 
 #include "rodos.h"
-
 class ActuatorHandler : public Initiator
 {
 public:

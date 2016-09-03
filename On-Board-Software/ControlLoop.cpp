@@ -1,7 +1,8 @@
 #include "controlloop.h"
+#define TRIGGER_THRESHOLD 30
 
-//ControlLoop controlLoop;
-
+ControlLoop controlLoop;
+HAL_GPIO buzzer(GPIO_033);
 void ControlLoop::init()
 {
 
@@ -15,9 +16,24 @@ void ControlLoop::run()
 	testTopic.publish(test);
 
 	setPeriodicBeat(0, 100*MILLISECONDS);
+
 	while(1)
 	{
+		buzzer.setPins(1);
 		modeBuffer.get(mode);
+		IMUdata imu;
+		IMUBuffer.get(imu);
+		double mid = (imu.gyroData1[2]+imu.gyroData2[2])*0.00762939453125/2;
+		if(mid < -TRIGGER_THRESHOLD){
+			actuatorHandler.setValve1(true);
+			actuatorHandler.setValve2(false);
+		}else if(mid > TRIGGER_THRESHOLD){
+			actuatorHandler.setValve1(false);
+			actuatorHandler.setValve2(true);
+		}else{
+			actuatorHandler.setValve1(false);
+			actuatorHandler.setValve2(false);
+		}
 
 		// Do Control stuff
 		suspendUntilNextBeat();
