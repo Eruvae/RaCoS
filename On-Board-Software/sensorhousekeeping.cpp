@@ -147,7 +147,7 @@ void SensorHousekeeping::configADC()
 
 void SensorHousekeeping::run()
 {
-	/*
+
 	uint8_t sendBuf[20] = {0};
 	uint8_t readBuf[20] = {0};
 	uint8_t readBuf2[20] = {0};
@@ -187,8 +187,8 @@ void SensorHousekeeping::run()
 
 		suspendCallerUntil(NOW() + 0.5*SECONDS);
 	}
-	*/
 
+	/*
     //configADC();
 	configTempSensor(TS_NOZ1_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
@@ -254,6 +254,8 @@ void SensorHousekeeping::run()
         presCycle = !presCycle;
         tempCycle = ++tempCycle < 2 ? tempCycle : 0;
         suspendUntilNextBeat();
+
     }
+    */
 
 }

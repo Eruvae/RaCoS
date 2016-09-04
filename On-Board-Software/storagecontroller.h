@@ -8,8 +8,12 @@
 
 class StorageController : public Thread
 {
+	//SyncFifo<IMUdata, 100> imuFifo;
+	//SyncFifo<HkData, 100> hkFifo;
+	//SyncFifo<CmdData, 100> controlFifo;
 public:
     StorageController(const char *name, const long priority)  : Thread(name, priority) {}
+
     void run();
 };
 

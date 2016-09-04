@@ -24,13 +24,13 @@ void Telemetry::run()
 		else if (sendCycle == 1)
 		{
 			encodeIMU(imuBuf);
-			//teleUART.write(imuBuf, 34);
+			teleUART.write(imuBuf, 34);
 			sendCycle++;
 		}
 		else if (sendCycle >= 2)
 		{
 			encodeCalc(calcBuf);
-			//teleUART.write(calcBuf, 18);
+			teleUART.write(calcBuf, 18);
 			sendCycle = 0;
 		}
 		

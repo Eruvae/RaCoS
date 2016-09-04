@@ -2,10 +2,11 @@
 #include "sdspicard/sdspicard.h"
 #include "fatfs/diskio.h"
 #include <cstdio>
+#include <cstdlib>
 
 #define DEBUG_READ_TEST_MSG
 
-StorageController storageController("Storage Controller", 100);
+//StorageController storageController("Storage Controller", 100);
 
 FRESULT scan_files (char* path /* Start node to be scanned (***also used as work area***) */)
 {
@@ -50,48 +51,12 @@ void StorageController::run()
     // TODO: may be necessary to wait for SD-card to initialize
 	suspendCallerUntil(NOW() + 1*SECONDS);
 
-
-	/*
-	SdSpiCard sd;
-
-	bool suc = sd.begin();
-
-	PRINTF("Init success: %d\n", suc);
-
-	//suc = sd.cardSize();
-
-	//PRINTF("SD-Size: %d\n", suc);
-
-	suc = sd.readBlock(0, buf);
-
-	PRINTF("Read success: %d; error: %d\n", suc, sd.errorCode());
-
-	for(int i = 0; i < 512; i++)
-	{
-		PRINTF("%x|%c\n", buf[i], buf[i]);
-	}
-	*/
-
-	//PRINTF("fail %d\n", initSD());
-
-	#ifdef DEBUG_READ_TEST_MSG
-
-	//PRINTF("read result: %d\n", write_sector_segment(0, buf));
-	/*PRINTF("read result: %d\n", read_sector_segment(0, buf));
-	for(int i = 0; i < 512; i++)
-	{
-		PRINTF("%x|%c\n", buf[i], buf[i]);
-	}*/
-
-	/*for (int i = 0; i < 1000000; i++)
-	{
-		int result = read_sector_segment(i, buf);
-		if (result != 0 || buf[0] != 4)
-			PRINTF("Sector: %d, Result: %d, Buf1: %d\n", i, result, buf[0]);
-	}*/
-
 	FATFS fs;
 	FIL fil;       // File object
+	FRESULT result;
+	unsigned int readBytes;
+
+	#ifdef DEBUG_READ_TEST_MSG
 
 	memset(readBuf, 0, 64);
 
@@ -100,10 +65,6 @@ void StorageController::run()
 	//PRINTF("Result mkfs: %d\n", f_mkfs("0:", FS_FAT32, 0, workBuf, wbSize));
 
 	PRINTF("Mount: %d\n", f_mount(&fs, "0:", 0));
-
-	//f_mount(&FatFs, "0:", 0);
-
-	unsigned int readBytes;
 
 	PRINTF("Open: %d", f_open(&fil, "message.txt", FA_READ));
 	f_read(&fil, readBuf, 64, &readBytes);
@@ -123,15 +84,59 @@ void StorageController::run()
 		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 
-
-
-	/*while(1)
-	{
-		char buf[255] = "0:";
-		scan_files(buf);
-		suspendCallerUntil(NOW() + 1*SECONDS);
-	}*/
-
 	#endif
+
+	result = f_mount(&fs, "0:", 0);
+
+	if (result != FR_OK)
+	{
+		// send error code to healthwatchdog
+	}
+
+	int runcount = 1;
+
+	result = f_open(&fil, "runcount.txt", FA_READ | FA_WRITE);
+
+	if (result == FR_NO_FILE)
+	{
+		f_close(&fil);
+		result = f_open(&fil, "runcount.txt", FA_WRITE | FA_CREATE_ALWAYS);
+		f_write(&fil, "1", 1, &readBytes);
+	}
+	else
+	{
+		f_read(&fil, readBuf, 64, &readBytes);
+		readBuf[readBytes] = 0;
+		runcount = atoi(readBuf);
+		if (runcount == 0)
+		{
+			// Fehler
+		}
+		runcount++;
+		sprintf(readBuf, "%d", runcount);
+		f_close(&fil);
+		result = f_open(&fil, "runcount.txt", FA_WRITE | FA_CREATE_ALWAYS);
+		f_write(&fil, readBuf, sizeof(readBuf), &readBytes);
+	}
+	f_close(&fil);
+
+	sprintf(readBuf, "data_run%d.dat", runcount);
+	f_open(&fil, readBuf, FA_WRITE | FA_CREATE_ALWAYS);
+
+	setPeriodicBeat(100*MILLISECONDS, 500*MILLISECONDS);
+
+	while(1)
+	{
+		//IMUdata imu;
+		//HkData hk;
+		//CmdData cmd;
+		// Read Queues, write data to file
+		/*while (imuFifo.get(imu))
+		{
+
+		}*/
+
+		suspendUntilNextBeat();
+	}
 
 }

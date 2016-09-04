@@ -1,8 +1,8 @@
 #include "actuatorhandler.h"
 
-HAL_GPIO valve1(GPIO_053);
-HAL_GPIO valve2(GPIO_054);
-HAL_GPIO cutoff(GPIO_055);
+HAL_GPIO valve1(GPIO_007);
+HAL_GPIO valve2(GPIO_006);
+HAL_GPIO cutoff(GPIO_037);
 
 ActuatorHandler actuatorHandler;
 
