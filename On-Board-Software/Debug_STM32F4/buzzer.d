@@ -1,4 +1,4 @@
-sensorIMU.o: ../sensorIMU.cpp ../sensorIMU.h \
+buzzer.o: ../buzzer.cpp ../buzzer.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos-apis.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/hw_predefines.h \
@@ -60,11 +60,9 @@ sensorIMU.o: ../sensorIMU.cpp ../sensorIMU.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_adc.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
- C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
- ../comminterfaces.h ../onewire/onewire.h ../spihelper.h ../topics.h \
- ../structs.h
+ C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h
 
-../sensorIMU.h:
+../buzzer.h:
 
 C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h:
 
@@ -189,13 +187,3 @@ C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/l
 C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h:
 
 C:\Users\Raptoaaah\Desktop\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h:
-
-../comminterfaces.h:
-
-../onewire/onewire.h:
-
-../spihelper.h:
-
-../topics.h:
-
-../structs.h:

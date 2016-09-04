@@ -12,9 +12,9 @@ ActuatorHandler::ActuatorHandler()
 
 void ActuatorHandler::init()
 {
-    valve1.init(true, 1, 0);
-    valve2.init(true, 1, 0);
-    cutoff.init(true, 1, 0);
+    valve1.init(true, 1, 1);
+    valve2.init(true, 1, 1);
+    cutoff.init(true, 1, 1);
 }
 
 void ActuatorHandler::setValve1(bool state)
