@@ -3,7 +3,6 @@
 
 #include "rodos.h"
 #include "topics.h"
-#include "actuatorhandler.h"
 
 class ControlLoop: public Thread {
 	Mode mode;
