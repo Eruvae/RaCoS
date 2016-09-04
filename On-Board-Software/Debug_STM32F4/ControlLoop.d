@@ -1,4 +1,4 @@
-controlloop.o: ../controlloop.cpp ../controlloop.h \
+ControlLoop.o: ../ControlLoop.cpp ../controlloop.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos-apis.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/hw_predefines.h \

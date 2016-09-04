@@ -4,9 +4,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../ControlLoop.cpp \
 ../actuatorhandler.cpp \
+../buzzer.cpp \
 ../comminterfaces.cpp \
-../controlloop.cpp \
 ../healthwatchdog.cpp \
 ../murmur.cpp \
 ../sensorIMU.cpp \
@@ -18,9 +19,10 @@ CPP_SRCS += \
 ../topics.cpp 
 
 OBJS += \
+./ControlLoop.o \
 ./actuatorhandler.o \
+./buzzer.o \
 ./comminterfaces.o \
-./controlloop.o \
 ./healthwatchdog.o \
 ./murmur.o \
 ./sensorIMU.o \
@@ -32,9 +34,10 @@ OBJS += \
 ./topics.o 
 
 CPP_DEPS += \
+./ControlLoop.d \
 ./actuatorhandler.d \
+./buzzer.d \
 ./comminterfaces.d \
-./controlloop.d \
 ./healthwatchdog.d \
 ./murmur.d \
 ./sensorIMU.d \

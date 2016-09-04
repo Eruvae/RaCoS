@@ -1,4 +1,4 @@
-healthwatchdog.o: ../healthwatchdog.cpp ../healthwatchdog.h \
+buzzer.o: ../buzzer.cpp ../buzzer.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos-apis.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/hw_predefines.h \
@@ -60,10 +60,9 @@ healthwatchdog.o: ../healthwatchdog.cpp ../healthwatchdog.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_adc.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterfaceshm.h \
  C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h \
- C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h \
- ../topics.h ../structs.h
+ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h
 
-../healthwatchdog.h:
+../buzzer.h:
 
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/rodos.h:
 
@@ -188,7 +187,3 @@ C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/gateway/linkinterface
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\api/hal/hal_sharedmemory.h:
 
 C:\Users\TobiZ\Eclipse\ Luna\ SR1\ 121\Workspace\rodos\src\bare-metal-generic/scheduler.h:
-
-../topics.h:
-
-../structs.h:

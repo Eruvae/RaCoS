@@ -1,7 +1,8 @@
 #include "controlloop.h"
-#include "actuatorhandler.h"
+#define TRIGGER_THRESHOLD 30
 
 ControlLoop controlLoop;
+
 
 void ControlLoop::init()
 {
@@ -15,17 +16,24 @@ void ControlLoop::run()
 	modeTopic.publish(mode);
 	testTopic.publish(test);
 
-	setPeriodicBeat(0, 5000*MILLISECONDS);
-	bool toggle = false;
+	setPeriodicBeat(0, 100*MILLISECONDS);
+
 	while(1)
 	{
 		modeBuffer.get(mode);
-
-		actuatorHandler.setValve1(toggle);
-		actuatorHandler.setCutoff(toggle);
-		actuatorHandler.setValve2(toggle);
-
-		toggle = !toggle;
+		IMUdata imu;
+		IMUBuffer.get(imu);
+		double mid = (imu.gyroData1[2]+imu.gyroData2[2])*0.00762939453125/2;
+		if(mid < -TRIGGER_THRESHOLD){
+			actuatorHandler.setValve1(true);
+			actuatorHandler.setValve2(false);
+		}else if(mid > TRIGGER_THRESHOLD){
+			actuatorHandler.setValve1(false);
+			actuatorHandler.setValve2(true);
+		}else{
+			actuatorHandler.setValve1(false);
+			actuatorHandler.setValve2(false);
+		}
 
 		// Do Control stuff
 		suspendUntilNextBeat();

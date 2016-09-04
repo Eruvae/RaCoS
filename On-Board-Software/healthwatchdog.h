@@ -12,20 +12,6 @@
 #include "topics.h"
 #include "structs.h"
 
-#include "sensorhousekeeping.h"
-#include "sensorIMU.h"
-#include "telecommand.h"
-#include "telemetry.h"
-#include "controlloop.h"
-#include "storagecontroller.h"
-
-/*extern SensorHousekeeping *sensorHousekeeping;
-extern SensorIMU *sensorIMU;
-extern Telecommand *telecommand;
-extern Telemetry *telemetry;
-extern ControlLoop *controlLoop;
-extern StorageController *storageController;*/
-
 class HealthWatchdog : public Thread
 {
 private:
