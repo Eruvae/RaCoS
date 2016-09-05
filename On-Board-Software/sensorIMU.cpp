@@ -190,13 +190,13 @@ int SensorIMU::calibrate() {
 }
 
 void SensorIMU::fusionFilter(IMUdata &imu) {
-	GxHistory1[fusionCycle] = imu.gyroData1[0]-calibG1X;
-	GyHistory1[fusionCycle] = imu.gyroData1[1]-calibG1Y;
-	GzHistory1[fusionCycle] = imu.gyroData1[2]-calibG1Z;
-	GxHistory2[fusionCycle] = imu.gyroData2[0]-calibG2X;
-	GyHistory2[fusionCycle] = imu.gyroData2[1]-calibG2Y;
-	GzHistory2[fusionCycle] = imu.gyroData2[2]-calibG2Z;
-	fusionCycle = ++fusionCycle>4?0:fusionCycle;
+	GxHistory1[fusionCycle] = (imu.gyroData1[0] - calibG1X) * GYRO_FACTOR;
+	GyHistory1[fusionCycle] = (imu.gyroData1[1] - calibG1Y) * GYRO_FACTOR;
+	GzHistory1[fusionCycle] = (imu.gyroData1[2] - calibG1Z) * GYRO_FACTOR;
+	GxHistory2[fusionCycle] = (imu.gyroData2[0] - calibG2X) * GYRO_FACTOR;
+	GyHistory2[fusionCycle] = (imu.gyroData2[1] - calibG2Y) * GYRO_FACTOR;
+	GzHistory2[fusionCycle] = (imu.gyroData2[2] - calibG2Z) * GYRO_FACTOR;
+	fusionCycle = ++fusionCycle > 4 ? 0 : fusionCycle;
 
 	double fusionX1 = 0;
 	double fusionY1 = 0;
@@ -204,8 +204,8 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	double fusionX2 = 0;
 	double fusionY2 = 0;
 	double fusionZ2 = 0;
-	double noiseG1[3] = {0,0,0};
-	double noiseG2[3] = {0,0,0};
+	double noiseG1[3] = { 0, 0, 0 };
+	double noiseG2[3] = { 0, 0, 0 };
 	//Average over the last 5 values of the specified IMU in 3 Axis
 	for (int i = 0; i < 5; i++) {
 		if (i > 0) {
@@ -235,22 +235,28 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	fusionX2 /= 5;
 	fusionY2 /= 5;
 	fusionZ2 /= 5;
+	noiseG1[0] /= 40;
+	noiseG1[1] /= 40;
+	noiseG1[2] /= 40;
+	noiseG2[0] /= 40;
+	noiseG2[1] /= 40;
+	noiseG2[2] /= 40;
 
 	double prescaler[9];
-	for(int i = 0; i<3; i++){
-		prescaler[i] = 0.5/(1.0+noiseG1[i]);
-		prescaler[i+3] = 0.5/(1.0+noiseG2[i]);
-		prescaler[i+6] = 1-prescaler[i]-prescaler[i+3];
+	for (int i = 0; i < 3; i++) {
+		prescaler[i] = 0.5 / (1.0 + noiseG1[i]);
+		prescaler[i + 3] = 0.5 / (1.0 + noiseG2[i]);
+		prescaler[i + 6] = 1 - prescaler[i] - prescaler[i + 3];
 	}
-	imu.gyroFiltered[0] = (prescaler[0]*fusionX1)+(prescaler[3]*fusionX2)+(prescaler[6]*filterXLast);
-	imu.gyroFiltered[1] = (prescaler[1]*fusionY1)+(prescaler[4]*fusionY2)+(prescaler[7]*filterYLast);
-	imu.gyroFiltered[2] = (prescaler[2]*fusionZ1)+(prescaler[5]*fusionZ2)+(prescaler[8]*filterZLast);
+	imu.gyroFiltered[0] = (prescaler[0] * fusionX1) + (prescaler[3] * fusionX2)
+			+ (prescaler[6] * filterXLast);
+	imu.gyroFiltered[1] = (prescaler[1] * fusionY1) + (prescaler[4] * fusionY2)
+			+ (prescaler[7] * filterYLast);
+	imu.gyroFiltered[2] = (prescaler[2] * fusionZ1) + (prescaler[5] * fusionZ2)
+			+ (prescaler[8] * filterZLast);
 	filterXLast = imu.gyroFiltered[0];
 	filterYLast = imu.gyroFiltered[1];
 	filterZLast = imu.gyroFiltered[2];
-	imu.gyroFiltered[0] *= GYRO_FACTOR;
-	imu.gyroFiltered[1] *= GYRO_FACTOR;
-	imu.gyroFiltered[2] *= GYRO_FACTOR;
 }
 
 void SensorIMU::run() {
