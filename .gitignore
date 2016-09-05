@@ -1,0 +1,7 @@
+On-Board-Software/Debug_STM32F4/buzzer.o
+On-Board-Software/Debug_STM32F4/On-Board-Software.elf
+On-Board-Software/Debug_STM32F4/On-Board-Software.map
+*.elf
+On-Board-Software/Debug_STM32F4/On-Board-Software.hex
+*.map
+On-Board-Software/Debug_STM32F4/buzzer.o

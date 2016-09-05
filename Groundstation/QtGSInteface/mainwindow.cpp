@@ -401,17 +401,17 @@ void MainWindow::decodeCalc(const dpCalc *dataCalc)
 void MainWindow::readData()
 {
     //static int graph_index = 0;
-    QByteArray data = serial->readAll();
+    //QByteArray data = serial->readAll();
     /*QMessageBox msgBox;
     msgBox.setText(data);
     msgBox.exec();*/
 
-    /*
-    dpIMU dataIMU;
-    dpPresTemp dataPT;
-    dpCalc dataCalc;
 
-    qDebug("AB: %i\n", serial->bytesAvailable());
+    static dpIMU dataIMU;
+    static dpPresTemp dataPT;
+    static dpCalc dataCalc;
+
+    //qDebug("AB: %i\n", serial->bytesAvailable());
 
     static int package_selected = -1;
     static int package_index = 0;
@@ -422,6 +422,7 @@ void MainWindow::readData()
         //qDebug("%X ", c);
         if (package_selected == -1)
         {
+            //qDebug("Nothing selected");
             if (c == SYNC_IMU)
             {
                 package_selected = SYNC_IMU;
@@ -435,13 +436,13 @@ void MainWindow::readData()
             else if (c == SYNC_CALC)
             {
                 package_selected = SYNC_CALC;
-                ((uint8_t*)&dataCalc)[package_index] = c;
+                ((uint8_t*)&dataCalc)[package_index++] = c;
             }
         }
         else if (package_selected == SYNC_IMU)
         {
             ((uint8_t*)&dataIMU)[package_index++] = c;
-            if (package_index == sizeof(dpIMU))
+            if (package_index >= sizeof(dpIMU))
             {
                 decodeIMU(&dataIMU);
                 package_selected = -1;
@@ -451,27 +452,33 @@ void MainWindow::readData()
         else if (package_selected == SYNC_PT)
         {
             ((uint8_t*)&dataPT)[package_index++] = c;
-            if (package_index == sizeof(dpPresTemp))
+            if (package_index >= sizeof(dpPresTemp))
             {
                 decodePT(&dataPT);
                 package_selected = -1;
                 package_index = 0;
             }
         }
-        else if (package_selected == SYNC_PT)
+        else if (package_selected == SYNC_CALC)
         {
             ((uint8_t*)&dataCalc)[package_index++] = c;
-            if (package_index == sizeof(dpCalc))
+            if (package_index >= sizeof(dpCalc))
             {
                 decodeCalc(&dataCalc);
                 package_selected = -1;
                 package_index = 0;
             }
         }
+        else
+        {
+            qDebug("Hier sollte man nie hinkommen...\n");
+            package_selected = -1;
+            package_index = 0;
+        }
     }
-    */
 
 
+    /*
     static int noti = 0;
 
     qDebug("%i\n",data.size());
@@ -509,7 +516,7 @@ void MainWindow::readData()
         }  
 
     }
-
+    */
 
 }
 

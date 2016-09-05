@@ -4,21 +4,8 @@
 
 HealthWatchdog healthWatchdog;
 
-/*SensorHousekeeping *sensorHousekeeping;
-SensorIMU *sensorIMU;
-Telecommand *telecommand;
-Telemetry *telemetry;
-ControlLoop *controlLoop;
-StorageController *storageController;*/
-
 HealthWatchdog::HealthWatchdog()
 {
-	/*sensorHousekeeping = (SensorHousekeeping*)malloc(sizeof(SensorHousekeeping));
-	new (sensorHousekeeping) SensorHousekeeping();
-	sensorIMU = (SensorIMU*)malloc(sizeof(SensorIMU));
-	new (sensorIMU) SensorIMU();
-	telemetry = (Telemetry*)malloc(sizeof(Telemetry));
-	new (telemetry) Telemetry();*/
 	housekeepingPending = false;
 	sensorIMUpending = false;
 	actuatorHandlerpending = false;
@@ -48,10 +35,6 @@ void HealthWatchdog::run()
         }
         suspendUntilNextBeat();
     }
-}
-
-void HealthWatchdog::initThreads()
-{
 }
 
 bool HealthWatchdog::selfcheck()

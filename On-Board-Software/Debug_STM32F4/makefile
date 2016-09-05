@@ -54,16 +54,13 @@ On-Board-Software.siz \
 
 
 # All Target
-all: pre-build main-build
-
-# Main-build Target
-main-build: On-Board-Software.elf secondary-outputs
+all: On-Board-Software.elf secondary-outputs
 
 # Tool invocations
 On-Board-Software.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM C++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\src\bare-metal\stm32f4\scripts\stm32_flash.ld" -nostartfiles -nodefaultlibs -nostdlib -Xlinker --gc-sections -L"C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4" -L"C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\support_libs\Debug_STM32F4" -Wl,-Map,"On-Board-Software.map" -o "On-Board-Software.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -O0 -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections  -g3 -T "C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\src\bare-metal\stm32f4\scripts\stm32_flash.ld" -nostartfiles -nodefaultlibs -nostdlib -Xlinker --gc-sections -L"C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4" -L"C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\support_libs\Debug_STM32F4" -Wl,-Map,"On-Board-Software.map" -o "On-Board-Software.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -84,13 +81,9 @@ clean:
 	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) On-Board-Software.elf
 	-@echo ' '
 
-pre-build:
-	-%export USERCONFIGDIR="-I C:\Users\TobiZ\RaCoS\On-Board-Software\userconfs"
-	-@echo ' '
-
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)
 
 .PHONY: all clean dependents
-.SECONDARY: main-build pre-build
+.SECONDARY:
 
 -include ../makefile.targets
