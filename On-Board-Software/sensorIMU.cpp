@@ -196,6 +196,7 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	GxHistory2[fusionCycle] = imu.gyroData2[0]-calibG2X;
 	GyHistory2[fusionCycle] = imu.gyroData2[1]-calibG2Y;
 	GzHistory2[fusionCycle] = imu.gyroData2[2]-calibG2Z;
+	fusionCycle = ++fusionCycle>4?0:fusionCycle;
 
 	double fusionX1 = 0;
 	double fusionY1 = 0;
@@ -209,17 +210,17 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	for (int i = 0; i < 5; i++) {
 		if (i > 0) {
 			double temp = GxHistory1[i] - GxHistory1[i - 1];
-			noiseG1[0] += temp < 1 ? -temp : temp;
+			noiseG1[0] += temp < 0 ? -temp : temp;
 			temp = GyHistory1[i] - GxHistory1[i - 1];
-			noiseG1[1] += temp < 1 ? -temp : temp;
+			noiseG1[1] += temp < 0 ? -temp : temp;
 			temp = GzHistory1[i] - GxHistory1[i - 1];
-			noiseG1[2] += temp < 1 ? -temp : temp;
+			noiseG1[2] += temp < 0 ? -temp : temp;
 			temp = GxHistory1[i] - GxHistory1[i - 1];
-			noiseG2[0] += temp < 1 ? -temp : temp;
+			noiseG2[0] += temp < 0 ? -temp : temp;
 			temp = GyHistory1[i] - GxHistory1[i - 1];
-			noiseG2[1] += temp < 1 ? -temp : temp;
+			noiseG2[1] += temp < 0 ? -temp : temp;
 			temp = GzHistory1[i] - GxHistory1[i - 1];
-			noiseG2[2] += temp < 1 ? -temp : temp;
+			noiseG2[2] += temp < 0 ? -temp : temp;
 		}
 		fusionX1 += GxHistory1[i];
 		fusionY1 += GyHistory1[i];
