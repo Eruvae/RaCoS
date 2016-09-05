@@ -53,6 +53,14 @@ int dummy_cycle = 0;
 
 #endif
 
+double calibG1X = -1;
+double calibG1Y = -1;
+double calibG1Z = -1;
+double calibG2X = -1;
+double calibG2Y = -1;
+double calibG2Z = -1;
+double fusionCycle = 0;
+
 int SensorIMU::resetIMU(SPI_SS id)
 {
 	if (!(id == IMU1 || id == IMU2))
@@ -163,10 +171,49 @@ int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buffer)
 	return 0;
 }
 
+int SensorIMU::calibrate(){
+	IMUReadStruct imu1_buf, imu2_buf;
+	double tempG1X = 0;
+	double tempG1Y = 0;
+	double tempG1Z = 0;
+	double tempG2X = 0;
+	double tempG2Y = 0;
+	double tempG2Z = 0;
+
+	for(int i = 0; i < 1000; i++){
+		getIMU(IMU1, &imu1_buf);
+		getIMU(IMU2, &imu2_buf);
+		tempG1X += imu1_buf.gyroData[0];
+		tempG1Y += imu1_buf.gyroData[1];
+		tempG1Z += imu1_buf.gyroData[2];
+		tempG2X += imu2_buf.gyroData[0];
+		tempG2Y += imu2_buf.gyroData[1];
+		tempG2Z += imu2_buf.gyroData[2];
+		suspendCallerUntil(NOW()+1*MILLISECONDS);
+	}
+	calibG1X = tempG1X/1000.0;
+	calibG1Y = tempG1Y/1000.0;
+	calibG1Z = tempG1Z/1000.0;
+	calibG2X = tempG2X/1000.0;
+	calibG2Y = tempG2Y/1000.0;
+	calibG2Z = tempG2Z/1000.0;
+}
+
+void SensorIMU::fusionFilter(IMUdata &imu){
+	GxHistory1[fusionCycle] = imu.gyroData1[0];
+	GyHistory1[fusionCycle] = imu.gyroData1[1];
+	GzHistory1[fusionCycle] = imu.gyroData1[2];
+	GxHistory2[fusionCycle] = imu.gyroData2[0];
+	GyHistory2[fusionCycle] = imu.gyroData2[1];
+	GzHistory2[fusionCycle] = imu.gyroData2[2];
+
+}
+
 void SensorIMU::run()
 {
 	initIMU(IMU1);
 	initIMU(IMU2);
+	calibrate();
 	setPeriodicBeat(0, 10*MILLISECONDS);
 	IMUReadStruct imu1_buf, imu2_buf;
 	while(1)
