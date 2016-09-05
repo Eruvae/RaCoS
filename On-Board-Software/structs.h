@@ -31,8 +31,8 @@ struct __attribute__((packed)) IMUdata
 	int16_t accData1[3];
 	int16_t gyroData2[3];
 	int16_t accData2[3];
-	float gyroFiltered[3];
-	float accFiltered[3];
+	double gyroFiltered[3];
+	double accFiltered[3];
 	uint64_t sysTime;
 };
 
