@@ -33,7 +33,8 @@ public:
     int initIMU(SPI_SS id);
     int getIMU(SPI_SS id, IMUReadStruct *buffer);
     int resetIMU(SPI_SS id);
-    //void fusionFilter();
+    int calibrate();
+    void fusionFilter(IMUdata &imu);
     //void sendData();
     //void init();
 	void run();
