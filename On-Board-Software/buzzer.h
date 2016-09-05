@@ -13,7 +13,6 @@ class Buzzer : public Thread{
 public:
 	void init();
 	void run();
-	void playNote(char note, int duration);
 	void playTone(int tone, int duration);
 };
 #endif /* BUZZER_H_ */
