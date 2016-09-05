@@ -190,12 +190,12 @@ int SensorIMU::calibrate() {
 }
 
 void SensorIMU::fusionFilter(IMUdata &imu) {
-	GxHistory1[fusionCycle] = imu.gyroData1[0];
-	GyHistory1[fusionCycle] = imu.gyroData1[1];
-	GzHistory1[fusionCycle] = imu.gyroData1[2];
-	GxHistory2[fusionCycle] = imu.gyroData2[0];
-	GyHistory2[fusionCycle] = imu.gyroData2[1];
-	GzHistory2[fusionCycle] = imu.gyroData2[2];
+	GxHistory1[fusionCycle] = imu.gyroData1[0]-calibG1X;
+	GyHistory1[fusionCycle] = imu.gyroData1[1]-calibG1Y;
+	GzHistory1[fusionCycle] = imu.gyroData1[2]-calibG1Z;
+	GxHistory2[fusionCycle] = imu.gyroData2[0]-calibG2X;
+	GyHistory2[fusionCycle] = imu.gyroData2[1]-calibG2Y;
+	GzHistory2[fusionCycle] = imu.gyroData2[2]-calibG2Z;
 
 	double fusionX1 = 0;
 	double fusionY1 = 0;
@@ -203,8 +203,8 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	double fusionX2 = 0;
 	double fusionY2 = 0;
 	double fusionZ2 = 0;
-	double noiseG1[3];
-	double noiseG2[3];
+	double noiseG1[3] = {0,0,0};
+	double noiseG2[3] = {0,0,0};
 	//Average over the last 5 values of the specified IMU in 3 Axis
 	for (int i = 0; i < 5; i++) {
 		if (i > 0) {
