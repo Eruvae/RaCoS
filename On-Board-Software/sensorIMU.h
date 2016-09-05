@@ -24,6 +24,9 @@ private:
 	double GyHistory2[5];
 	double GzHistory1[5];
 	double GzHistory2[5];
+	double filterXLast;
+	double filterYLast;
+	double filterZLast;
 	
 	IMUdata imu;
 
