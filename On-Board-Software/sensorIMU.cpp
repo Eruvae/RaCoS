@@ -3,7 +3,7 @@
 //#define DEBUG_IMU_DUMMY_DATA
 //#define DEBUG_WHO_AM_I
 
-//SensorIMU sensorIMU;
+SensorIMU sensorIMU;
 
 #define READ_FLAG		0x80
 
