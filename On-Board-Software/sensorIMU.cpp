@@ -247,6 +247,9 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	filterXLast = imu.gyroFiltered[0];
 	filterYLast = imu.gyroFiltered[1];
 	filterZLast = imu.gyroFiltered[2];
+	imu.gyroFiltered[0] *= GYRO_FACTOR;
+	imu.gyroFiltered[1] *= GYRO_FACTOR;
+	imu.gyroFiltered[2] *= GYRO_FACTOR;
 }
 
 void SensorIMU::run() {
