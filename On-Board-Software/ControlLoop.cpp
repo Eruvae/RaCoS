@@ -23,7 +23,7 @@ void ControlLoop::run()
 		modeBuffer.get(mode);
 		IMUdata imu;
 		IMUBuffer.get(imu);
-		double mid = (imu.gyroData1[2]+imu.gyroData2[2])*0.00762939453125/2;
+		double mid = imu.gyroFiltered[2];
 		if(mid < -TRIGGER_THRESHOLD){
 			actuatorHandler.setValve1(true);
 			actuatorHandler.setValve2(false);

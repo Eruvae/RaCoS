@@ -235,12 +235,12 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	fusionX2 /= 5;
 	fusionY2 /= 5;
 	fusionZ2 /= 5;
-	noiseG1[0] /= 20;
-	noiseG1[1] /= 20;
-	noiseG1[2] /= 20;
-	noiseG2[0] /= 20;
-	noiseG2[1] /= 20;
-	noiseG2[2] /= 20;
+	noiseG1[0] /= 4;
+	noiseG1[1] /= 4;
+	noiseG1[2] /= 4;
+	noiseG2[0] /= 4;
+	noiseG2[1] /= 4;
+	noiseG2[2] /= 4;
 
 	double prescaler[9];
 	for (int i = 0; i < 3; i++) {
