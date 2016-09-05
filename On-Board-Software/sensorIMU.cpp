@@ -59,7 +59,7 @@ double calibG1Z = -1;
 double calibG2X = -1;
 double calibG2Y = -1;
 double calibG2Z = -1;
-double fusionCycle = 0;
+int fusionCycle = 0;
 
 int SensorIMU::resetIMU(SPI_SS id)
 {
@@ -207,6 +207,15 @@ void SensorIMU::fusionFilter(IMUdata &imu){
 	GyHistory2[fusionCycle] = imu.gyroData2[1];
 	GzHistory2[fusionCycle] = imu.gyroData2[2];
 
+	double fusionX1 = 0;
+	double fusionY1 = 0;
+	double fusionZ1 = 0;
+	double fusionX2 = 0;
+	double fusionY2 = 0;
+	double fusionZ2 = 0;
+	for(int i = 0; i < 5; i++){
+
+	}
 }
 
 void SensorIMU::run()
