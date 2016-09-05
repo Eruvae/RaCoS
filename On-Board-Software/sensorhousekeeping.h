@@ -11,9 +11,9 @@ class SensorHousekeeping : public Thread
     uint8_t crc8(const void *vptr, int len);
 public:
     SensorHousekeeping();
-    bool configADC();
-    bool getTankPressure(uint16_t *presTank);
-    bool getValvesPressure(uint16_t *presValves);
+    int configADC();
+    int getTankPressure(uint16_t *presTank);
+    int getValvesPressure(uint16_t *presValves);
     void configTempSensor(const uint8_t *rom_code);
     void initTemperatureConv();
     int16_t getTemperatureData(const uint8_t *rom_code);

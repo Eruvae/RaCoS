@@ -7,8 +7,7 @@ SensorHousekeeping sensorHousekeeping;
 
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011
-#define ADC_ITC_READ 0b10010001
-#define ADC_ITC_WRITE 0b10010000
+#define ADC_ITC_ADDR 0b1001000
 
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
@@ -69,7 +68,7 @@ SensorHousekeeping::SensorHousekeeping()
 
 void SensorHousekeeping::reset_i2c(){
 	i2c_bus.reset();
-	AT(NOW() + 0.5*MILLISECONDS);
+	suspendCallerUntil(NOW() + 0.5*MILLISECONDS);
 	i2c_bus.init();
 }
 
@@ -121,69 +120,72 @@ int16_t SensorHousekeeping::getTemperatureData(const uint8_t *rom_code)
 
 }
 
-bool SensorHousekeeping::getTankPressure(uint16_t *presTank)
+int SensorHousekeeping::getTankPressure(uint16_t *presTank)
 {
+	int result;
     // read tank pressure
-	if (i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1) < 0)
+	if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_read_mode, 1)) < 0)
 	{
 		reset_i2c();
-		return false;
+		return result;
 	}
 
-    if (i2c_bus.read(ADC_ITC_READ, (uint8_t*)presTank, 2) < 0)
+    if ((result = i2c_bus.read(ADC_ITC_ADDR, (uint8_t*)presTank, 2)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
 
     *presTank = swap16(*presTank);
 
     // config ADC for valves pressure
-    if (i2c_bus.write(ADC_ITC_WRITE, adc_config_pv, 3) < 0)
+    if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pv, 3)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
 
-    return true;
+    return result;
 }
 
-bool SensorHousekeeping::getValvesPressure(uint16_t *presValves)
+int SensorHousekeeping::getValvesPressure(uint16_t *presValves)
 {   
+	int result;
     // read valves pressure
-    if (i2c_bus.write(ADC_ITC_WRITE, adc_read_mode, 1) < 0)
+    if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_read_mode, 1)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
 
-    if (i2c_bus.read(ADC_ITC_READ,(uint8_t*)presValves, 2) < 0)
+    if ((result = i2c_bus.read(ADC_ITC_ADDR,(uint8_t*)presValves, 2)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
 
     *presValves = swap16(*presValves);
 
     // config ADC for tank pressure
-    if (i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3) < 0)
+    if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
 
     return true;
 }
 
-bool SensorHousekeeping::configADC()
+int SensorHousekeeping::configADC()
 {
+	int result;
     // config ADC for tank pressure
-    if (i2c_bus.write(ADC_ITC_WRITE, adc_config_pt, 3) < 0)
+    if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)
     {
     	reset_i2c();
     	return false;
     }
-    return true;
+    return result;
 }
 
 void SensorHousekeeping::run()
@@ -229,10 +231,11 @@ void SensorHousekeeping::run()
 		suspendCallerUntil(NOW() + 0.5*SECONDS);
 	}
 	*/
+	int result;
 
-	for (int i = 0; i < 10 && !configADC(); i++)
+	for (int i = 0; i < 10 && (result = configADC()) < 0; i++)
 	{
-		PRINTF("Config ADC failed!\n");
+		PRINTF("Config ADC failed: %d!\n", result);
 	}
 
 	configTempSensor(TS_NOZ1_ROM);
@@ -243,16 +246,16 @@ void SensorHousekeeping::run()
     {
         if (!presCycle)
         {
-            if (!getTankPressure(&(hk.presTank)))
+            if ((result = getTankPressure(&(hk.presTank))) < 0)
             {
-            	PRINTF("Getting tank pressure failed!\n");
+            	PRINTF("Getting tank pressure failed: %d\n", result);
             }
         }
         else
         {
-            if (!getValvesPressure(&(hk.presValves)))
+            if ((result = getValvesPressure(&(hk.presValves))) < 0)
             {
-            	PRINTF("Getting valves pressure failed!\n");
+            	PRINTF("Getting valves pressure failed: %d\n", result);
             }
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
