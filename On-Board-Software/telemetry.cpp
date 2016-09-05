@@ -56,6 +56,7 @@ int Telemetry::encodeIMU(char *buffer)
 	*(uint16_t*)&buffer[4] = counter;
 	
 	memcpy(&buffer[6], &imu, 24);
+	PRINTF("Filtered IMU: X:%f Y:%f Z:%f");
 	
 	/**(uint16_t*)&buffer[6] = imu.gyroData1[0];
 	*(uint16_t*)&buffer[8] = imu.gyroData1[1];
