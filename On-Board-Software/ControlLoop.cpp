@@ -30,19 +30,19 @@ void ControlLoop::run()
 		if(mid < -TRIGGER_THRESHOLD){
 			actuatorHandler.setValve1(false);
 			actuatorHandler.setValve2(true);
-			cmd.valveState(0b10);
+			cmd.valveState = 0b10;
 		}else if(mid > TRIGGER_THRESHOLD){
 			actuatorHandler.setValve1(true);
 			actuatorHandler.setValve2(false);
-			cmd.valveState(0b1);
+			cmd.valveState = 0b1;
 		}else{
 			actuatorHandler.setValve1(true);
 			actuatorHandler.setValve2(true);
-			cmd.valveState(0b0);
+			cmd.valveState = 0b0;
 		}
-		cmd.vot1(30);
-		cmd.vot2(30);
-		controlTopic.publish(cmd,true);
+		cmd.vot1 = 30;
+		cmd.vot2 = 30;
+		controlTopic.publish(cmd);
 
 		// Do Control stuff
 		suspendUntilNextBeat();

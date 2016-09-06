@@ -69,11 +69,12 @@ void StorageController::run()
 
 	result = f_mount(&fs, "0:", 1);
 
-	if (result != FR_OK)
+	while (result != FR_OK)
 	{
 		PRINTF("SD not mounted.\n");
 		// send error code to healthwatchdog
-		suspendCallerUntil();
+		suspendCallerUntil(NOW() + 1*SECONDS);
+		result = f_mount(&fs, "0:", 1);
 	}
 
 	PRINTF("SD mounted.\n");
@@ -82,18 +83,27 @@ void StorageController::run()
 
 	result = f_open(&fil, "runcnt", FA_READ | FA_WRITE);
 
-	PRINTF("File runcount opened: %d.\n", result);
+	while (result != FR_OK && result != FR_NO_FILE)
+	{
+		result = f_open(&fil, "runcnt", FA_READ | FA_WRITE);
+		suspendCallerUntil(NOW() + 1*SECONDS);
+	}
 
-	//suspendCallerUntil();
+	PRINTF("File runcount opened: %d.\n", result);
 
 	if (result == FR_NO_FILE)
 	{
 		PRINTF("Create new.\n");
 		f_close(&fil);
 		result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
+		while (result != FR_OK)
+		{
+			suspendCallerUntil(NOW() + 1*SECONDS);
+			result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
+		}
 		f_write(&fil, "1", 1, &bytes);
 	}
-	else
+	else if (result == FR_OK)
 	{
 		PRINTF("Use existing.\n");
 		bytes = 0;

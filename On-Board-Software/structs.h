@@ -51,9 +51,9 @@ struct __attribute__((packed)) HkData
 
 struct __attribute__((packed)) CmdData
 {
-	uint8_t valveState;
 	uint16_t vot1;
 	uint16_t vot2;
+	uint8_t valveState;
 };
 
 struct __attribute__((packed)) TcData

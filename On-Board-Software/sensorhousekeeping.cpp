@@ -7,7 +7,7 @@ SensorHousekeeping sensorHousekeeping;
 
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011
-#define ADC_ITC_ADDR 0b1001011
+#define ADC_ITC_ADDR 0b1001000
 
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
@@ -235,7 +235,7 @@ void SensorHousekeeping::run()
 
 	for (int i = 0; i < 10 && (result = configADC()) < 0; i++)
 	{
-		//PRINTF("Config ADC failed: %d!\n", result);
+		PRINTF("Config ADC failed: %d!\n", result);
 	}
 
 	configTempSensor(TS_NOZ1_ROM);
@@ -253,14 +253,14 @@ void SensorHousekeeping::run()
         {
             if ((result = getTankPressure(&(hk.presTank))) < 0)
             {
-            	//PRINTF("Getting tank pressure failed: %d\n", result);
+            	PRINTF("Getting tank pressure failed: %d\n", result);
             }
         }
         else
         {
             if ((result = getValvesPressure(&(hk.presValves))) < 0)
             {
-            	//PRINTF("Getting valves pressure failed: %d\n", result);
+            	PRINTF("Getting valves pressure failed: %d\n", result);
             }
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
