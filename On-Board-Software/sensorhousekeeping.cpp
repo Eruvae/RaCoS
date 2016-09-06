@@ -183,7 +183,7 @@ int SensorHousekeeping::configADC()
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)
     {
     	reset_i2c();
-    	return false;
+    	return result;
     }
     return result;
 }
@@ -235,8 +235,10 @@ void SensorHousekeeping::run()
 
 	for (int i = 0; i < 10 && (result = configADC()) < 0; i++)
 	{
-		//PRINTF("Config ADC failed: %d!\n", result);
+		PRINTF("Config ADC failed: %d!\n", result);
 	}
+
+	PRINTF("Config ADC result: %d!\n", result);
 
 	configTempSensor(TS_NOZ1_ROM);
 	configTempSensor(TS_NOZ2_ROM);
@@ -253,14 +255,14 @@ void SensorHousekeeping::run()
         {
             if ((result = getTankPressure(&(hk.presTank))) < 0)
             {
-            	//PRINTF("Getting tank pressure failed: %d\n", result);
+            	PRINTF("Getting tank pressure failed: %d\n", result);
             }
         }
         else
         {
             if ((result = getValvesPressure(&(hk.presValves))) < 0)
             {
-            	//PRINTF("Getting valves pressure failed: %d\n", result);
+            	PRINTF("Getting valves pressure failed: %d\n", result);
             }
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
