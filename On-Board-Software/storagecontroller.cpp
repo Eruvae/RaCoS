@@ -69,15 +69,21 @@ void StorageController::run()
 
 	result = f_mount(&fs, "0:", 1);
 
-	while (result != FR_OK)
+	for (int i = 0; i < 5 && result != FR_OK; i++)
 	{
 		PRINTF("SD not mounted.\n");
-		// send error code to healthwatchdog
 		suspendCallerUntil(NOW() + 1*SECONDS);
 		result = f_mount(&fs, "0:", 1);
 	}
 
-	PRINTF("SD mounted.\n");
+	if (result != FR_OK)
+	{
+		// send error code to healthwatchdog
+		PRINTF("SD not mounted, no more retrys.\n");
+		suspendCallerUntil();
+	}
+
+	//PRINTF("SD mounted.\n");
 
 	int runcount = 1;
 
@@ -89,11 +95,11 @@ void StorageController::run()
 		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 
-	PRINTF("File runcount opened: %d.\n", result);
+	//PRINTF("File runcount opened: %d.\n", result);
 
 	if (result == FR_NO_FILE)
 	{
-		PRINTF("Create new.\n");
+		//PRINTF("Create new.\n");
 		f_close(&fil);
 		result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
 		while (result != FR_OK)
@@ -105,15 +111,15 @@ void StorageController::run()
 	}
 	else if (result == FR_OK)
 	{
-		PRINTF("Use existing.\n");
+		//PRINTF("Use existing.\n");
 		bytes = 0;
 		result = f_read(&fil, buf1, sizeof(buf1) - 1, &bytes);
 		f_close(&fil);
-		PRINTF("Result runcount read: %d, bytes: %d\n", result, bytes);
+		//PRINTF("Result runcount read: %d, bytes: %d\n", result, bytes);
 		buf1[bytes] = 0;
-		PRINTF("Hallo: %s\n", buf1);
+		//PRINTF("Hallo: %s\n", buf1);
 		runcount = atoi(buf1);
-		PRINTF("Hallo: %d\n", runcount);
+		//PRINTF("Hallo: %d\n", runcount);
 		if (runcount == 0)
 		{
 			PRINTF("Runcount NAN.\n");
@@ -122,19 +128,29 @@ void StorageController::run()
 		runcount++;
 		bytes = sprintf(buf1, "%d", runcount);
 		buf1[bytes] = 0;
-		PRINTF("bytes: %d\n", bytes);
-		PRINTF("Hallo: %s\n", buf1);
+		//PRINTF("bytes: %d\n", bytes);
+		//PRINTF("Hallo: %s\n", buf1);
 		result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
-		PRINTF("Result runcount write: %d\n", result);
+		while (result != FR_OK)
+		{
+			suspendCallerUntil(NOW() + 1*SECONDS);
+			result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
+		}
+		//PRINTF("Result runcount write: %d\n", result);
 		f_write(&fil, buf1, strlen(buf1), &bytes);
 	}
 	f_close(&fil);
 
-	PRINTF("Sprintf filename.\n");
+	//PRINTF("Sprintf filename.\n");
 	sprintf(buf1, "log%d", runcount);
 	result = f_open(&fil, buf1, FA_WRITE | FA_CREATE_ALWAYS);
+	while (result != FR_OK)
+	{
+		suspendCallerUntil(NOW() + 1*SECONDS);
+		result = f_open(&fil, buf1, FA_WRITE | FA_CREATE_ALWAYS);
+	}
 
-	PRINTF("Open datfile result: %d", result);
+	//PRINTF("Open datfile result: %d", result);
 
 	f_close(&fil);
 
@@ -143,9 +159,21 @@ void StorageController::run()
 	while(1)
 	{
 
-		PRINTF("In loop.\n");
+		//PRINTF("In loop.\n");
 
-		result = f_open(&fil, buf1, FA_WRITE);
+		for (int i = 0; i < 10; i++)
+		{
+			result = f_open(&fil, buf1, FA_WRITE);
+			if (result == FR_OK)
+				break;
+			else
+				PRINTF("File open try %d failed.\n", i);
+		}
+		if (result != FR_OK)
+		{
+			suspendUntilNextBeat();
+			continue;
+		}
 
 		char imubyte = SYNC_IMU;
 		char ptbyte = SYNC_PT;

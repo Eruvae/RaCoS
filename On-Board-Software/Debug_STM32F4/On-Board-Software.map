@@ -5654,7 +5654,7 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x08000000                g_pfnVectors
                 0x0800018c                . = ALIGN (0x4)
 
-.text           0x08000190    0x17684
+.text           0x08000190    0x175bc
                 0x08000190                . = ALIGN (0x4)
  *(.text)
  .text          0x08000190      0x370 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7e-m/softfp\libgcc.a(_arm_addsubdf3.o)
@@ -5754,457 +5754,458 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x080016e0      0x130 ./sdspicard/sdspicard.o
                 0x080016e0                SdSpiCard::erase(unsigned long, unsigned long)
  .text._ZN9SdSpiCard9readBlockEmPh
-                0x08001810       0xa8 ./sdspicard/sdspicard.o
+                0x08001810       0x94 ./sdspicard/sdspicard.o
                 0x08001810                SdSpiCard::readBlock(unsigned long, unsigned char*)
  .text._ZN9SdSpiCard10readBlocksEmPhj
-                0x080018b8       0x70 ./sdspicard/sdspicard.o
-                0x080018b8                SdSpiCard::readBlocks(unsigned long, unsigned char*, unsigned int)
+                0x080018a4       0x70 ./sdspicard/sdspicard.o
+                0x080018a4                SdSpiCard::readBlocks(unsigned long, unsigned char*, unsigned int)
+ *fill*         0x08001914        0x4 
  .text._ZN9SdSpiCard8readDataEPhj
-                0x08001928      0x148 ./sdspicard/sdspicard.o
-                0x08001928                SdSpiCard::readData(unsigned char*, unsigned int)
+                0x08001918      0x148 ./sdspicard/sdspicard.o
+                0x08001918                SdSpiCard::readData(unsigned char*, unsigned int)
  .text._ZN9SdSpiCard12readRegisterEhPv
-                0x08001a70       0x74 ./sdspicard/sdspicard.o
-                0x08001a70                SdSpiCard::readRegister(unsigned char, void*)
+                0x08001a60       0x74 ./sdspicard/sdspicard.o
+                0x08001a60                SdSpiCard::readRegister(unsigned char, void*)
  .text._ZN9SdSpiCard9readStartEm
-                0x08001ae4       0x74 ./sdspicard/sdspicard.o
-                0x08001ae4                SdSpiCard::readStart(unsigned long)
+                0x08001ad4       0x60 ./sdspicard/sdspicard.o
+                0x08001ad4                SdSpiCard::readStart(unsigned long)
  .text._ZN9SdSpiCard8readStopEv
-                0x08001b58       0x48 ./sdspicard/sdspicard.o
-                0x08001b58                SdSpiCard::readStop()
+                0x08001b34       0x48 ./sdspicard/sdspicard.o
+                0x08001b34                SdSpiCard::readStop()
  .text._ZN9SdSpiCard11waitNotBusyEy
-                0x08001ba0       0x88 ./sdspicard/sdspicard.o
-                0x08001ba0                SdSpiCard::waitNotBusy(unsigned long long)
+                0x08001b7c       0x88 ./sdspicard/sdspicard.o
+                0x08001b7c                SdSpiCard::waitNotBusy(unsigned long long)
  .text._ZN9SdSpiCard10writeBlockEmPKh
-                0x08001c28       0x9c ./sdspicard/sdspicard.o
-                0x08001c28                SdSpiCard::writeBlock(unsigned long, unsigned char const*)
+                0x08001c04       0x88 ./sdspicard/sdspicard.o
+                0x08001c04                SdSpiCard::writeBlock(unsigned long, unsigned char const*)
  .text._ZN9SdSpiCard11writeBlocksEmPKhj
-                0x08001cc4       0x7c ./sdspicard/sdspicard.o
-                0x08001cc4                SdSpiCard::writeBlocks(unsigned long, unsigned char const*, unsigned int)
+                0x08001c8c       0x7c ./sdspicard/sdspicard.o
+                0x08001c8c                SdSpiCard::writeBlocks(unsigned long, unsigned char const*, unsigned int)
  .text._ZN9SdSpiCard9writeDataEPKh
-                0x08001d40       0x70 ./sdspicard/sdspicard.o
-                0x08001d40                SdSpiCard::writeData(unsigned char const*)
+                0x08001d08       0x70 ./sdspicard/sdspicard.o
+                0x08001d08                SdSpiCard::writeData(unsigned char const*)
  .text._ZN9SdSpiCard9writeDataEhPKh
-                0x08001db0       0x98 ./sdspicard/sdspicard.o
-                0x08001db0                SdSpiCard::writeData(unsigned char, unsigned char const*)
+                0x08001d78       0x98 ./sdspicard/sdspicard.o
+                0x08001d78                SdSpiCard::writeData(unsigned char, unsigned char const*)
  .text._ZN9SdSpiCard10writeStartEmm
-                0x08001e48       0xa0 ./sdspicard/sdspicard.o
-                0x08001e48                SdSpiCard::writeStart(unsigned long, unsigned long)
+                0x08001e10       0x90 ./sdspicard/sdspicard.o
+                0x08001e10                SdSpiCard::writeStart(unsigned long, unsigned long)
  .text._ZN9SdSpiCard9writeStopEv
-                0x08001ee8       0x90 ./sdspicard/sdspicard.o
-                0x08001ee8                SdSpiCard::writeStop()
+                0x08001ea0       0x90 ./sdspicard/sdspicard.o
+                0x08001ea0                SdSpiCard::writeStop()
  .text._ZN7OneWire4initEv
-                0x08001f78       0x3c ./onewire/onewire.o
-                0x08001f78                OneWire::init()
+                0x08001f30       0x3c ./onewire/onewire.o
+                0x08001f30                OneWire::init()
  .text._ZN7OneWire5resetEv
-                0x08001fb4       0x98 ./onewire/onewire.o
-                0x08001fb4                OneWire::reset()
+                0x08001f6c       0x98 ./onewire/onewire.o
+                0x08001f6c                OneWire::reset()
  .text._ZN7OneWire7readBitEv
-                0x0800204c       0x98 ./onewire/onewire.o
-                0x0800204c                OneWire::readBit()
+                0x08002004       0x98 ./onewire/onewire.o
+                0x08002004                OneWire::readBit()
  .text._ZN7OneWire8writeBitEh
-                0x080020e4       0xa8 ./onewire/onewire.o
-                0x080020e4                OneWire::writeBit(unsigned char)
+                0x0800209c       0xa8 ./onewire/onewire.o
+                0x0800209c                OneWire::writeBit(unsigned char)
  .text._ZN7OneWire8readByteEv
-                0x0800218c       0x48 ./onewire/onewire.o
-                0x0800218c                OneWire::readByte()
+                0x08002144       0x48 ./onewire/onewire.o
+                0x08002144                OneWire::readByte()
  .text._ZN7OneWire9writeByteEh
-                0x080021d4       0x40 ./onewire/onewire.o
-                0x080021d4                OneWire::writeByte(unsigned char)
+                0x0800218c       0x40 ./onewire/onewire.o
+                0x0800218c                OneWire::writeByte(unsigned char)
  .text._ZN7OneWire4readEPvi
-                0x08002214       0x38 ./onewire/onewire.o
-                0x08002214                OneWire::read(void*, int)
+                0x080021cc       0x38 ./onewire/onewire.o
+                0x080021cc                OneWire::read(void*, int)
  .text._ZN7OneWire5writeEPKvi
-                0x0800224c       0x38 ./onewire/onewire.o
-                0x0800224c                OneWire::write(void const*, int)
+                0x08002204       0x38 ./onewire/onewire.o
+                0x08002204                OneWire::write(void const*, int)
  .text._ZN7OneWire4crc8EPKvi
-                0x08002284       0x80 ./onewire/onewire.o
-                0x08002284                OneWire::crc8(void const*, int)
+                0x0800223c       0x80 ./onewire/onewire.o
+                0x0800223c                OneWire::crc8(void const*, int)
  .text._ZN9SdSpiCardC2Ev
-                0x08002304       0x28 ./fatfs/diskio.o
-                0x08002304                SdSpiCard::SdSpiCard()
-                0x08002304                SdSpiCard::SdSpiCard()
+                0x080022bc       0x28 ./fatfs/diskio.o
+                0x080022bc                SdSpiCard::SdSpiCard()
+                0x080022bc                SdSpiCard::SdSpiCard()
  .text._ZNK9SdSpiCard9errorCodeEv
-                0x0800232c       0x18 ./fatfs/diskio.o
-                0x0800232c                SdSpiCard::errorCode() const
+                0x080022e4       0x18 ./fatfs/diskio.o
+                0x080022e4                SdSpiCard::errorCode() const
  .text.disk_status
-                0x08002344       0x48 ./fatfs/diskio.o
-                0x08002344                disk_status
+                0x080022fc       0x48 ./fatfs/diskio.o
+                0x080022fc                disk_status
  .text.disk_initialize
-                0x0800238c       0x3c ./fatfs/diskio.o
-                0x0800238c                disk_initialize
+                0x08002344       0x3c ./fatfs/diskio.o
+                0x08002344                disk_initialize
  .text.disk_read
-                0x080023c8       0x78 ./fatfs/diskio.o
-                0x080023c8                disk_read
+                0x08002380       0x78 ./fatfs/diskio.o
+                0x08002380                disk_read
  .text.disk_write
-                0x08002440       0x78 ./fatfs/diskio.o
-                0x08002440                disk_write
+                0x080023f8       0x78 ./fatfs/diskio.o
+                0x080023f8                disk_write
  .text.disk_ioctl
-                0x080024b8       0xc8 ./fatfs/diskio.o
-                0x080024b8                disk_ioctl
+                0x08002470       0xc8 ./fatfs/diskio.o
+                0x08002470                disk_ioctl
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08002580       0x2c ./fatfs/diskio.o
+                0x08002538       0x2c ./fatfs/diskio.o
  .text._GLOBAL__sub_I_sd
-                0x080025ac       0x10 ./fatfs/diskio.o
+                0x08002564       0x10 ./fatfs/diskio.o
  .text._ZL7ld_wordPKh
-                0x080025bc       0x30 ./fatfs/ff.o
+                0x08002574       0x30 ./fatfs/ff.o
  .text._ZL8ld_dwordPKh
-                0x080025ec       0x48 ./fatfs/ff.o
+                0x080025a4       0x48 ./fatfs/ff.o
  .text._ZL7st_wordPht
-                0x08002634       0x34 ./fatfs/ff.o
+                0x080025ec       0x34 ./fatfs/ff.o
  .text._ZL8st_dwordPhm
-                0x08002668       0x58 ./fatfs/ff.o
+                0x08002620       0x58 ./fatfs/ff.o
  .text._ZL7mem_cpyPvPKvj
-                0x080026c0       0x4c ./fatfs/ff.o
+                0x08002678       0x4c ./fatfs/ff.o
  .text._ZL7mem_setPvij
-                0x0800270c       0x3c ./fatfs/ff.o
+                0x080026c4       0x3c ./fatfs/ff.o
  .text._ZL7mem_cmpPKvS0_j
-                0x08002748       0x58 ./fatfs/ff.o
+                0x08002700       0x58 ./fatfs/ff.o
  .text._ZL7chk_chrPKci
-                0x080027a0       0x38 ./fatfs/ff.o
+                0x08002758       0x38 ./fatfs/ff.o
  .text._ZL11sync_windowP5FATFS
-                0x080027d8       0x98 ./fatfs/ff.o
+                0x08002790       0x98 ./fatfs/ff.o
  .text._ZL11move_windowP5FATFSm
-                0x08002870       0x68 ./fatfs/ff.o
+                0x08002828       0x68 ./fatfs/ff.o
  .text._ZL7sync_fsP5FATFS
-                0x080028d8       0xe4 ./fatfs/ff.o
+                0x08002890       0xe4 ./fatfs/ff.o
  .text._ZL10clust2sectP5FATFSm
-                0x080029bc       0x3c ./fatfs/ff.o
+                0x08002974       0x3c ./fatfs/ff.o
  .text._ZL7get_fatP5_FDIDm
-                0x080029f8      0x168 ./fatfs/ff.o
+                0x080029b0      0x168 ./fatfs/ff.o
  .text._ZL7put_fatP5FATFSmm
-                0x08002b60      0x1bc ./fatfs/ff.o
+                0x08002b18      0x1bc ./fatfs/ff.o
  .text._ZL12remove_chainP5_FDIDmm
-                0x08002d1c       0xc4 ./fatfs/ff.o
+                0x08002cd4       0xc4 ./fatfs/ff.o
  .text._ZL12create_chainP5_FDIDm
-                0x08002de0      0x134 ./fatfs/ff.o
+                0x08002d98      0x134 ./fatfs/ff.o
  .text._ZL7dir_sdiP3DIRm
-                0x08002f14       0xf4 ./fatfs/ff.o
+                0x08002ecc       0xf4 ./fatfs/ff.o
  .text._ZL8dir_nextP3DIRi
-                0x08003008      0x1a0 ./fatfs/ff.o
+                0x08002fc0      0x1a0 ./fatfs/ff.o
  .text._ZL9dir_allocP3DIRj
-                0x080031a8       0x9c ./fatfs/ff.o
+                0x08003160       0x9c ./fatfs/ff.o
  .text._ZL8ld_clustP5FATFSPKh
-                0x08003244       0x40 ./fatfs/ff.o
+                0x080031fc       0x40 ./fatfs/ff.o
  .text._ZL8st_clustP5FATFSPhm
-                0x08003284       0x40 ./fatfs/ff.o
+                0x0800323c       0x40 ./fatfs/ff.o
  .text._ZL8dir_findP3DIR
-                0x080032c4       0xb4 ./fatfs/ff.o
+                0x0800327c       0xb4 ./fatfs/ff.o
  .text._ZL12dir_registerP3DIR
-                0x08003378       0x68 ./fatfs/ff.o
+                0x08003330       0x68 ./fatfs/ff.o
  .text._ZL11create_nameP3DIRPPKc
-                0x080033e0      0x130 ./fatfs/ff.o
+                0x08003398      0x130 ./fatfs/ff.o
  .text._ZL11follow_pathP3DIRPKc
-                0x08003510       0xe0 ./fatfs/ff.o
+                0x080034c8       0xe0 ./fatfs/ff.o
  .text._ZL12get_ldnumberPPKc
-                0x080035f0       0x90 ./fatfs/ff.o
+                0x080035a8       0x90 ./fatfs/ff.o
  .text._ZL8check_fsP5FATFSm
-                0x08003680       0xd0 ./fatfs/ff.o
+                0x08003638       0xd0 ./fatfs/ff.o
  .text._ZL11find_volumePPKcPP5FATFSh
-                0x08003750      0x4a4 ./fatfs/ff.o
+                0x08003708      0x4a4 ./fatfs/ff.o
  .text._ZL8validatePvPP5FATFS
-                0x08003bf4       0x78 ./fatfs/ff.o
- .text.f_mount  0x08003c6c       0x88 ./fatfs/ff.o
-                0x08003c6c                f_mount
- .text.f_open   0x08003cf4      0x334 ./fatfs/ff.o
-                0x08003cf4                f_open
- .text.f_read   0x08004028      0x298 ./fatfs/ff.o
-                0x08004028                f_read
- .text.f_write  0x080042c0      0x308 ./fatfs/ff.o
-                0x080042c0                f_write
- .text.f_sync   0x080045c8      0x110 ./fatfs/ff.o
-                0x080045c8                f_sync
- .text.f_close  0x080046d8       0x40 ./fatfs/ff.o
-                0x080046d8                f_close
+                0x08003bac       0x78 ./fatfs/ff.o
+ .text.f_mount  0x08003c24       0x88 ./fatfs/ff.o
+                0x08003c24                f_mount
+ .text.f_open   0x08003cac      0x334 ./fatfs/ff.o
+                0x08003cac                f_open
+ .text.f_read   0x08003fe0      0x298 ./fatfs/ff.o
+                0x08003fe0                f_read
+ .text.f_write  0x08004278      0x308 ./fatfs/ff.o
+                0x08004278                f_write
+ .text.f_sync   0x08004580      0x110 ./fatfs/ff.o
+                0x08004580                f_sync
+ .text.f_close  0x08004690       0x40 ./fatfs/ff.o
+                0x08004690                f_close
  .text._ZN11ControlLoopC2Ev
-                0x08004718       0x30 ./ControlLoop.o
-                0x08004718                ControlLoop::ControlLoop()
-                0x08004718                ControlLoop::ControlLoop()
+                0x080046d0       0x30 ./ControlLoop.o
+                0x080046d0                ControlLoop::ControlLoop()
+                0x080046d0                ControlLoop::ControlLoop()
  .text._ZN11ControlLoop4initEv
-                0x08004748       0x14 ./ControlLoop.o
-                0x08004748                ControlLoop::init()
- *fill*         0x0800475c        0x4 
+                0x08004700       0x14 ./ControlLoop.o
+                0x08004700                ControlLoop::init()
+ *fill*         0x08004714        0x4 
  .text._ZN11ControlLoop3runEv
-                0x08004760      0x140 ./ControlLoop.o
-                0x08004760                ControlLoop::run()
+                0x08004718      0x140 ./ControlLoop.o
+                0x08004718                ControlLoop::run()
  .text._ZN5RODOS5TopicI4ModeE7publishERS1_b
-                0x080048a0       0x28 ./ControlLoop.o
-                0x080048a0                RODOS::Topic<Mode>::publish(Mode&, bool)
+                0x08004858       0x28 ./ControlLoop.o
+                0x08004858                RODOS::Topic<Mode>::publish(Mode&, bool)
  .text._ZN5RODOS5TopicIbE7publishERbb
-                0x080048c8       0x28 ./ControlLoop.o
-                0x080048c8                RODOS::Topic<bool>::publish(bool&, bool)
+                0x08004880       0x28 ./ControlLoop.o
+                0x08004880                RODOS::Topic<bool>::publish(bool&, bool)
  .text._ZN5RODOS10CommBufferI4ModeE3getERS1_
-                0x080048f0       0x40 ./ControlLoop.o
-                0x080048f0                RODOS::CommBuffer<Mode>::get(Mode&)
+                0x080048a8       0x40 ./ControlLoop.o
+                0x080048a8                RODOS::CommBuffer<Mode>::get(Mode&)
  .text._ZN5RODOS10CommBufferI7IMUdataE3getERS1_
-                0x08004930       0x58 ./ControlLoop.o
-                0x08004930                RODOS::CommBuffer<IMUdata>::get(IMUdata&)
+                0x080048e8       0x58 ./ControlLoop.o
+                0x080048e8                RODOS::CommBuffer<IMUdata>::get(IMUdata&)
  .text._ZN5RODOS5TopicI7CmdDataE7publishERS1_b
-                0x08004988       0x28 ./ControlLoop.o
-                0x08004988                RODOS::Topic<CmdData>::publish(CmdData&, bool)
+                0x08004940       0x28 ./ControlLoop.o
+                0x08004940                RODOS::Topic<CmdData>::publish(CmdData&, bool)
  .text._ZN11ControlLoopD2Ev
-                0x080049b0       0x30 ./ControlLoop.o
-                0x080049b0                ControlLoop::~ControlLoop()
-                0x080049b0                ControlLoop::~ControlLoop()
+                0x08004968       0x30 ./ControlLoop.o
+                0x08004968                ControlLoop::~ControlLoop()
+                0x08004968                ControlLoop::~ControlLoop()
  .text._ZN11ControlLoopD0Ev
-                0x080049e0       0x20 ./ControlLoop.o
-                0x080049e0                ControlLoop::~ControlLoop()
+                0x08004998       0x20 ./ControlLoop.o
+                0x08004998                ControlLoop::~ControlLoop()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08004a00       0x48 ./ControlLoop.o
+                0x080049b8       0x48 ./ControlLoop.o
  .text._GLOBAL__sub_I_controlLoop
-                0x08004a48       0x10 ./ControlLoop.o
+                0x08004a00       0x10 ./ControlLoop.o
  .text._ZN5RODOS9Initiator4initEv
-                0x08004a58       0x14 ./actuatorhandler.o
-                0x08004a58                RODOS::Initiator::init()
+                0x08004a10       0x14 ./actuatorhandler.o
+                0x08004a10                RODOS::Initiator::init()
  .text._ZN5RODOS9InitiatorC2EPKc
-                0x08004a6c       0x34 ./actuatorhandler.o
-                0x08004a6c                RODOS::Initiator::Initiator(char const*)
-                0x08004a6c                RODOS::Initiator::Initiator(char const*)
+                0x08004a24       0x34 ./actuatorhandler.o
+                0x08004a24                RODOS::Initiator::Initiator(char const*)
+                0x08004a24                RODOS::Initiator::Initiator(char const*)
  .text._ZN5RODOS9InitiatorD2Ev
-                0x08004aa0       0x34 ./actuatorhandler.o
-                0x08004aa0                RODOS::Initiator::~Initiator()
-                0x08004aa0                RODOS::Initiator::~Initiator()
+                0x08004a58       0x34 ./actuatorhandler.o
+                0x08004a58                RODOS::Initiator::~Initiator()
+                0x08004a58                RODOS::Initiator::~Initiator()
  .text._ZN5RODOS9InitiatorD0Ev
-                0x08004ad4       0x20 ./actuatorhandler.o
-                0x08004ad4                RODOS::Initiator::~Initiator()
+                0x08004a8c       0x20 ./actuatorhandler.o
+                0x08004a8c                RODOS::Initiator::~Initiator()
  .text._ZN15ActuatorHandlerC2Ev
-                0x08004af4       0x2c ./actuatorhandler.o
-                0x08004af4                ActuatorHandler::ActuatorHandler()
-                0x08004af4                ActuatorHandler::ActuatorHandler()
+                0x08004aac       0x2c ./actuatorhandler.o
+                0x08004aac                ActuatorHandler::ActuatorHandler()
+                0x08004aac                ActuatorHandler::ActuatorHandler()
  .text._ZN15ActuatorHandler4initEv
-                0x08004b20       0x40 ./actuatorhandler.o
-                0x08004b20                ActuatorHandler::init()
+                0x08004ad8       0x40 ./actuatorhandler.o
+                0x08004ad8                ActuatorHandler::init()
  .text._ZN15ActuatorHandler9setValve1Eb
-                0x08004b60       0x20 ./actuatorhandler.o
-                0x08004b60                ActuatorHandler::setValve1(bool)
+                0x08004b18       0x20 ./actuatorhandler.o
+                0x08004b18                ActuatorHandler::setValve1(bool)
  .text._ZN15ActuatorHandler9setValve2Eb
-                0x08004b80       0x20 ./actuatorhandler.o
-                0x08004b80                ActuatorHandler::setValve2(bool)
+                0x08004b38       0x20 ./actuatorhandler.o
+                0x08004b38                ActuatorHandler::setValve2(bool)
  .text._ZN15ActuatorHandlerD2Ev
-                0x08004ba0       0x30 ./actuatorhandler.o
-                0x08004ba0                ActuatorHandler::~ActuatorHandler()
-                0x08004ba0                ActuatorHandler::~ActuatorHandler()
+                0x08004b58       0x30 ./actuatorhandler.o
+                0x08004b58                ActuatorHandler::~ActuatorHandler()
+                0x08004b58                ActuatorHandler::~ActuatorHandler()
  .text._ZN15ActuatorHandlerD0Ev
-                0x08004bd0       0x20 ./actuatorhandler.o
-                0x08004bd0                ActuatorHandler::~ActuatorHandler()
+                0x08004b88       0x20 ./actuatorhandler.o
+                0x08004b88                ActuatorHandler::~ActuatorHandler()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08004bf0       0x60 ./actuatorhandler.o
+                0x08004ba8       0x60 ./actuatorhandler.o
  .text._GLOBAL__sub_I_valve1
-                0x08004c50       0x10 ./actuatorhandler.o
+                0x08004c08       0x10 ./actuatorhandler.o
  .text._ZN6BuzzerC2Ev
-                0x08004c60       0x30 ./buzzer.o
-                0x08004c60                Buzzer::Buzzer()
-                0x08004c60                Buzzer::Buzzer()
+                0x08004c18       0x30 ./buzzer.o
+                0x08004c18                Buzzer::Buzzer()
+                0x08004c18                Buzzer::Buzzer()
  .text._ZN6Buzzer4initEv
-                0x08004c90       0x20 ./buzzer.o
-                0x08004c90                Buzzer::init()
+                0x08004c48       0x20 ./buzzer.o
+                0x08004c48                Buzzer::init()
  .text._ZN6Buzzer3runEv
-                0x08004cb0       0x14 ./buzzer.o
-                0x08004cb0                Buzzer::run()
+                0x08004c68       0x14 ./buzzer.o
+                0x08004c68                Buzzer::run()
  .text._ZN6BuzzerD2Ev
-                0x08004cc4       0x30 ./buzzer.o
-                0x08004cc4                Buzzer::~Buzzer()
-                0x08004cc4                Buzzer::~Buzzer()
+                0x08004c7c       0x30 ./buzzer.o
+                0x08004c7c                Buzzer::~Buzzer()
+                0x08004c7c                Buzzer::~Buzzer()
  .text._ZN6BuzzerD0Ev
-                0x08004cf4       0x20 ./buzzer.o
-                0x08004cf4                Buzzer::~Buzzer()
+                0x08004cac       0x20 ./buzzer.o
+                0x08004cac                Buzzer::~Buzzer()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08004d14       0x48 ./buzzer.o
+                0x08004ccc       0x48 ./buzzer.o
  .text._GLOBAL__sub_I_buzzerIO
-                0x08004d5c       0x10 ./buzzer.o
+                0x08004d14       0x10 ./buzzer.o
  .text._ZN7OneWireC2EPN5RODOS8HAL_UARTE
-                0x08004d6c       0x20 ./comminterfaces.o
-                0x08004d6c                OneWire::OneWire(RODOS::HAL_UART*)
-                0x08004d6c                OneWire::OneWire(RODOS::HAL_UART*)
+                0x08004d24       0x20 ./comminterfaces.o
+                0x08004d24                OneWire::OneWire(RODOS::HAL_UART*)
+                0x08004d24                OneWire::OneWire(RODOS::HAL_UART*)
  .text._ZN14CommInterfacesC2Ev
-                0x08004d8c       0x2c ./comminterfaces.o
-                0x08004d8c                CommInterfaces::CommInterfaces()
-                0x08004d8c                CommInterfaces::CommInterfaces()
+                0x08004d44       0x2c ./comminterfaces.o
+                0x08004d44                CommInterfaces::CommInterfaces()
+                0x08004d44                CommInterfaces::CommInterfaces()
  .text._ZN14CommInterfaces4initEv
-                0x08004db8       0x54 ./comminterfaces.o
-                0x08004db8                CommInterfaces::init()
+                0x08004d70       0x54 ./comminterfaces.o
+                0x08004d70                CommInterfaces::init()
  .text._ZN14CommInterfacesD2Ev
-                0x08004e0c       0x30 ./comminterfaces.o
-                0x08004e0c                CommInterfaces::~CommInterfaces()
-                0x08004e0c                CommInterfaces::~CommInterfaces()
+                0x08004dc4       0x30 ./comminterfaces.o
+                0x08004dc4                CommInterfaces::~CommInterfaces()
+                0x08004dc4                CommInterfaces::~CommInterfaces()
  .text._ZN14CommInterfacesD0Ev
-                0x08004e3c       0x20 ./comminterfaces.o
-                0x08004e3c                CommInterfaces::~CommInterfaces()
+                0x08004df4       0x20 ./comminterfaces.o
+                0x08004df4                CommInterfaces::~CommInterfaces()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08004e5c       0x9c ./comminterfaces.o
+                0x08004e14       0x9c ./comminterfaces.o
  .text._GLOBAL__sub_I_spi_bus
-                0x08004ef8       0x10 ./comminterfaces.o
+                0x08004eb0       0x10 ./comminterfaces.o
  .text._ZN5RODOS6Thread4initEv
-                0x08004f08       0x14 ./healthwatchdog.o
-                0x08004f08                RODOS::Thread::init()
+                0x08004ec0       0x14 ./healthwatchdog.o
+                0x08004ec0                RODOS::Thread::init()
  .text._ZN14HealthWatchdogC2Ev
-                0x08004f1c       0x70 ./healthwatchdog.o
-                0x08004f1c                HealthWatchdog::HealthWatchdog()
-                0x08004f1c                HealthWatchdog::HealthWatchdog()
- *fill*         0x08004f8c        0x4 
+                0x08004ed4       0x70 ./healthwatchdog.o
+                0x08004ed4                HealthWatchdog::HealthWatchdog()
+                0x08004ed4                HealthWatchdog::HealthWatchdog()
+ *fill*         0x08004f44        0x4 
  .text._ZN14HealthWatchdog3runEv
-                0x08004f90       0xe0 ./healthwatchdog.o
-                0x08004f90                HealthWatchdog::run()
+                0x08004f48       0xe0 ./healthwatchdog.o
+                0x08004f48                HealthWatchdog::run()
  .text._ZN5RODOS5TopicItE12publishConstEtb
-                0x08005070       0x34 ./healthwatchdog.o
-                0x08005070                RODOS::Topic<unsigned short>::publishConst(unsigned short, bool)
+                0x08005028       0x34 ./healthwatchdog.o
+                0x08005028                RODOS::Topic<unsigned short>::publishConst(unsigned short, bool)
  .text._ZN5RODOS5TopicI6StatusE7publishERS1_b
-                0x080050a4       0x28 ./healthwatchdog.o
-                0x080050a4                RODOS::Topic<Status>::publish(Status&, bool)
+                0x0800505c       0x28 ./healthwatchdog.o
+                0x0800505c                RODOS::Topic<Status>::publish(Status&, bool)
  .text._ZN14HealthWatchdogD2Ev
-                0x080050cc       0x30 ./healthwatchdog.o
-                0x080050cc                HealthWatchdog::~HealthWatchdog()
-                0x080050cc                HealthWatchdog::~HealthWatchdog()
+                0x08005084       0x30 ./healthwatchdog.o
+                0x08005084                HealthWatchdog::~HealthWatchdog()
+                0x08005084                HealthWatchdog::~HealthWatchdog()
  .text._ZN14HealthWatchdogD0Ev
-                0x080050fc       0x20 ./healthwatchdog.o
-                0x080050fc                HealthWatchdog::~HealthWatchdog()
+                0x080050b4       0x20 ./healthwatchdog.o
+                0x080050b4                HealthWatchdog::~HealthWatchdog()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x0800511c       0x3c ./healthwatchdog.o
+                0x080050d4       0x3c ./healthwatchdog.o
  .text._GLOBAL__sub_I_healthWatchdog
-                0x08005158       0x10 ./healthwatchdog.o
+                0x08005110       0x10 ./healthwatchdog.o
  .text._ZN6Murmur6rotl32Ema
-                0x08005168       0x28 ./murmur.o
-                0x08005168                Murmur::rotl32(unsigned long, signed char)
+                0x08005120       0x28 ./murmur.o
+                0x08005120                Murmur::rotl32(unsigned long, signed char)
  .text._ZN6Murmur6fmix32Em
-                0x08005190       0x50 ./murmur.o
-                0x08005190                Murmur::fmix32(unsigned long)
+                0x08005148       0x50 ./murmur.o
+                0x08005148                Murmur::fmix32(unsigned long)
  .text._ZN6Murmur10mm_hash_32EPKhim
-                0x080051e0      0x120 ./murmur.o
-                0x080051e0                Murmur::mm_hash_32(unsigned char const*, int, unsigned long)
+                0x08005198      0x120 ./murmur.o
+                0x08005198                Murmur::mm_hash_32(unsigned char const*, int, unsigned long)
  .text._ZN9SensorIMUC2Ev
-                0x08005300       0x30 ./sensorIMU.o
-                0x08005300                SensorIMU::SensorIMU()
-                0x08005300                SensorIMU::SensorIMU()
+                0x080052b8       0x30 ./sensorIMU.o
+                0x080052b8                SensorIMU::SensorIMU()
+                0x080052b8                SensorIMU::SensorIMU()
  .text._ZN9SensorIMU8resetIMUE6SPI_SS
-                0x08005330       0xd4 ./sensorIMU.o
-                0x08005330                SensorIMU::resetIMU(SPI_SS)
+                0x080052e8       0xd4 ./sensorIMU.o
+                0x080052e8                SensorIMU::resetIMU(SPI_SS)
  .text._ZN9SensorIMU9configRegE6SPI_SShh
-                0x08005404       0x74 ./sensorIMU.o
-                0x08005404                SensorIMU::configReg(SPI_SS, unsigned char, unsigned char)
+                0x080053bc       0x74 ./sensorIMU.o
+                0x080053bc                SensorIMU::configReg(SPI_SS, unsigned char, unsigned char)
  .text._ZN9SensorIMU7initIMUE6SPI_SS
-                0x08005478      0x118 ./sensorIMU.o
-                0x08005478                SensorIMU::initIMU(SPI_SS)
+                0x08005430      0x118 ./sensorIMU.o
+                0x08005430                SensorIMU::initIMU(SPI_SS)
  .text._ZN9SensorIMU6getIMUE6SPI_SSP13IMUReadStruct
-                0x08005590      0x10c ./sensorIMU.o
-                0x08005590                SensorIMU::getIMU(SPI_SS, IMUReadStruct*)
+                0x08005548      0x10c ./sensorIMU.o
+                0x08005548                SensorIMU::getIMU(SPI_SS, IMUReadStruct*)
  .text._ZN9SensorIMU9calibrateEv
-                0x0800569c      0x208 ./sensorIMU.o
-                0x0800569c                SensorIMU::calibrate()
+                0x08005654      0x208 ./sensorIMU.o
+                0x08005654                SensorIMU::calibrate()
  .text._ZN9SensorIMU12fusionFilterER7IMUdata
-                0x080058a4      0x988 ./sensorIMU.o
-                0x080058a4                SensorIMU::fusionFilter(IMUdata&)
+                0x0800585c      0x988 ./sensorIMU.o
+                0x0800585c                SensorIMU::fusionFilter(IMUdata&)
  .text._ZN9SensorIMU3runEv
-                0x0800622c       0xec ./sensorIMU.o
-                0x0800622c                SensorIMU::run()
+                0x080061e4       0xec ./sensorIMU.o
+                0x080061e4                SensorIMU::run()
  .text._ZN5RODOS5TopicI7IMUdataE7publishERS1_b
-                0x08006318       0x28 ./sensorIMU.o
-                0x08006318                RODOS::Topic<IMUdata>::publish(IMUdata&, bool)
+                0x080062d0       0x28 ./sensorIMU.o
+                0x080062d0                RODOS::Topic<IMUdata>::publish(IMUdata&, bool)
  .text._ZN9SensorIMUD2Ev
-                0x08006340       0x30 ./sensorIMU.o
-                0x08006340                SensorIMU::~SensorIMU()
-                0x08006340                SensorIMU::~SensorIMU()
+                0x080062f8       0x30 ./sensorIMU.o
+                0x080062f8                SensorIMU::~SensorIMU()
+                0x080062f8                SensorIMU::~SensorIMU()
  .text._ZN9SensorIMUD0Ev
-                0x08006370       0x20 ./sensorIMU.o
-                0x08006370                SensorIMU::~SensorIMU()
+                0x08006328       0x20 ./sensorIMU.o
+                0x08006328                SensorIMU::~SensorIMU()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08006390       0x3c ./sensorIMU.o
+                0x08006348       0x3c ./sensorIMU.o
  .text._GLOBAL__sub_I_sensorIMU
-                0x080063cc       0x10 ./sensorIMU.o
+                0x08006384       0x10 ./sensorIMU.o
  .text._ZN18SensorHousekeepingC2Ev
-                0x080063dc       0x30 ./sensorhousekeeping.o
-                0x080063dc                SensorHousekeeping::SensorHousekeeping()
-                0x080063dc                SensorHousekeeping::SensorHousekeeping()
- *fill*         0x0800640c        0x4 
+                0x08006394       0x30 ./sensorhousekeeping.o
+                0x08006394                SensorHousekeeping::SensorHousekeeping()
+                0x08006394                SensorHousekeeping::SensorHousekeeping()
+ *fill*         0x080063c4        0x4 
  .text._ZN18SensorHousekeeping9reset_i2cEv
-                0x08006410       0x68 ./sensorhousekeeping.o
-                0x08006410                SensorHousekeeping::reset_i2c()
+                0x080063c8       0x68 ./sensorhousekeeping.o
+                0x080063c8                SensorHousekeeping::reset_i2c()
  .text._ZN18SensorHousekeeping16configTempSensorEPKh
-                0x08006478       0x4c ./sensorhousekeeping.o
-                0x08006478                SensorHousekeeping::configTempSensor(unsigned char const*)
+                0x08006430       0x4c ./sensorhousekeeping.o
+                0x08006430                SensorHousekeeping::configTempSensor(unsigned char const*)
  .text._ZN18SensorHousekeeping19initTemperatureConvEv
-                0x080064c4       0x30 ./sensorhousekeeping.o
-                0x080064c4                SensorHousekeeping::initTemperatureConv()
+                0x0800647c       0x30 ./sensorhousekeeping.o
+                0x0800647c                SensorHousekeeping::initTemperatureConv()
  .text._ZN18SensorHousekeeping18getTemperatureDataEPKh
-                0x080064f4       0x94 ./sensorhousekeeping.o
-                0x080064f4                SensorHousekeeping::getTemperatureData(unsigned char const*)
+                0x080064ac       0x94 ./sensorhousekeeping.o
+                0x080064ac                SensorHousekeeping::getTemperatureData(unsigned char const*)
  .text._ZN18SensorHousekeeping15getTankPressureEPt
-                0x08006588       0x9c ./sensorhousekeeping.o
-                0x08006588                SensorHousekeeping::getTankPressure(unsigned short*)
+                0x08006540       0x9c ./sensorhousekeeping.o
+                0x08006540                SensorHousekeeping::getTankPressure(unsigned short*)
  .text._ZN18SensorHousekeeping17getValvesPressureEPt
-                0x08006624       0x9c ./sensorhousekeeping.o
-                0x08006624                SensorHousekeeping::getValvesPressure(unsigned short*)
+                0x080065dc       0x9c ./sensorhousekeeping.o
+                0x080065dc                SensorHousekeeping::getValvesPressure(unsigned short*)
  .text._ZN18SensorHousekeeping9configADCEv
-                0x080066c0       0x3c ./sensorhousekeeping.o
-                0x080066c0                SensorHousekeeping::configADC()
- *fill*         0x080066fc        0x4 
+                0x08006678       0x3c ./sensorhousekeeping.o
+                0x08006678                SensorHousekeeping::configADC()
+ *fill*         0x080066b4        0x4 
  .text._ZN18SensorHousekeeping3runEv
-                0x08006700      0x1e8 ./sensorhousekeeping.o
-                0x08006700                SensorHousekeeping::run()
+                0x080066b8      0x1e8 ./sensorhousekeeping.o
+                0x080066b8                SensorHousekeeping::run()
  .text._ZN5RODOS5TopicI6HkDataE7publishERS1_b
-                0x080068e8       0x28 ./sensorhousekeeping.o
-                0x080068e8                RODOS::Topic<HkData>::publish(HkData&, bool)
+                0x080068a0       0x28 ./sensorhousekeeping.o
+                0x080068a0                RODOS::Topic<HkData>::publish(HkData&, bool)
  .text._ZN18SensorHousekeepingD2Ev
-                0x08006910       0x30 ./sensorhousekeeping.o
-                0x08006910                SensorHousekeeping::~SensorHousekeeping()
-                0x08006910                SensorHousekeeping::~SensorHousekeeping()
+                0x080068c8       0x30 ./sensorhousekeeping.o
+                0x080068c8                SensorHousekeeping::~SensorHousekeeping()
+                0x080068c8                SensorHousekeeping::~SensorHousekeeping()
  .text._ZN18SensorHousekeepingD0Ev
-                0x08006940       0x20 ./sensorhousekeeping.o
-                0x08006940                SensorHousekeeping::~SensorHousekeeping()
+                0x080068f8       0x20 ./sensorhousekeeping.o
+                0x080068f8                SensorHousekeeping::~SensorHousekeeping()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08006960       0x3c ./sensorhousekeeping.o
+                0x08006918       0x3c ./sensorhousekeeping.o
  .text._GLOBAL__sub_I_sensorHousekeeping
-                0x0800699c       0x10 ./sensorhousekeeping.o
+                0x08006954       0x10 ./sensorhousekeeping.o
  .text._ZN9SPIHelperC2Ev
-                0x080069ac       0x30 ./spihelper.o
-                0x080069ac                SPIHelper::SPIHelper()
-                0x080069ac                SPIHelper::SPIHelper()
+                0x08006964       0x30 ./spihelper.o
+                0x08006964                SPIHelper::SPIHelper()
+                0x08006964                SPIHelper::SPIHelper()
  .text._ZN9SPIHelper4initEv
-                0x080069dc       0x44 ./spihelper.o
-                0x080069dc                SPIHelper::init()
+                0x08006994       0x44 ./spihelper.o
+                0x08006994                SPIHelper::init()
  .text._ZN9SPIHelper15isSlaveSelectedE6SPI_SS
-                0x08006a20       0x28 ./spihelper.o
-                0x08006a20                SPIHelper::isSlaveSelected(SPI_SS)
+                0x080069d8       0x28 ./spihelper.o
+                0x080069d8                SPIHelper::isSlaveSelected(SPI_SS)
  .text._ZN9SPIHelper11selectSlaveE6SPI_SS
-                0x08006a48       0x9c ./spihelper.o
-                0x08006a48                SPIHelper::selectSlave(SPI_SS)
+                0x08006a00       0x9c ./spihelper.o
+                0x08006a00                SPIHelper::selectSlave(SPI_SS)
  .text._ZN9SPIHelper13disableSlavesEv
-                0x08006ae4       0x54 ./spihelper.o
-                0x08006ae4                SPIHelper::disableSlaves()
+                0x08006a9c       0x54 ./spihelper.o
+                0x08006a9c                SPIHelper::disableSlaves()
  .text._ZN9SPIHelperD2Ev
-                0x08006b38       0x30 ./spihelper.o
-                0x08006b38                SPIHelper::~SPIHelper()
-                0x08006b38                SPIHelper::~SPIHelper()
+                0x08006af0       0x30 ./spihelper.o
+                0x08006af0                SPIHelper::~SPIHelper()
+                0x08006af0                SPIHelper::~SPIHelper()
  .text._ZN9SPIHelperD0Ev
-                0x08006b68       0x20 ./spihelper.o
-                0x08006b68                SPIHelper::~SPIHelper()
+                0x08006b20       0x20 ./spihelper.o
+                0x08006b20                SPIHelper::~SPIHelper()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08006b88       0x6c ./spihelper.o
+                0x08006b40       0x6c ./spihelper.o
  .text._GLOBAL__sub_I_spiHelper
-                0x08006bf4       0x10 ./spihelper.o
+                0x08006bac       0x10 ./spihelper.o
  .text._ZN5RODOS10SubscriberD2Ev
-                0x08006c04       0x3c ./storagecontroller.o
-                0x08006c04                RODOS::Subscriber::~Subscriber()
-                0x08006c04                RODOS::Subscriber::~Subscriber()
+                0x08006bbc       0x3c ./storagecontroller.o
+                0x08006bbc                RODOS::Subscriber::~Subscriber()
+                0x08006bbc                RODOS::Subscriber::~Subscriber()
  .text._ZN5RODOS10SubscriberD0Ev
-                0x08006c40       0x20 ./storagecontroller.o
-                0x08006c40                RODOS::Subscriber::~Subscriber()
+                0x08006bf8       0x20 ./storagecontroller.o
+                0x08006bf8                RODOS::Subscriber::~Subscriber()
  .text._ZN5RODOS6PutterD2Ev
-                0x08006c60       0x28 ./storagecontroller.o
-                0x08006c60                RODOS::Putter::~Putter()
-                0x08006c60                RODOS::Putter::~Putter()
+                0x08006c18       0x28 ./storagecontroller.o
+                0x08006c18                RODOS::Putter::~Putter()
+                0x08006c18                RODOS::Putter::~Putter()
  .text._ZN5RODOS6PutterD0Ev
-                0x08006c88       0x20 ./storagecontroller.o
-                0x08006c88                RODOS::Putter::~Putter()
+                0x08006c40       0x20 ./storagecontroller.o
+                0x08006c40                RODOS::Putter::~Putter()
  .text._ZN5RODOS6Putter10putGenericEljPKvRKNS_10NetMsgInfoE
-                0x08006ca8       0x24 ./storagecontroller.o
-                0x08006ca8                RODOS::Putter::putGeneric(long, unsigned int, void const*, RODOS::NetMsgInfo const&)
+                0x08006c60       0x24 ./storagecontroller.o
+                0x08006c60                RODOS::Putter::putGeneric(long, unsigned int, void const*, RODOS::NetMsgInfo const&)
  .text._ZN17StorageControllerC2EPKcl
-                0x08006ccc       0x30 ./storagecontroller.o
-                0x08006ccc                StorageController::StorageController(char const*, long)
-                0x08006ccc                StorageController::StorageController(char const*, long)
- *fill*         0x08006cfc        0x4 
+                0x08006c84       0x30 ./storagecontroller.o
+                0x08006c84                StorageController::StorageController(char const*, long)
+                0x08006c84                StorageController::StorageController(char const*, long)
+ *fill*         0x08006cb4        0x4 
  .text._ZN17StorageController3runEv
-                0x08006d00      0x408 ./storagecontroller.o
-                0x08006d00                StorageController::run()
+                0x08006cb8      0x450 ./storagecontroller.o
+                0x08006cb8                StorageController::run()
  .text._ZN5RODOS6PutterC2Ev
                 0x08007108       0x20 ./storagecontroller.o
                 0x08007108                RODOS::Putter::Putter()
@@ -7824,229 +7825,228 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x08015c3c      0x3cc c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-reallocr.o)
                 0x08015c3c                _realloc_r
  *(.rodata)
- .rodata        0x08016008       0x3c ./sdspicard/sdspicard.o
- .rodata        0x08016044       0x28 ./fatfs/diskio.o
- .rodata        0x0801606c       0x44 ./fatfs/ff.o
- .rodata        0x080160b0       0x10 ./ControlLoop.o
- .rodata        0x080160c0        0xc ./actuatorhandler.o
- .rodata        0x080160cc       0x10 ./buzzer.o
- .rodata        0x080160dc        0xc ./comminterfaces.o
- .rodata        0x080160e8       0x10 ./healthwatchdog.o
- .rodata        0x080160f8       0x1c ./sensorIMU.o
- .rodata        0x08016114       0x70 ./sensorhousekeeping.o
- .rodata        0x08016184        0xc ./spihelper.o
- .rodata        0x08016190      0x200 ./storagecontroller.o
- .rodata        0x08016390       0x14 ./telecommand.o
- .rodata        0x080163a4       0x10 ./telemetry.o
- .rodata        0x080163b4      0x160 ./topics.o
- .rodata        0x08016514       0x48 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .rodata        0x0801655c       0x6c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .rodata        0x080165c8      0x21c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .rodata        0x080167e4       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .rodata        0x080167fc       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .rodata        0x0801686c      0x11c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .rodata        0x08016988       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .rodata        0x080169e0       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .rodata        0x080169f8       0xe4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .rodata        0x08016adc       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .rodata        0x08016afc       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .rodata        0x08016b0c       0xc4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .rodata        0x08016bd0       0x28 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .rodata        0x08016bf8       0x3c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .rodata        0x08016008       0x24 ./sdspicard/sdspicard.o
+ .rodata        0x0801602c       0x28 ./fatfs/diskio.o
+ .rodata        0x08016054       0x44 ./fatfs/ff.o
+ .rodata        0x08016098       0x10 ./ControlLoop.o
+ .rodata        0x080160a8        0xc ./actuatorhandler.o
+ .rodata        0x080160b4       0x10 ./buzzer.o
+ .rodata        0x080160c4        0xc ./comminterfaces.o
+ .rodata        0x080160d0       0x10 ./healthwatchdog.o
+ .rodata        0x080160e0       0x1c ./sensorIMU.o
+ .rodata        0x080160fc       0x70 ./sensorhousekeeping.o
+ .rodata        0x0801616c        0xc ./spihelper.o
+ .rodata        0x08016178      0x154 ./storagecontroller.o
+ .rodata        0x080162cc       0x14 ./telecommand.o
+ .rodata        0x080162e0       0x10 ./telemetry.o
+ .rodata        0x080162f0      0x160 ./topics.o
+ .rodata        0x08016450       0x48 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .rodata        0x08016498       0x6c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .rodata        0x08016504      0x21c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .rodata        0x08016720       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .rodata        0x08016738       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .rodata        0x080167a8      0x11c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .rodata        0x080168c4       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .rodata        0x0801691c       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .rodata        0x08016934       0xe4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .rodata        0x08016a18       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .rodata        0x08016a38       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .rodata        0x08016a48       0xc4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .rodata        0x08016b0c       0x28 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .rodata        0x08016b34       0x3c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
  *(.rodata*)
  .rodata._ZL6crctab
-                0x08016c34      0x200 ./sdspicard/sdspicard.o
- *fill*         0x08016e34        0x4 
+                0x08016b70      0x200 ./sdspicard/sdspicard.o
  .rodata._ZTV11ControlLoop
-                0x08016e38       0x18 ./ControlLoop.o
-                0x08016e38                vtable for ControlLoop
+                0x08016d70       0x18 ./ControlLoop.o
+                0x08016d70                vtable for ControlLoop
  .rodata._ZTV15ActuatorHandler
-                0x08016e50       0x18 ./actuatorhandler.o
-                0x08016e50                vtable for ActuatorHandler
+                0x08016d88       0x18 ./actuatorhandler.o
+                0x08016d88                vtable for ActuatorHandler
  .rodata._ZTVN5RODOS9InitiatorE
-                0x08016e68       0x18 ./actuatorhandler.o
-                0x08016e68                vtable for RODOS::Initiator
+                0x08016da0       0x18 ./actuatorhandler.o
+                0x08016da0                vtable for RODOS::Initiator
  .rodata._ZTV6Buzzer
-                0x08016e80       0x18 ./buzzer.o
-                0x08016e80                vtable for Buzzer
+                0x08016db8       0x18 ./buzzer.o
+                0x08016db8                vtable for Buzzer
  .rodata._ZTV14CommInterfaces
-                0x08016e98       0x18 ./comminterfaces.o
-                0x08016e98                vtable for CommInterfaces
+                0x08016dd0       0x18 ./comminterfaces.o
+                0x08016dd0                vtable for CommInterfaces
  .rodata._ZTV14HealthWatchdog
-                0x08016eb0       0x18 ./healthwatchdog.o
-                0x08016eb0                vtable for HealthWatchdog
+                0x08016de8       0x18 ./healthwatchdog.o
+                0x08016de8                vtable for HealthWatchdog
  .rodata._ZTV9SensorIMU
-                0x08016ec8       0x18 ./sensorIMU.o
-                0x08016ec8                vtable for SensorIMU
+                0x08016e00       0x18 ./sensorIMU.o
+                0x08016e00                vtable for SensorIMU
  .rodata._ZTV18SensorHousekeeping
-                0x08016ee0       0x18 ./sensorhousekeeping.o
-                0x08016ee0                vtable for SensorHousekeeping
+                0x08016e18       0x18 ./sensorhousekeeping.o
+                0x08016e18                vtable for SensorHousekeeping
  .rodata._ZL11TS_NOZ1_ROM
-                0x08016ef8        0x8 ./sensorhousekeeping.o
+                0x08016e30        0x8 ./sensorhousekeeping.o
  .rodata._ZL11TS_NOZ2_ROM
-                0x08016f00        0x8 ./sensorhousekeeping.o
+                0x08016e38        0x8 ./sensorhousekeeping.o
  .rodata._ZL11TS_NOZ3_ROM
-                0x08016f08        0x8 ./sensorhousekeeping.o
+                0x08016e40        0x8 ./sensorhousekeeping.o
  .rodata._ZL11TS_NOZ4_ROM
-                0x08016f10        0x8 ./sensorhousekeeping.o
+                0x08016e48        0x8 ./sensorhousekeeping.o
  .rodata._ZL11TS_TANK_ROM
-                0x08016f18        0x8 ./sensorhousekeeping.o
+                0x08016e50        0x8 ./sensorhousekeeping.o
  .rodata._ZL10TS_PDU_ROM
-                0x08016f20        0x8 ./sensorhousekeeping.o
- .rodata.xff    0x08016f28      0x200 ./spihelper.o
-                0x08016f28                xff
+                0x08016e58        0x8 ./sensorhousekeeping.o
+ .rodata.xff    0x08016e60      0x200 ./spihelper.o
+                0x08016e60                xff
  .rodata._ZTV9SPIHelper
-                0x08017128       0x18 ./spihelper.o
-                0x08017128                vtable for SPIHelper
+                0x08017060       0x18 ./spihelper.o
+                0x08017060                vtable for SPIHelper
  .rodata._ZTVN5RODOS4FifoI7CmdDataLi100EEE
-                0x08017140       0x18 ./storagecontroller.o
-                0x08017140                vtable for RODOS::Fifo<CmdData, 100>
+                0x08017078       0x18 ./storagecontroller.o
+                0x08017078                vtable for RODOS::Fifo<CmdData, 100>
  .rodata._ZTVN5RODOS4FifoI6HkDataLi100EEE
-                0x08017158       0x18 ./storagecontroller.o
-                0x08017158                vtable for RODOS::Fifo<HkData, 100>
+                0x08017090       0x18 ./storagecontroller.o
+                0x08017090                vtable for RODOS::Fifo<HkData, 100>
  .rodata._ZTVN5RODOS4FifoI7IMUdataLi100EEE
-                0x08017170       0x18 ./storagecontroller.o
-                0x08017170                vtable for RODOS::Fifo<IMUdata, 100>
+                0x080170a8       0x18 ./storagecontroller.o
+                0x080170a8                vtable for RODOS::Fifo<IMUdata, 100>
  .rodata._ZTV17StorageController
-                0x08017188       0x18 ./storagecontroller.o
-                0x08017188                vtable for StorageController
+                0x080170c0       0x18 ./storagecontroller.o
+                0x080170c0                vtable for StorageController
  .rodata._ZTVN5RODOS6PutterE
-                0x080171a0       0x18 ./storagecontroller.o
-                0x080171a0                vtable for RODOS::Putter
+                0x080170d8       0x18 ./storagecontroller.o
+                0x080170d8                vtable for RODOS::Putter
  .rodata._ZTV11Telecommand
-                0x080171b8       0x18 ./telecommand.o
-                0x080171b8                vtable for Telecommand
+                0x080170f0       0x18 ./telecommand.o
+                0x080170f0                vtable for Telecommand
  .rodata._ZTV9Telemetry
-                0x080171d0       0x18 ./telemetry.o
-                0x080171d0                vtable for Telemetry
+                0x08017108       0x18 ./telemetry.o
+                0x08017108                vtable for Telemetry
  .rodata._ZTVN5RODOS10CommBufferItEE
-                0x080171e8       0x18 ./topics.o
-                0x080171e8                vtable for RODOS::CommBuffer<unsigned short>
+                0x08017120       0x18 ./topics.o
+                0x08017120                vtable for RODOS::CommBuffer<unsigned short>
  .rodata._ZTVN5RODOS5TopicItEE
-                0x08017200       0x10 ./topics.o
-                0x08017200                vtable for RODOS::Topic<unsigned short>
+                0x08017138       0x10 ./topics.o
+                0x08017138                vtable for RODOS::Topic<unsigned short>
  .rodata._ZTVN5RODOS10CommBufferIbEE
-                0x08017210       0x18 ./topics.o
-                0x08017210                vtable for RODOS::CommBuffer<bool>
+                0x08017148       0x18 ./topics.o
+                0x08017148                vtable for RODOS::CommBuffer<bool>
  .rodata._ZTVN5RODOS5TopicIbEE
-                0x08017228       0x10 ./topics.o
-                0x08017228                vtable for RODOS::Topic<bool>
+                0x08017160       0x10 ./topics.o
+                0x08017160                vtable for RODOS::Topic<bool>
  .rodata._ZTVN5RODOS10CommBufferI4ModeEE
-                0x08017238       0x18 ./topics.o
-                0x08017238                vtable for RODOS::CommBuffer<Mode>
+                0x08017170       0x18 ./topics.o
+                0x08017170                vtable for RODOS::CommBuffer<Mode>
  .rodata._ZTVN5RODOS5TopicI4ModeEE
-                0x08017250       0x10 ./topics.o
-                0x08017250                vtable for RODOS::Topic<Mode>
+                0x08017188       0x10 ./topics.o
+                0x08017188                vtable for RODOS::Topic<Mode>
  .rodata._ZTVN5RODOS10CommBufferI6TcDataEE
-                0x08017260       0x18 ./topics.o
-                0x08017260                vtable for RODOS::CommBuffer<TcData>
+                0x08017198       0x18 ./topics.o
+                0x08017198                vtable for RODOS::CommBuffer<TcData>
  .rodata._ZTVN5RODOS5TopicI6TcDataEE
-                0x08017278       0x10 ./topics.o
-                0x08017278                vtable for RODOS::Topic<TcData>
+                0x080171b0       0x10 ./topics.o
+                0x080171b0                vtable for RODOS::Topic<TcData>
  .rodata._ZTVN5RODOS10CommBufferI6StatusEE
-                0x08017288       0x18 ./topics.o
-                0x08017288                vtable for RODOS::CommBuffer<Status>
+                0x080171c0       0x18 ./topics.o
+                0x080171c0                vtable for RODOS::CommBuffer<Status>
  .rodata._ZTVN5RODOS5TopicI6StatusEE
-                0x080172a0       0x10 ./topics.o
-                0x080172a0                vtable for RODOS::Topic<Status>
+                0x080171d8       0x10 ./topics.o
+                0x080171d8                vtable for RODOS::Topic<Status>
  .rodata._ZTVN5RODOS10CommBufferI7CmdDataEE
-                0x080172b0       0x18 ./topics.o
-                0x080172b0                vtable for RODOS::CommBuffer<CmdData>
+                0x080171e8       0x18 ./topics.o
+                0x080171e8                vtable for RODOS::CommBuffer<CmdData>
  .rodata._ZTVN5RODOS5TopicI7CmdDataEE
-                0x080172c8       0x10 ./topics.o
-                0x080172c8                vtable for RODOS::Topic<CmdData>
+                0x08017200       0x10 ./topics.o
+                0x08017200                vtable for RODOS::Topic<CmdData>
  .rodata._ZTVN5RODOS10CommBufferI6HkDataEE
-                0x080172d8       0x18 ./topics.o
-                0x080172d8                vtable for RODOS::CommBuffer<HkData>
+                0x08017210       0x18 ./topics.o
+                0x08017210                vtable for RODOS::CommBuffer<HkData>
  .rodata._ZTVN5RODOS5TopicI6HkDataEE
-                0x080172f0       0x10 ./topics.o
-                0x080172f0                vtable for RODOS::Topic<HkData>
+                0x08017228       0x10 ./topics.o
+                0x08017228                vtable for RODOS::Topic<HkData>
  .rodata._ZTVN5RODOS10CommBufferI7IMUdataEE
-                0x08017300       0x18 ./topics.o
-                0x08017300                vtable for RODOS::CommBuffer<IMUdata>
+                0x08017238       0x18 ./topics.o
+                0x08017238                vtable for RODOS::CommBuffer<IMUdata>
  .rodata._ZTVN5RODOS5TopicI7IMUdataEE
-                0x08017318       0x10 ./topics.o
-                0x08017318                vtable for RODOS::Topic<IMUdata>
+                0x08017250       0x10 ./topics.o
+                0x08017250                vtable for RODOS::Topic<IMUdata>
  .rodata._ZTVN5RODOS14TopicInterfaceE
-                0x08017328       0x10 ./topics.o
-                0x08017328                vtable for RODOS::TopicInterface
+                0x08017260       0x10 ./topics.o
+                0x08017260                vtable for RODOS::TopicInterface
  .rodata._ZTVN5RODOS7YprintfE
-                0x08017338       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
-                0x08017338                vtable for RODOS::Yprintf
+                0x08017270       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+                0x08017270                vtable for RODOS::Yprintf
  .rodata._ZTVN5RODOS18GenericIOInterfaceE
-                0x08017350       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
-                0x08017350                vtable for RODOS::GenericIOInterface
+                0x08017288       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+                0x08017288                vtable for RODOS::GenericIOInterface
  .rodata._ZTVN5RODOS10SubscriberE
-                0x08017390       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
-                0x08017390                vtable for RODOS::Subscriber
+                0x080172c8       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+                0x080172c8                vtable for RODOS::Subscriber
  .rodata._ZTVN5RODOS5TopicIPvEE
-                0x080173b0       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
-                0x080173b0                vtable for RODOS::Topic<void*>
+                0x080172e8       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+                0x080172e8                vtable for RODOS::Topic<void*>
  .rodata._ZTVN5RODOS5TopicINS_14NetworkMessageEEE
-                0x080173c0       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
-                0x080173c0                vtable for RODOS::Topic<RODOS::NetworkMessage>
+                0x080172f8       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+                0x080172f8                vtable for RODOS::Topic<RODOS::NetworkMessage>
  .rodata._ZTVN5RODOS5TopicINS_13GenericMsgRefEEE
-                0x080173d0       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
-                0x080173d0                vtable for RODOS::Topic<RODOS::GenericMsgRef>
+                0x08017308       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+                0x08017308                vtable for RODOS::Topic<RODOS::GenericMsgRef>
  .rodata._ZTVN5RODOS8HAL_GPIOE
-                0x080173e0       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
-                0x080173e0                vtable for RODOS::HAL_GPIO
+                0x08017318       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+                0x08017318                vtable for RODOS::HAL_GPIO
  .rodata._ZTVN5RODOS7HAL_I2CE
-                0x08017420       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
-                0x08017420                vtable for RODOS::HAL_I2C
+                0x08017358       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+                0x08017358                vtable for RODOS::HAL_I2C
  .rodata._ZTVN5RODOS7HAL_SPIE
-                0x08017460       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
-                0x08017460                vtable for RODOS::HAL_SPI
+                0x08017398       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+                0x08017398                vtable for RODOS::HAL_SPI
  .rodata._ZTVN5RODOS9BlockFifoIhLi256EEE
-                0x080174a0       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
-                0x080174a0                vtable for RODOS::BlockFifo<unsigned char, 256>
+                0x080173d8       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+                0x080173d8                vtable for RODOS::BlockFifo<unsigned char, 256>
  .rodata._ZTVN5RODOS4FifoIhLi256EEE
-                0x080174b8       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
-                0x080174b8                vtable for RODOS::Fifo<unsigned char, 256>
+                0x080173f0       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+                0x080173f0                vtable for RODOS::Fifo<unsigned char, 256>
  .rodata._ZTVN5RODOS14ReceiveTriggerE
-                0x080174d0       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
-                0x080174d0                vtable for RODOS::ReceiveTrigger
+                0x08017408       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+                0x08017408                vtable for RODOS::ReceiveTrigger
  .rodata._ZTVN5RODOS8HAL_UARTE
-                0x080174e8       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
-                0x080174e8                vtable for RODOS::HAL_UART
+                0x08017420       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+                0x08017420                vtable for RODOS::HAL_UART
  .rodata._ZTVN5RODOS10IdleThreadE
-                0x08017540       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
-                0x08017540                vtable for RODOS::IdleThread
+                0x08017478       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+                0x08017478                vtable for RODOS::IdleThread
  .rodata._ZTVN5RODOS6ThreadE
-                0x08017558       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
-                0x08017558                vtable for RODOS::Thread
+                0x08017490       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+                0x08017490                vtable for RODOS::Thread
  .rodata._ZTVN5RODOS11ApplicationE
-                0x08017570       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
-                0x08017570                vtable for RODOS::Application
+                0x080174a8       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+                0x080174a8                vtable for RODOS::Application
  .rodata.zeroes.6763
-                0x08017590       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
+                0x080174c8       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
  .rodata.str1.4
-                0x080175a0       0x42 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
+                0x080174d8       0x42 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
                                  0x44 (size before relaxing)
- *fill*         0x080175e2        0x2 
+ *fill*         0x0801751a        0x2 
  .rodata.blanks.6762
-                0x080175e4       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
+                0x0801751c       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-svfprintf.o)
  .rodata._ctype_
-                0x080175f4      0x104 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-ctype_.o)
-                0x080175f4                _ctype_
+                0x0801752c      0x104 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-ctype_.o)
+                0x0801752c                _ctype_
  .rodata.str1.4
-                0x080176f8       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-dtoa.o)
+                0x08017630       0x10 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-dtoa.o)
                                  0x14 (size before relaxing)
  .rodata.str1.4
-                0x08017708        0x2 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-impure.o)
+                0x08017640        0x2 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-impure.o)
                                   0x4 (size before relaxing)
- *fill*         0x0801770a        0x2 
+ *fill*         0x08017642        0x2 
  .rodata.str1.4
-                0x0801770c        0xc c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-locale.o)
+                0x08017644        0xc c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-locale.o)
                                  0x14 (size before relaxing)
  .rodata.__mprec_tens
-                0x08017718       0xc8 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
-                0x08017718                __mprec_tens
+                0x08017650       0xc8 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
+                0x08017650                __mprec_tens
  .rodata.__mprec_bigtens
-                0x080177e0       0x28 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
-                0x080177e0                __mprec_bigtens
+                0x08017718       0x28 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
+                0x08017718                __mprec_bigtens
  .rodata.p05.5269
-                0x08017808        0xc c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
+                0x08017740        0xc c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv7e-m/softfp\libc.a(lib_a-mprec.o)
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.glue_7t)
@@ -8054,73 +8054,73 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
  *(.eh_frame)
  *(.init)
  *(.fini)
-                0x08017814                . = ALIGN (0x4)
-                0x08017814                _etext = .
+                0x0801774c                . = ALIGN (0x4)
+                0x0801774c                _etext = .
 
-.vfp11_veneer   0x08017814        0x0
+.vfp11_veneer   0x0801774c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08017814        0x0
+.v4_bx          0x0801774c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08017814        0x0
+.iplt           0x0801774c        0x0
  .iplt          0x00000000        0x0 ./sdspicard/sdspicard.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x08017814        0x8
-                0x08017814                __exidx_start = .
+.ARM            0x0801774c        0x8
+                0x0801774c                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x08017814        0x8 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7e-m/softfp\libgcc.a(_divdi3.o)
- .ARM.exidx     0x0801781c        0x0 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7e-m/softfp\libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x0801774c        0x8 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7e-m/softfp\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x08017754        0x0 c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv7e-m/softfp\libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x0801781c                __exidx_end = .
+                0x08017754                __exidx_end = .
 
-.rel.dyn        0x0801781c        0x0
+.rel.dyn        0x08017754        0x0
  .rel.iplt      0x00000000        0x0 ./sdspicard/sdspicard.o
 
-.preinit_array  0x0801781c        0x0
-                0x0801781c                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08017754        0x0
+                0x08017754                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x0801781c                PROVIDE (__preinit_array_end, .)
+                0x08017754                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x0801781c       0x58
-                0x0801781c                PROVIDE (__init_array_start, .)
+.init_array     0x08017754       0x58
+                0x08017754                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x0801781c        0x4 ./fatfs/diskio.o
- .init_array    0x08017820        0x4 ./ControlLoop.o
- .init_array    0x08017824        0x4 ./actuatorhandler.o
- .init_array    0x08017828        0x4 ./buzzer.o
- .init_array    0x0801782c        0x4 ./comminterfaces.o
- .init_array    0x08017830        0x4 ./healthwatchdog.o
- .init_array    0x08017834        0x4 ./sensorIMU.o
- .init_array    0x08017838        0x4 ./sensorhousekeeping.o
- .init_array    0x0801783c        0x4 ./spihelper.o
- .init_array    0x08017840        0x4 ./storagecontroller.o
- .init_array    0x08017844        0x4 ./telecommand.o
- .init_array    0x08017848        0x4 ./telemetry.o
- .init_array    0x0801784c        0x4 ./topics.o
- .init_array    0x08017850        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .init_array    0x08017854        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .init_array    0x08017858        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .init_array    0x0801785c        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .init_array    0x08017860        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .init_array    0x08017864        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .init_array    0x08017868        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .init_array    0x0801786c        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .init_array    0x08017870        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
-                0x08017874                PROVIDE (__init_array_end, .)
+ .init_array    0x08017754        0x4 ./fatfs/diskio.o
+ .init_array    0x08017758        0x4 ./ControlLoop.o
+ .init_array    0x0801775c        0x4 ./actuatorhandler.o
+ .init_array    0x08017760        0x4 ./buzzer.o
+ .init_array    0x08017764        0x4 ./comminterfaces.o
+ .init_array    0x08017768        0x4 ./healthwatchdog.o
+ .init_array    0x0801776c        0x4 ./sensorIMU.o
+ .init_array    0x08017770        0x4 ./sensorhousekeeping.o
+ .init_array    0x08017774        0x4 ./spihelper.o
+ .init_array    0x08017778        0x4 ./storagecontroller.o
+ .init_array    0x0801777c        0x4 ./telecommand.o
+ .init_array    0x08017780        0x4 ./telemetry.o
+ .init_array    0x08017784        0x4 ./topics.o
+ .init_array    0x08017788        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .init_array    0x0801778c        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .init_array    0x08017790        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .init_array    0x08017794        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .init_array    0x08017798        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .init_array    0x0801779c        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .init_array    0x080177a0        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .init_array    0x080177a4        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .init_array    0x080177a8        0x4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+                0x080177ac                PROVIDE (__init_array_end, .)
 
-.fini_array     0x08017874        0x0
-                0x08017874                PROVIDE (__fini_array_start, .)
+.fini_array     0x080177ac        0x0
+                0x080177ac                PROVIDE (__fini_array_start, .)
  *(.fini_array*)
  *(SORT(.fini_array.*))
-                0x08017874                PROVIDE (__fini_array_end, .)
-                0x08017874                _sidata = .
+                0x080177ac                PROVIDE (__fini_array_end, .)
+                0x080177ac                _sidata = .
 
-.data           0x20000000      0x90c load address 0x08017874
+.data           0x20000000      0x90c load address 0x080177ac
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -8204,7 +8204,7 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x2000090c                . = ALIGN (0x4)
                 0x2000090c                _edata = .
 
-.igot.plt       0x2000090c        0x0 load address 0x08018180
+.igot.plt       0x2000090c        0x0 load address 0x080180b8
  .igot.plt      0x00000000        0x0 ./sdspicard/sdspicard.o
                 0x2000090c                . = ALIGN (0x4)
 
@@ -8217,7 +8217,7 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x10000000                __bss_end___ccram = _ebss_ccram
                 0x10000000                . = ALIGN (0x4)
 
-.bss            0x20000910     0xec14 load address 0x08018188
+.bss            0x20000910     0xec14 load address 0x080180c0
                 0x20000910                _sbss = .
                 0x20000910                __bss_start__ = _sbss
  *(.bss)
@@ -8567,7 +8567,7 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x2000f524                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x2000f524     0x1400 load address 0x08026d9c
+                0x2000f524     0x1400 load address 0x08026cd4
                 0x2000f524                . = ALIGN (0x4)
                 0x2000f524                PROVIDE (end, .)
                 0x2000f524                PROVIDE (_end, .)
@@ -8717,7 +8717,7 @@ LOAD c:/users/tobiz/eclipse luna sr1 121/gnu tools arm embedded/4.8 2014q3/bin/.
                 0x00000cd2       0x37 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 OUTPUT(On-Board-Software.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x2a195
+.debug_info     0x00000000    0x2a1c1
  .debug_info    0x00000000     0x196d ./sdspicard/sdspicard.o
  .debug_info    0x0000196d      0x75f ./onewire/onewire.o
  .debug_info    0x000020cc     0x129c ./fatfs/diskio.o
@@ -8731,56 +8731,56 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_info    0x000087b0      0xa18 ./sensorIMU.o
  .debug_info    0x000091c8      0xb00 ./sensorhousekeeping.o
  .debug_info    0x00009cc8      0xb47 ./spihelper.o
- .debug_info    0x0000a80f     0x2a80 ./storagecontroller.o
- .debug_info    0x0000d28f      0x585 ./telecommand.o
- .debug_info    0x0000d814      0xa3a ./telemetry.o
- .debug_info    0x0000e24e     0x32c8 ./topics.o
- .debug_info    0x00011516      0x32a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
- .debug_info    0x00011840      0x5f0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
- .debug_info    0x00011e30      0x661 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .debug_info    0x00012491      0x693 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
- .debug_info    0x00012b24      0x2f9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .debug_info    0x00012e1d      0x820 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .debug_info    0x0001363d       0xaf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .debug_info    0x000136ec       0x3a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
- .debug_info    0x00013726      0x46d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
- .debug_info    0x00013b93      0xa30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .debug_info    0x000145c3      0x1ee C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
- .debug_info    0x000147b1      0x5a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
- .debug_info    0x00014d53      0xc23 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .debug_info    0x00015976     0x1218 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .debug_info    0x00016b8e      0x65d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
- .debug_info    0x000171eb      0x162 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
- .debug_info    0x0001734d       0x9c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
- .debug_info    0x000173e9     0x16e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .debug_info    0x00018acd     0x16e3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .debug_info    0x0001a1b0     0x1780 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .debug_info    0x0001b930     0x2d98 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .debug_info    0x0001e6c8      0x741 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
- .debug_info    0x0001ee09      0x60d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
- .debug_info    0x0001f416      0xb8f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
- .debug_info    0x0001ffa5      0xe0a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
- .debug_info    0x00020daf      0xb29 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
- .debug_info    0x000218d8      0x298 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
- .debug_info    0x00021b70      0x9ca C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
- .debug_info    0x0002253a      0x14f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .debug_info    0x00022689     0x1350 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .debug_info    0x000239d9      0xcd3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
- .debug_info    0x000246ac      0x104 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
- .debug_info    0x000247b0      0x8fc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
- .debug_info    0x000250ac      0x638 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
- .debug_info    0x000256e4      0x6e5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .debug_info    0x00025dc9      0x25e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
- .debug_info    0x00026027      0xc62 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .debug_info    0x00026c89      0x9f3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .debug_info    0x0002767c      0x4aa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
- .debug_info    0x00027b26      0x179 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
- .debug_info    0x00027c9f      0x164 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
- .debug_info    0x00027e03      0x1e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
- .debug_info    0x00027fe7      0x545 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
- .debug_info    0x0002852c     0x1c69 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+ .debug_info    0x0000a80f     0x2aac ./storagecontroller.o
+ .debug_info    0x0000d2bb      0x585 ./telecommand.o
+ .debug_info    0x0000d840      0xa3a ./telemetry.o
+ .debug_info    0x0000e27a     0x32c8 ./topics.o
+ .debug_info    0x00011542      0x32a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
+ .debug_info    0x0001186c      0x5f0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_info    0x00011e5c      0x661 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_info    0x000124bd      0x693 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_info    0x00012b50      0x2f9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_info    0x00012e49      0x820 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_info    0x00013669       0xaf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_info    0x00013718       0x3a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
+ .debug_info    0x00013752      0x46d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_info    0x00013bbf      0xa30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_info    0x000145ef      0x1ee C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_info    0x000147dd      0x5a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_info    0x00014d7f      0xc23 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_info    0x000159a2     0x1218 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_info    0x00016bba      0x65d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_info    0x00017217      0x162 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_info    0x00017379       0x9c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
+ .debug_info    0x00017415     0x16e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_info    0x00018af9     0x16e3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_info    0x0001a1dc     0x1780 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_info    0x0001b95c     0x2d98 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_info    0x0001e6f4      0x741 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_info    0x0001ee35      0x60d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_info    0x0001f442      0xb8f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_info    0x0001ffd1      0xe0a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_info    0x00020ddb      0xb29 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_info    0x00021904      0x298 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_info    0x00021b9c      0x9ca C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_info    0x00022566      0x14f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_info    0x000226b5     0x1350 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_info    0x00023a05      0xcd3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_info    0x000246d8      0x104 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_info    0x000247dc      0x8fc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_info    0x000250d8      0x638 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_info    0x00025710      0x6e5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_info    0x00025df5      0x25e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_info    0x00026053      0xc62 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_info    0x00026cb5      0x9f3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_info    0x000276a8      0x4aa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_info    0x00027b52      0x179 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_info    0x00027ccb      0x164 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_info    0x00027e2f      0x1e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_info    0x00028013      0x545 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_info    0x00028558     0x1c69 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
-.debug_abbrev   0x00000000     0x8c05
+.debug_abbrev   0x00000000     0x8c17
  .debug_abbrev  0x00000000      0x36e ./sdspicard/sdspicard.o
  .debug_abbrev  0x0000036e      0x1d9 ./onewire/onewire.o
  .debug_abbrev  0x00000547      0x314 ./fatfs/diskio.o
@@ -8794,54 +8794,54 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_abbrev  0x00001973      0x2f3 ./sensorIMU.o
  .debug_abbrev  0x00001c66      0x322 ./sensorhousekeeping.o
  .debug_abbrev  0x00001f88      0x323 ./spihelper.o
- .debug_abbrev  0x000022ab      0x564 ./storagecontroller.o
- .debug_abbrev  0x0000280f      0x2b2 ./telecommand.o
- .debug_abbrev  0x00002ac1      0x29d ./telemetry.o
- .debug_abbrev  0x00002d5e      0x421 ./topics.o
- .debug_abbrev  0x0000317f      0x1e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
- .debug_abbrev  0x00003363       0xf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
- .debug_abbrev  0x00003456      0x319 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .debug_abbrev  0x0000376f      0x1fa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
- .debug_abbrev  0x00003969      0x1c5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .debug_abbrev  0x00003b2e      0x338 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .debug_abbrev  0x00003e66       0x5b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .debug_abbrev  0x00003ec1       0x2f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
- .debug_abbrev  0x00003ef0       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
- .debug_abbrev  0x00003fe0      0x2fb C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .debug_abbrev  0x000042db      0x115 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
- .debug_abbrev  0x000043f0      0x2c8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
- .debug_abbrev  0x000046b8      0x299 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .debug_abbrev  0x00004951      0x3ac C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .debug_abbrev  0x00004cfd      0x2d2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
- .debug_abbrev  0x00004fcf      0x10c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
- .debug_abbrev  0x000050db       0x12 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
- .debug_abbrev  0x000050ed      0x526 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .debug_abbrev  0x00005613      0x444 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .debug_abbrev  0x00005a57      0x4a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .debug_abbrev  0x00005ef9      0x6d9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .debug_abbrev  0x000065d2      0x15a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
- .debug_abbrev  0x0000672c      0x1a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
- .debug_abbrev  0x000068d4      0x169 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
- .debug_abbrev  0x00006a3d      0x1bf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
- .debug_abbrev  0x00006bfc      0x16c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
- .debug_abbrev  0x00006d68      0x136 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
- .debug_abbrev  0x00006e9e      0x15a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
- .debug_abbrev  0x00006ff8       0x8b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .debug_abbrev  0x00007083      0x31b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .debug_abbrev  0x0000739e      0x34b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
- .debug_abbrev  0x000076e9       0x68 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
- .debug_abbrev  0x00007751      0x196 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
- .debug_abbrev  0x000078e7      0x13b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
- .debug_abbrev  0x00007a22      0x20d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .debug_abbrev  0x00007c2f      0x15f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
- .debug_abbrev  0x00007d8e      0x408 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .debug_abbrev  0x00008196      0x325 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .debug_abbrev  0x000084bb      0x1d1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
- .debug_abbrev  0x0000868c       0xc2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
- .debug_abbrev  0x0000874e       0xfe C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
- .debug_abbrev  0x0000884c       0xe3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
- .debug_abbrev  0x0000892f      0x14a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
- .debug_abbrev  0x00008a79      0x18c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+ .debug_abbrev  0x000022ab      0x576 ./storagecontroller.o
+ .debug_abbrev  0x00002821      0x2b2 ./telecommand.o
+ .debug_abbrev  0x00002ad3      0x29d ./telemetry.o
+ .debug_abbrev  0x00002d70      0x421 ./topics.o
+ .debug_abbrev  0x00003191      0x1e4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
+ .debug_abbrev  0x00003375       0xf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_abbrev  0x00003468      0x319 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_abbrev  0x00003781      0x1fa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_abbrev  0x0000397b      0x1c5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_abbrev  0x00003b40      0x338 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_abbrev  0x00003e78       0x5b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_abbrev  0x00003ed3       0x2f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
+ .debug_abbrev  0x00003f02       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_abbrev  0x00003ff2      0x2fb C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_abbrev  0x000042ed      0x115 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_abbrev  0x00004402      0x2c8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_abbrev  0x000046ca      0x299 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_abbrev  0x00004963      0x3ac C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_abbrev  0x00004d0f      0x2d2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_abbrev  0x00004fe1      0x10c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_abbrev  0x000050ed       0x12 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
+ .debug_abbrev  0x000050ff      0x526 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_abbrev  0x00005625      0x444 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_abbrev  0x00005a69      0x4a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_abbrev  0x00005f0b      0x6d9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_abbrev  0x000065e4      0x15a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_abbrev  0x0000673e      0x1a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_abbrev  0x000068e6      0x169 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_abbrev  0x00006a4f      0x1bf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_abbrev  0x00006c0e      0x16c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_abbrev  0x00006d7a      0x136 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_abbrev  0x00006eb0      0x15a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_abbrev  0x0000700a       0x8b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_abbrev  0x00007095      0x31b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_abbrev  0x000073b0      0x34b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_abbrev  0x000076fb       0x68 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_abbrev  0x00007763      0x196 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_abbrev  0x000078f9      0x13b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_abbrev  0x00007a34      0x20d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_abbrev  0x00007c41      0x15f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_abbrev  0x00007da0      0x408 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_abbrev  0x000081a8      0x325 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_abbrev  0x000084cd      0x1d1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_abbrev  0x0000869e       0xc2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_abbrev  0x00008760       0xfe C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_abbrev  0x0000885e       0xe3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_abbrev  0x00008941      0x14a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_abbrev  0x00008a8b      0x18c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
 .debug_aranges  0x00000000     0x2740
  .debug_aranges
@@ -8967,7 +8967,7 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_aranges
                 0x00002448      0x2f8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
-.debug_ranges   0x00000000     0x2368
+.debug_ranges   0x00000000     0x2380
  .debug_ranges  0x00000000       0xe8 ./sdspicard/sdspicard.o
  .debug_ranges  0x000000e8       0x80 ./onewire/onewire.o
  .debug_ranges  0x00000168       0x50 ./fatfs/diskio.o
@@ -8981,52 +8981,52 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_ranges  0x00000560       0x78 ./sensorIMU.o
  .debug_ranges  0x000005d8       0x80 ./sensorhousekeeping.o
  .debug_ranges  0x00000658       0x70 ./spihelper.o
- .debug_ranges  0x000006c8      0x118 ./storagecontroller.o
- .debug_ranges  0x000007e0       0x58 ./telecommand.o
- .debug_ranges  0x00000838       0x88 ./telemetry.o
- .debug_ranges  0x000008c0      0x258 ./topics.o
- .debug_ranges  0x00000b18       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
- .debug_ranges  0x00000b88       0x68 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .debug_ranges  0x00000bf0       0x90 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
- .debug_ranges  0x00000c80       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .debug_ranges  0x00000ca0       0x28 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .debug_ranges  0x00000cc8       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .debug_ranges  0x00000cd8       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
- .debug_ranges  0x00000d48       0x50 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .debug_ranges  0x00000d98       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
- .debug_ranges  0x00000db8       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
- .debug_ranges  0x00000e10       0xb8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .debug_ranges  0x00000ec8       0xa8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .debug_ranges  0x00000f70       0x60 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
- .debug_ranges  0x00000fd0       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
- .debug_ranges  0x00001000       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
- .debug_ranges  0x00001020      0x130 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .debug_ranges  0x00001150       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .debug_ranges  0x00001240       0xe0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .debug_ranges  0x00001320      0x290 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .debug_ranges  0x000015b0       0xa0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
- .debug_ranges  0x00001650       0x78 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
- .debug_ranges  0x000016c8      0x120 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
- .debug_ranges  0x000017e8      0x1a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
- .debug_ranges  0x00001990       0xd0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
- .debug_ranges  0x00001a60       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
- .debug_ranges  0x00001aa0       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
- .debug_ranges  0x00001b90       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .debug_ranges  0x00001bc0       0xa0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .debug_ranges  0x00001c60       0x88 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
- .debug_ranges  0x00001ce8       0x38 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
- .debug_ranges  0x00001d20       0xc0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
- .debug_ranges  0x00001de0       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
- .debug_ranges  0x00001e00       0x50 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .debug_ranges  0x00001e50       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
- .debug_ranges  0x00001e70       0xe8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .debug_ranges  0x00001f58       0x60 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .debug_ranges  0x00001fb8       0x38 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
- .debug_ranges  0x00001ff0       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
- .debug_ranges  0x00002008       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
- .debug_ranges  0x00002020       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
- .debug_ranges  0x00002050       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
- .debug_ranges  0x00002080      0x2e8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+ .debug_ranges  0x000006c8      0x130 ./storagecontroller.o
+ .debug_ranges  0x000007f8       0x58 ./telecommand.o
+ .debug_ranges  0x00000850       0x88 ./telemetry.o
+ .debug_ranges  0x000008d8      0x258 ./topics.o
+ .debug_ranges  0x00000b30       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_ranges  0x00000ba0       0x68 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_ranges  0x00000c08       0x90 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_ranges  0x00000c98       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_ranges  0x00000cb8       0x28 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_ranges  0x00000ce0       0x10 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_ranges  0x00000cf0       0x70 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_ranges  0x00000d60       0x50 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_ranges  0x00000db0       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_ranges  0x00000dd0       0x58 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_ranges  0x00000e28       0xb8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_ranges  0x00000ee0       0xa8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_ranges  0x00000f88       0x60 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_ranges  0x00000fe8       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_ranges  0x00001018       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
+ .debug_ranges  0x00001038      0x130 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_ranges  0x00001168       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_ranges  0x00001258       0xe0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_ranges  0x00001338      0x290 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_ranges  0x000015c8       0xa0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_ranges  0x00001668       0x78 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_ranges  0x000016e0      0x120 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_ranges  0x00001800      0x1a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_ranges  0x000019a8       0xd0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_ranges  0x00001a78       0x40 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_ranges  0x00001ab8       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_ranges  0x00001ba8       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_ranges  0x00001bd8       0xa0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_ranges  0x00001c78       0x88 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_ranges  0x00001d00       0x38 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_ranges  0x00001d38       0xc0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_ranges  0x00001df8       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_ranges  0x00001e18       0x50 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_ranges  0x00001e68       0x20 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_ranges  0x00001e88       0xe8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_ranges  0x00001f70       0x60 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_ranges  0x00001fd0       0x38 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_ranges  0x00002008       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_ranges  0x00002020       0x18 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_ranges  0x00002038       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_ranges  0x00002068       0x30 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_ranges  0x00002098      0x2e8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
 .debug_macro    0x00000000    0x1b374
  .debug_macro   0x00000000      0x2f7 ./sdspicard/sdspicard.o
@@ -9184,189 +9184,189 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_macro   0x0001aada      0x165 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
  .debug_macro   0x0001ac3f      0x735 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
-.debug_line     0x00000000    0x22072
- .debug_line    0x00000000      0xbca ./sdspicard/sdspicard.o
- .debug_line    0x00000bca      0x927 ./onewire/onewire.o
- .debug_line    0x000014f1      0x925 ./fatfs/diskio.o
- .debug_line    0x00001e16     0x1185 ./fatfs/ff.o
- .debug_line    0x00002f9b      0x8bf ./ControlLoop.o
- .debug_line    0x0000385a      0x890 ./actuatorhandler.o
- .debug_line    0x000040ea      0x843 ./buzzer.o
- .debug_line    0x0000492d      0x8a7 ./comminterfaces.o
- .debug_line    0x000051d4      0xb68 ./healthwatchdog.o
- .debug_line    0x00005d3c      0x7f8 ./murmur.o
- .debug_line    0x00006534      0xb14 ./sensorIMU.o
- .debug_line    0x00007048      0x9a8 ./sensorhousekeeping.o
- .debug_line    0x000079f0      0x8d8 ./spihelper.o
- .debug_line    0x000082c8      0xdce ./storagecontroller.o
- .debug_line    0x00009096      0x8fc ./telecommand.o
- .debug_line    0x00009992      0x963 ./telemetry.o
- .debug_line    0x0000a2f5      0xe6e ./topics.o
- .debug_line    0x0000b163      0x78c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
- .debug_line    0x0000b8ef      0x38e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
- .debug_line    0x0000bc7d      0x8de C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .debug_line    0x0000c55b      0x4e1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
- .debug_line    0x0000ca3c      0x7c4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .debug_line    0x0000d200      0x8e5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .debug_line    0x0000dae5      0x789 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .debug_line    0x0000e26e       0x47 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
- .debug_line    0x0000e2b5      0x306 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
- .debug_line    0x0000e5bb      0x853 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .debug_line    0x0000ee0e      0x7b5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
- .debug_line    0x0000f5c3      0x8bd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
- .debug_line    0x0000fe80      0x995 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .debug_line    0x00010815      0xa52 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .debug_line    0x00011267      0x8e2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
- .debug_line    0x00011b49       0xc9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
- .debug_line    0x00011c12       0x9e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
- .debug_line    0x00011cb0     0x1078 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .debug_line    0x00012d28     0x10fe C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .debug_line    0x00013e26     0x10c7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .debug_line    0x00014eed     0x172e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .debug_line    0x0001661b      0x740 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
- .debug_line    0x00016d5b      0x6a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
- .debug_line    0x00017403      0x856 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
- .debug_line    0x00017c59      0x9a5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
- .debug_line    0x000185fe      0x7bf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
- .debug_line    0x00018dbd      0x5da C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
- .debug_line    0x00019397      0x7f7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
- .debug_line    0x00019b8e      0x7cc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .debug_line    0x0001a35a      0xcc7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .debug_line    0x0001b021      0xc12 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
- .debug_line    0x0001bc33      0x5af C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
- .debug_line    0x0001c1e2      0x751 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
- .debug_line    0x0001c933      0x652 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
- .debug_line    0x0001cf85      0x865 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .debug_line    0x0001d7ea      0x7fc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
- .debug_line    0x0001dfe6      0xb82 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .debug_line    0x0001eb68      0x8b7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .debug_line    0x0001f41f      0x3ad C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
- .debug_line    0x0001f7cc      0x7a9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
- .debug_line    0x0001ff75      0x7b1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
- .debug_line    0x00020726      0x5c7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
- .debug_line    0x00020ced      0x5bc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
- .debug_line    0x000212a9      0xdc9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+.debug_line     0x00000000    0x2207c
+ .debug_line    0x00000000      0xbc6 ./sdspicard/sdspicard.o
+ .debug_line    0x00000bc6      0x927 ./onewire/onewire.o
+ .debug_line    0x000014ed      0x925 ./fatfs/diskio.o
+ .debug_line    0x00001e12     0x1185 ./fatfs/ff.o
+ .debug_line    0x00002f97      0x8bf ./ControlLoop.o
+ .debug_line    0x00003856      0x890 ./actuatorhandler.o
+ .debug_line    0x000040e6      0x843 ./buzzer.o
+ .debug_line    0x00004929      0x8a7 ./comminterfaces.o
+ .debug_line    0x000051d0      0xb68 ./healthwatchdog.o
+ .debug_line    0x00005d38      0x7f8 ./murmur.o
+ .debug_line    0x00006530      0xb14 ./sensorIMU.o
+ .debug_line    0x00007044      0x9a8 ./sensorhousekeeping.o
+ .debug_line    0x000079ec      0x8d8 ./spihelper.o
+ .debug_line    0x000082c4      0xddc ./storagecontroller.o
+ .debug_line    0x000090a0      0x8fc ./telecommand.o
+ .debug_line    0x0000999c      0x963 ./telemetry.o
+ .debug_line    0x0000a2ff      0xe6e ./topics.o
+ .debug_line    0x0000b16d      0x78c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
+ .debug_line    0x0000b8f9      0x38e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_line    0x0000bc87      0x8de C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_line    0x0000c565      0x4e1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_line    0x0000ca46      0x7c4 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_line    0x0000d20a      0x8e5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_line    0x0000daef      0x789 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_line    0x0000e278       0x47 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
+ .debug_line    0x0000e2bf      0x306 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_line    0x0000e5c5      0x853 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_line    0x0000ee18      0x7b5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_line    0x0000f5cd      0x8bd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_line    0x0000fe8a      0x995 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_line    0x0001081f      0xa52 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_line    0x00011271      0x8e2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_line    0x00011b53       0xc9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_line    0x00011c1c       0x9e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
+ .debug_line    0x00011cba     0x1078 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_line    0x00012d32     0x10fe C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_line    0x00013e30     0x10c7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_line    0x00014ef7     0x172e C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_line    0x00016625      0x740 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_line    0x00016d65      0x6a8 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_line    0x0001740d      0x856 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_line    0x00017c63      0x9a5 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_line    0x00018608      0x7bf C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_line    0x00018dc7      0x5da C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_line    0x000193a1      0x7f7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_line    0x00019b98      0x7cc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_line    0x0001a364      0xcc7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_line    0x0001b02b      0xc12 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_line    0x0001bc3d      0x5af C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_line    0x0001c1ec      0x751 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_line    0x0001c93d      0x652 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_line    0x0001cf8f      0x865 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_line    0x0001d7f4      0x7fc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_line    0x0001dff0      0xb82 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_line    0x0001eb72      0x8b7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_line    0x0001f429      0x3ad C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_line    0x0001f7d6      0x7a9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_line    0x0001ff7f      0x7b1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_line    0x00020730      0x5c7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_line    0x00020cf7      0x5bc C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_line    0x000212b3      0xdc9 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
-.debug_str      0x00000000    0x6a2ed
- .debug_str     0x00000000     0x55f9 ./sdspicard/sdspicard.o
-                               0x58e2 (size before relaxing)
- .debug_str     0x000055f9      0x2f1 ./onewire/onewire.o
+.debug_str      0x00000000    0x6a2d4
+ .debug_str     0x00000000     0x55e0 ./sdspicard/sdspicard.o
+                               0x58c9 (size before relaxing)
+ .debug_str     0x000055e0      0x2f1 ./onewire/onewire.o
                                0x4f09 (size before relaxing)
- .debug_str     0x000058ea      0x299 ./fatfs/diskio.o
+ .debug_str     0x000058d1      0x299 ./fatfs/diskio.o
                                0x59f2 (size before relaxing)
- .debug_str     0x00005b83     0x128c ./fatfs/ff.o
+ .debug_str     0x00005b6a     0x128c ./fatfs/ff.o
                                0x39d8 (size before relaxing)
- .debug_str     0x00006e0f      0x8f1 ./ControlLoop.o
+ .debug_str     0x00006df6      0x8f1 ./ControlLoop.o
                                0x54dd (size before relaxing)
- .debug_str     0x00007700      0x28f ./actuatorhandler.o
+ .debug_str     0x000076e7      0x28f ./actuatorhandler.o
                                0x536a (size before relaxing)
- .debug_str     0x0000798f       0xc7 ./buzzer.o
+ .debug_str     0x00007976       0xc7 ./buzzer.o
                                0x514c (size before relaxing)
- .debug_str     0x00007a56      0x195 ./comminterfaces.o
+ .debug_str     0x00007a3d      0x195 ./comminterfaces.o
                                0x5721 (size before relaxing)
- .debug_str     0x00007beb     0x214e ./healthwatchdog.o
+ .debug_str     0x00007bd2     0x214e ./healthwatchdog.o
                                0x6eed (size before relaxing)
- .debug_str     0x00009d39       0xa3 ./murmur.o
+ .debug_str     0x00009d20       0xa3 ./murmur.o
                                0x4bed (size before relaxing)
- .debug_str     0x00009ddc      0x497 ./sensorIMU.o
+ .debug_str     0x00009dc3      0x497 ./sensorIMU.o
                                0x533f (size before relaxing)
- .debug_str     0x0000a273      0x50b ./sensorhousekeeping.o
+ .debug_str     0x0000a25a      0x50b ./sensorhousekeeping.o
                                0x555c (size before relaxing)
- .debug_str     0x0000a77e      0x1f8 ./spihelper.o
+ .debug_str     0x0000a765      0x1f8 ./spihelper.o
                                0x553c (size before relaxing)
- .debug_str     0x0000a976     0x14d8 ./storagecontroller.o
+ .debug_str     0x0000a95d     0x14d8 ./storagecontroller.o
                                0x8fb7 (size before relaxing)
- .debug_str     0x0000be4e      0x130 ./telecommand.o
+ .debug_str     0x0000be35      0x130 ./telecommand.o
                                0x4fc2 (size before relaxing)
- .debug_str     0x0000bf7e      0x236 ./telemetry.o
+ .debug_str     0x0000bf65      0x236 ./telemetry.o
                                0x51ea (size before relaxing)
- .debug_str     0x0000c1b4     0x12a6 ./topics.o
+ .debug_str     0x0000c19b     0x12a6 ./topics.o
                                0x665a (size before relaxing)
- .debug_str     0x0000d45a      0x1b1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
+ .debug_str     0x0000d441      0x1b1 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
                                0x4de2 (size before relaxing)
- .debug_str     0x0000d60b      0x2d7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_str     0x0000d5f2      0x2d7 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
                                0x32d1 (size before relaxing)
- .debug_str     0x0000d8e2      0x285 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_str     0x0000d8c9      0x285 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
                                0x4f22 (size before relaxing)
- .debug_str     0x0000db67      0x4c0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_str     0x0000db4e      0x4c0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
                                0x3a96 (size before relaxing)
- .debug_str     0x0000e027       0xba C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_str     0x0000e00e       0xba C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
                                0x4cfe (size before relaxing)
- .debug_str     0x0000e0e1      0x200 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_str     0x0000e0c8      0x200 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
                                0x5183 (size before relaxing)
- .debug_str     0x0000e2e1       0x33 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_str     0x0000e2c8       0x33 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
                                0x4b70 (size before relaxing)
- .debug_str     0x0000e314       0x27 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
+ .debug_str     0x0000e2fb       0x27 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
                                0x24e4 (size before relaxing)
- .debug_str     0x0000e33b       0xaa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_str     0x0000e322       0xaa C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
                                0x28c1 (size before relaxing)
- .debug_str     0x0000e3e5      0x1d0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_str     0x0000e3cc      0x1d0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
                                0x51ea (size before relaxing)
- .debug_str     0x0000e5b5       0xf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_str     0x0000e59c       0xf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
                                0x4c64 (size before relaxing)
- .debug_str     0x0000e6a8      0x1a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_str     0x0000e68f      0x1a2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
                                0x4e2d (size before relaxing)
- .debug_str     0x0000e84a      0x63f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_str     0x0000e831      0x63f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
                                0x528f (size before relaxing)
- .debug_str     0x0000ee89      0x982 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_str     0x0000ee70      0x982 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
                                0x5a9b (size before relaxing)
- .debug_str     0x0000f80b      0x138 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_str     0x0000f7f2      0x138 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
                                0x4d8e (size before relaxing)
- .debug_str     0x0000f943      0x270 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_str     0x0000f92a      0x270 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
                                0x251d (size before relaxing)
- .debug_str     0x0000fbb3    0x51cd2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_str     0x0000fb9a    0x51cd2 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
                               0x580a1 (size before relaxing)
- .debug_str     0x00061885      0x666 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_str     0x0006186c      0x666 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
                               0x57b90 (size before relaxing)
- .debug_str     0x00061eeb      0x777 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_str     0x00061ed2      0x777 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
                               0x57d90 (size before relaxing)
- .debug_str     0x00062662      0xecd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_str     0x00062649      0xecd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
                               0x58e78 (size before relaxing)
- .debug_str     0x0006352f      0x59f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_str     0x00063516      0x59f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
                               0x54573 (size before relaxing)
- .debug_str     0x00063ace      0x171 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_str     0x00063ab5      0x171 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
                               0x541b8 (size before relaxing)
- .debug_str     0x00063c3f      0x3ef C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_str     0x00063c26      0x3ef C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
                               0x54443 (size before relaxing)
- .debug_str     0x0006402e      0xc9b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_str     0x00064015      0xc9b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
                               0x54c89 (size before relaxing)
- .debug_str     0x00064cc9      0x313 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_str     0x00064cb0      0x313 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
                               0x5448c (size before relaxing)
- .debug_str     0x00064fdc      0x36a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_str     0x00064fc3      0x36a C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
                               0x54210 (size before relaxing)
- .debug_str     0x00065346      0x4ce C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_str     0x0006532d      0x4ce C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
                               0x544c8 (size before relaxing)
- .debug_str     0x00065814      0x12b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_str     0x000657fb      0x12b C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
                                0x4c94 (size before relaxing)
- .debug_str     0x0006593f     0x127f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_str     0x00065926     0x127f C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
                               0x586e9 (size before relaxing)
- .debug_str     0x00066bbe      0x96c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_str     0x00066ba5      0x96c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
                               0x56c2c (size before relaxing)
- .debug_str     0x0006752a       0x90 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_str     0x00067511       0x90 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
                               0x53ecd (size before relaxing)
- .debug_str     0x000675ba     0x11bd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_str     0x000675a1     0x11bd C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
                                0x6da7 (size before relaxing)
- .debug_str     0x00068777      0x12c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_str     0x0006875e      0x12c C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
                               0x543de (size before relaxing)
- .debug_str     0x000688a3      0x277 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_str     0x0006888a      0x277 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
                                0x5438 (size before relaxing)
- .debug_str     0x00068b1a       0x5d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_str     0x00068b01       0x5d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
                                0x4c60 (size before relaxing)
- .debug_str     0x00068b77      0x53d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_str     0x00068b5e      0x53d C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
                                0x546c (size before relaxing)
- .debug_str     0x000690b4      0x238 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_str     0x0006909b      0x238 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
                                0x540b (size before relaxing)
- .debug_str     0x000692ec      0x164 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_str     0x000692d3      0x164 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
                                0x34bd (size before relaxing)
- .debug_str     0x00069450       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_str     0x00069437       0xf0 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
                                0x4ca8 (size before relaxing)
- .debug_str     0x00069540       0x75 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_str     0x00069527       0x75 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
                                0x4bef (size before relaxing)
- .debug_str     0x000695b5      0x105 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_str     0x0006959c      0x105 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
                               0x54491 (size before relaxing)
- .debug_str     0x000696ba      0x140 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_str     0x000696a1      0x140 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
                               0x54117 (size before relaxing)
- .debug_str     0x000697fa      0xaf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+ .debug_str     0x000697e1      0xaf3 C:\Users\TobiZ\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
                               0x54bac (size before relaxing)
 
 .comment        0x00000000       0x70

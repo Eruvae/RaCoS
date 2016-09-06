@@ -24,6 +24,11 @@ enum Mode
 	STAND_BY = 0x03, FLIGHT = 0x04, SECURE = 0x05, BLOW_DOWN = 0x06
 };
 
+enum Status
+{
+	OK = 0, NO_INIT = 1, INIT_FAILED = 2, COMM_ERROR = 3
+};
+
 
 struct __attribute__((packed)) IMUdata
 {
@@ -62,12 +67,12 @@ struct __attribute__((packed)) TcData
 	int payload;
 };
 
-struct __attribute__((packed)) Status
+/*struct __attribute__((packed)) Status
 {
 	short id; 
 	bool systemBad;
 	int errorcode;
-};
+};*/
 
 struct __attribute__((packed)) DpCommand
 {

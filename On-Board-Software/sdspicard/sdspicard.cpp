@@ -24,8 +24,8 @@
 #include "../spihelper.h"
 
 // debug trace macro
-// #define SD_TRACE(m, b)
-#define SD_TRACE(m, b) PRINTF("%s: %d\n", m, b);
+#define SD_TRACE(m, b)
+//#define SD_TRACE(m, b) PRINTF("%s: %d\n", m, b);
 #define SD_CS_DBG(m)
 // #define SD_CS_DBG(m) Serial.println(F(m));
 #define USE_SD_CRC 2
