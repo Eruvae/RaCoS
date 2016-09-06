@@ -4,139 +4,168 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define DEBUG_READ_TEST_MSG
+//#define DEBUG_READ_TEST_MSG
 
-//StorageController storageController("Storage Controller", 100);
+StorageController storageController("Storage Controller", 100);
 
-FRESULT scan_files (char* path /* Start node to be scanned (***also used as work area***) */)
-{
-    FRESULT res;
-    DIR dir;
-    UINT i;
-    static FILINFO fno;
+#ifndef DEBUG_READ_TEST_MSG
+SyncFifo<IMUdata, 100> imuFifo;
+SyncFifo<HkData, 100> hkFifo;
+SyncFifo<CmdData, 100> controlFifo;
 
+Subscriber imuFifoSub(IMUTopic, imuFifo);
+Subscriber hkFifoSub(hkTopic, hkFifo);
+Subscriber controlFifoSub(controlTopic, controlFifo);
+#endif
 
+char buf1[64];
+#ifdef DEBUG_READ_TEST_MSG
+char buf2[64];
+#endif
 
-    res = f_opendir(&dir, path);                       /* Open the directory */
-    PRINTF("Res: %d\n", res);
-    if (res == FR_OK) {
-        while (1)
-        {
-            res = f_readdir(&dir, &fno);                   /* Read a directory item */
-            if (res != FR_OK || fno.fname[0] == 0) break;  /* Break on error or end of dir */
-            if (fno.fattrib & AM_DIR) {                    /* It is a directory */
-                i = strlen(path);
-                sprintf(&path[i], "/%s", fno.fname);
-                res = scan_files(path);                    /* Enter the directory */
-                if (res != FR_OK) break;
-                path[i] = 0;
-            } else {                                       /* It is a file. */
-                PRINTF("%s/%s\n", path, fno.fname);
-            }
-        }
-        f_closedir(&dir);
-    }
+//const uint32_t wbSize = 2048;
+//uint8_t workBuf[wbSize] = {0};
 
-    return res;
-}
-
-char readBuf[64];
-char readBuf2[64];
-
-const uint32_t wbSize = 2048;
-uint8_t workBuf[wbSize] = {0};
+//extern SdSpiCard sd;
 
 void StorageController::run()
 {
-    // TODO: may be necessary to wait for SD-card to initialize
-	suspendCallerUntil(NOW() + 1*SECONDS);
-
 	FATFS fs;
 	FIL fil;       // File object
 	FRESULT result;
-	unsigned int readBytes;
+	unsigned int bytes;
 
 	#ifdef DEBUG_READ_TEST_MSG
 
-	memset(readBuf, 0, 64);
+	memset(buf1, 0, 63);
 
 	//PRINTF("Mount: %d\n", f_mount(&fs, "0:", 0));
 
 	//PRINTF("Result mkfs: %d\n", f_mkfs("0:", FS_FAT32, 0, workBuf, wbSize));
 
+	PRINTF("SDbegin%d\n", sd.begin());
+
 	PRINTF("Mount: %d\n", f_mount(&fs, "0:", 0));
 
 	PRINTF("Open: %d", f_open(&fil, "message.txt", FA_READ));
-	f_read(&fil, readBuf, 64, &readBytes);
-	readBuf[readBytes] = '\0';
+	f_read(&fil, buf1, 63, &bytes);
+	buf1[bytes] = '\0';
 
 	f_open(&fil, "datafile.dat", FA_WRITE | FA_CREATE_ALWAYS);
-	f_write(&fil, "Deine Mutter!", 14, &readBytes);
+	f_write(&fil, "Test write.", 14, &bytes);
 	f_close(&fil);
 	f_open(&fil, "datafile.dat", FA_READ);
-	f_read(&fil, readBuf2, 64, &readBytes);
+	f_read(&fil, buf2, 63, &bytes);
 
 	while(1)
 	{
-		//teleUART.write(readBuf, readBytes);
-		PRINTF("%s; %d\n", readBuf, readBytes);
-		PRINTF("%s; %d\n", readBuf2, readBytes);
+		//teleUART.write(buf1, bytes);
+		PRINTF("%s; %d\n", buf1, bytes);
+		PRINTF("%s; %d\n", buf2, bytes);
 		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 
-	#endif
+	#else
 
 	result = f_mount(&fs, "0:", 0);
 
 	if (result != FR_OK)
 	{
+		PRINTF("SD not mounted.\n");
 		// send error code to healthwatchdog
+		suspendCallerUntil();
 	}
+
+	PRINTF("SD mounted.\n");
 
 	int runcount = 1;
 
-	result = f_open(&fil, "runcount.txt", FA_READ | FA_WRITE);
+	result = f_open(&fil, "runcnt", FA_READ | FA_WRITE);
+
+	PRINTF("File runcount opened: %d.\n", result);
+
+	//suspendCallerUntil();
 
 	if (result == FR_NO_FILE)
 	{
+		PRINTF("Create new.\n");
 		f_close(&fil);
-		result = f_open(&fil, "runcount.txt", FA_WRITE | FA_CREATE_ALWAYS);
-		f_write(&fil, "1", 1, &readBytes);
+		result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
+		f_write(&fil, "1", 1, &bytes);
 	}
 	else
 	{
-		f_read(&fil, readBuf, 64, &readBytes);
-		readBuf[readBytes] = 0;
-		runcount = atoi(readBuf);
+		PRINTF("Use existing.\n");
+		bytes = 0;
+		result = f_read(&fil, buf1, sizeof(buf1) - 1, &bytes);
+		f_close(&fil);
+		PRINTF("Result runcount read: %d, bytes: %d\n", result, bytes);
+		buf1[bytes] = 0;
+		PRINTF("Hallo: %s\n", buf1);
+		runcount = atoi(buf1);
+		PRINTF("Hallo: %d\n", runcount);
 		if (runcount == 0)
 		{
-			// Fehler
+			PRINTF("Runcount NAN.\n");
+			// Fehler (evtl)
 		}
 		runcount++;
-		sprintf(readBuf, "%d", runcount);
-		f_close(&fil);
-		result = f_open(&fil, "runcount.txt", FA_WRITE | FA_CREATE_ALWAYS);
-		f_write(&fil, readBuf, sizeof(readBuf), &readBytes);
+		bytes = sprintf(buf1, "%d", runcount);
+		buf1[bytes] = 0;
+		PRINTF("bytes: %d\n", bytes);
+		PRINTF("Hallo: %s\n", buf1);
+		result = f_open(&fil, "runcnt", FA_WRITE | FA_CREATE_ALWAYS);
+		PRINTF("Result runcount write: %d\n", result);
+		f_write(&fil, buf1, strlen(buf1), &bytes);
 	}
 	f_close(&fil);
 
-	sprintf(readBuf, "data_run%d.dat", runcount);
-	f_open(&fil, readBuf, FA_WRITE | FA_CREATE_ALWAYS);
+	PRINTF("Sprintf filename.\n");
+	sprintf(buf1, "log%d", runcount);
+	result = f_open(&fil, buf1, FA_WRITE | FA_CREATE_ALWAYS);
+
+	PRINTF("Open datfile result: %d", result);
+
+	f_close(&fil);
 
 	setPeriodicBeat(100*MILLISECONDS, 500*MILLISECONDS);
 
 	while(1)
 	{
-		//IMUdata imu;
-		//HkData hk;
-		//CmdData cmd;
-		// Read Queues, write data to file
-		/*while (imuFifo.get(imu))
-		{
 
-		}*/
+		PRINTF("In loop.\n");
+
+		result = f_open(&fil, buf1, FA_WRITE);
+
+		char imubyte = SYNC_IMU;
+		char ptbyte = SYNC_PT;
+		char calcbyte = SYNC_CALC;
+
+		IMUdata imu;
+		HkData hk;
+		CmdData cmd;
+		// Read Queues, write data to file
+		while (imuFifo.get(imu))
+		{
+			f_write(&fil, &imubyte, 1, &bytes);
+			f_write(&fil, &imu, sizeof(imu), &bytes);
+		}
+		while (hkFifo.get(hk))
+		{
+			f_write(&fil, &ptbyte, 1, &bytes);
+			f_write(&fil, &hk, sizeof(hk), &bytes);
+		}
+		while (controlFifo.get(cmd))
+		{
+			f_write(&fil, &calcbyte, 1, &bytes);
+			f_write(&fil, &cmd, sizeof(cmd), &bytes);
+		}
+
+		f_close(&fil);
+
 
 		suspendUntilNextBeat();
 	}
+	#endif
 
 }
