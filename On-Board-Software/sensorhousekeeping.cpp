@@ -7,7 +7,7 @@ SensorHousekeeping sensorHousekeeping;
 
 // ADC-Defines:
 // Adress of ADC; Ground: 0b1001000, VDD: 0b1001001, SDA: 0b1001010, SCL: 0b1001011
-#define ADC_ITC_ADDR 0b1001000
+#define ADC_ITC_ADDR 0b1001011
 
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
@@ -25,14 +25,14 @@ uint8_t adc_read_mode[] = {ADC_CONV_REG};
 // TODO: Update these values with ROM-Codes
 const uint8_t TS_NOZ1_ROM[8] = {0x28, 0x76, 0x6C, 0xD7, 0x04, 0x00, 0x00, 0x1D};
 const uint8_t TS_NOZ2_ROM[8] = {0x28, 0x40, 0x3E, 0xAC, 0x04, 0x00, 0x00, 0x68};
-const uint8_t TS_NOZ3_ROM[8] = {0x28, 0x43, 0x24, 0x3A, 0x04, 0x00, 0x00, 0xB1};
+const uint8_t TS_NOZ3_ROM[8] = {0x28, 0x43, 0x24, 0x9A, 0x04, 0x00, 0x00, 0xB1};
 const uint8_t TS_NOZ4_ROM[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 const uint8_t TS_TANK_ROM[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 const uint8_t TS_PDU_ROM[8]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 #define TS_TH               0b01010101 // High-Temperature alarm, 85 degrees celsius
 #define TS_TL               0b11001001 // Low-Temperature alarm, -55 degrees celsius
-#define TS_CONFIG           0b00011111 // 9-bit configuration (93.75ms conversion time)
+#define TS_CONFIG           0b01111111 // 9-bit configuration (93.75ms conversion time)
 
 #define TEMP_DIVIDER        16.0
 #define PRES_HIGH_FACTOR	0.009695752453125 // bar/bit
@@ -239,6 +239,11 @@ void SensorHousekeeping::run()
 	}
 
 	configTempSensor(TS_NOZ1_ROM);
+	configTempSensor(TS_NOZ2_ROM);
+	configTempSensor(TS_NOZ3_ROM);
+	configTempSensor(TS_NOZ4_ROM);
+	configTempSensor(TS_TANK_ROM);
+	configTempSensor(TS_PDU_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
     int tempCycle = 0;
@@ -277,14 +282,14 @@ void SensorHousekeeping::run()
         {
             initTemperatureConv();
         }
-        else //if (tempCycle == 1)
+        else if (tempCycle == 9)
         {
             hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
-            //hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
-            //hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
-            //hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
-            //hk.tempTank = getTemperatureData(TS_TANK_ROM);
-            //hk.tempPDU = getTemperatureData(TS_PDU_ROM);
+            hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
+            hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
+            hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
+            hk.tempTank = getTemperatureData(TS_TANK_ROM);
+            hk.tempPDU = getTemperatureData(TS_PDU_ROM);
 
 			#ifdef DEBUG_TEMP_DUMMY_DATA
 
@@ -306,7 +311,7 @@ void SensorHousekeeping::run()
         }
 
         presCycle = !presCycle;
-        tempCycle = ++tempCycle < 2 ? tempCycle : 0;
+        tempCycle = ++tempCycle < 10 ? tempCycle : 0;
         suspendUntilNextBeat();
 
     }

@@ -353,11 +353,11 @@ void MainWindow::decodeCalc(const dpCalc *dataCalc)
 
     if (dataCalc->valveState & 0b10)
     {
-        wValveRM->setColor(Qt::green);
+        wValveRP->setColor(Qt::green);
     }
     else
     {
-        wValveRM->setColor(Qt::red);
+        wValveRP->setColor(Qt::red);
     }
 
     switch (dataCalc->mode & 0x7F)
