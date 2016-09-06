@@ -67,7 +67,7 @@ void StorageController::run()
 
 	#else
 
-	result = f_mount(&fs, "0:", 0);
+	result = f_mount(&fs, "0:", 1);
 
 	if (result != FR_OK)
 	{
