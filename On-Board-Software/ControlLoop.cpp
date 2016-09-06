@@ -25,17 +25,24 @@ void ControlLoop::run()
 		modeBuffer.get(mode);
 		IMUdata imu;
 		IMUBuffer.get(imu);
+		CmdData cmd;
 		double mid = imu.gyroFiltered[2];
 		if(mid < -TRIGGER_THRESHOLD){
 			actuatorHandler.setValve1(false);
 			actuatorHandler.setValve2(true);
+			cmd.valveState(0b10);
 		}else if(mid > TRIGGER_THRESHOLD){
 			actuatorHandler.setValve1(true);
 			actuatorHandler.setValve2(false);
+			cmd.valveState(0b1);
 		}else{
 			actuatorHandler.setValve1(true);
 			actuatorHandler.setValve2(true);
+			cmd.valveState(0b0);
 		}
+		cmd.vot1(30);
+		cmd.vot2(30);
+		controlTopic.publish(cmd,true);
 
 		// Do Control stuff
 		suspendUntilNextBeat();
