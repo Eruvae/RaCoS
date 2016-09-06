@@ -6,10 +6,6 @@ HealthWatchdog healthWatchdog;
 
 HealthWatchdog::HealthWatchdog()
 {
-	housekeepingPending = false;
-	sensorIMUpending = false;
-	actuatorHandlerpending = false;
-	controlLoopPending = false;
 	pending = false;
 	badCount = 0;
 	noCriticalErrorOccurred = false;
@@ -22,49 +18,8 @@ void HealthWatchdog::run()
     setPeriodicBeat(0, 500*MILLISECONDS);
     while(1)
     {
-        badCount += housekeepingPending? 1:0;
-        badCount += sensorIMUpending? 1:0;
-        badCount += actuatorHandlerpending? 1:0;
-        badCount += controlLoopPending? 1:0;
-        if(badCount>HWTD_ErrorThreshold){
-            Status stat;
-            stat.errorcode = Timeout;
-            stat.id = HWTD_ID;
-            stat.systemBad = true;
-            healthTopic.publish(stat);
-        }
         suspendUntilNextBeat();
     }
-}
-
-bool HealthWatchdog::selfcheck()
-{
-    bool t1 = housekeepingPending;
-    bool t2 = sensorIMUpending;
-    bool t3 = actuatorHandlerpending;
-    bool t4 = controlLoopPending;
-    bool success = false;
-
-    housekeepingPending = true;
-    sensorIMUpending = true;
-    actuatorHandlerpending = true;
-    controlLoopPending = true;
-
-    if(housekeepingPending && sensorIMUpending && actuatorHandlerpending && controlLoopPending)success = true;
-
-    housekeepingPending = false;
-    sensorIMUpending = false;
-    actuatorHandlerpending = false;
-    controlLoopPending = false;
-
-    if(!housekeepingPending && !sensorIMUpending && !actuatorHandlerpending && !controlLoopPending)success = true;
-    else success = false;
-
-    housekeepingPending = t1;
-    sensorIMUpending = t2;
-    actuatorHandlerpending = t3;
-    controlLoopPending = t4;
-    return success;
 }
 
 bool HealthWatchdog::emergencyCutoffCheck()
