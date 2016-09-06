@@ -13,21 +13,23 @@
 
 class HealthWatchdog: public Thread {
 private:
-
 	bool pending;
 	uint32_t badCount;
 	bool noCriticalErrorOccurred;
 	bool emergencyCutoff;
-public:
 	int sensorIMUStatus;
 	int actuatorHandlerStatus;
 	int controlLoopStatus;
+public:
 	HealthWatchdog();
 	void run();
 	void initThreads();
 	bool selfcheck();
 	bool emergencyCutoffCheck();
 	void sendCutoff(bool state);
+	void setIMUStatus(int error);
+	void setActuatorHandlerStatus(int error);
+	void setControlLoopStatus(int error);
 };
 
 extern HealthWatchdog healthWatchdog;

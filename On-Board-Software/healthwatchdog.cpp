@@ -8,7 +8,7 @@ HealthWatchdog::HealthWatchdog()
 {
 	pending = false;
 	badCount = 0;
-	noCriticalErrorOccurred = false;
+	noCriticalErrorOccurred = true;
 	emergencyCutoff = false;
 }
 
@@ -35,4 +35,13 @@ void HealthWatchdog::sendCutoff(bool state)
     out.vot2 = 0;
     controlTopic.publish(out);
     emergencyCutoff = state;
+}
+void HealthWatchdog::setActuatorHandlerStatus(int error){
+
+}
+void HealthWatchdog::setControlLoopStatus(int error){
+
+}
+void HealthWatchdog::setIMUStatus(int error){
+
 }
