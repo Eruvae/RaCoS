@@ -1,4 +1,5 @@
 #include "sensorIMU.h"
+#include "healthwatchdog.h"
 
 //#define DEBUG_IMU_DUMMY_DATA
 //#define DEBUG_WHO_AM_I
@@ -260,8 +261,15 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 }
 
 void SensorIMU::run() {
-	initIMU(IMU1);
-	initIMU(IMU2);
+	int result1, result2;
+	result1 = initIMU(IMU1);
+	result2 = initIMU(IMU2);
+
+	if (result1 < 0 || result2 < 0)
+		healthWatchdog.setIMUStatus(INIT_FAILED);
+	else
+		healthWatchdog.setIMUStatus(OK);
+
 	calibrate();
 	setPeriodicBeat(0, 10 * MILLISECONDS);
 	IMUReadStruct imu1_buf, imu2_buf;

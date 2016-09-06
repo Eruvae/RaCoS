@@ -3,6 +3,7 @@
 #include "fatfs/diskio.h"
 #include <cstdio>
 #include <cstdlib>
+#include "healthwatchdog.h"
 
 //#define DEBUG_READ_TEST_MSG
 
@@ -78,10 +79,12 @@ void StorageController::run()
 
 	if (result != FR_OK)
 	{
-		// send error code to healthwatchdog
+		healthWatchdog.setStorageControllerStatus(INIT_FAILED);
 		PRINTF("SD not mounted, no more retrys.\n");
 		suspendCallerUntil();
 	}
+
+	healthWatchdog.setStorageControllerStatus(OK);
 
 	//PRINTF("SD mounted.\n");
 

@@ -17,9 +17,14 @@ private:
 	uint32_t badCount;
 	bool noCriticalErrorOccurred;
 	bool emergencyCutoff;
-	int sensorIMUStatus;
-	int actuatorHandlerStatus;
-	int controlLoopStatus;
+	Status sensorIMUStatus;
+	Status housekeepingStatus;
+	Status controlLoopStatus;
+	Status storageControllerStatus;
+	Status telemetryStatus;
+
+	uint16_t encodeModulStates();
+
 public:
 	HealthWatchdog();
 	void run();
@@ -27,9 +32,12 @@ public:
 	bool selfcheck();
 	bool emergencyCutoffCheck();
 	void sendCutoff(bool state);
-	void setIMUStatus(int error);
-	void setActuatorHandlerStatus(int error);
-	void setControlLoopStatus(int error);
+
+	void setIMUStatus(Status error);
+	void setHousekeepingStatus(Status error);
+	void setControlLoopStatus(Status error);
+	void setStorageControllerStatus(Status error);
+	void setTelemetryStatus(Status error);
 };
 
 extern HealthWatchdog healthWatchdog;

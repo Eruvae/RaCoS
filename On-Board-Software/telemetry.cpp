@@ -106,9 +106,11 @@ int Telemetry::encodePresTemp(char *buffer)
 
 int Telemetry::encodeCalc(char *buffer)
 {
+	uint16_t modulState = 0;
 	controlBuffer.get(calc);
 	modeBuffer.get(mode);
 	testBuffer.get(testMode);
+	modulStateBuffer.get(modulState);
 	
 	static uint16_t counter = 0;
 	
@@ -123,7 +125,7 @@ int Telemetry::encodeCalc(char *buffer)
 	
 	buffer[6] = (uint8_t)mode | (testMode << 7);
 
-	*(uint16_t*)&buffer[7] = 0;
+	*(uint16_t*)&buffer[7] = modulState;
 
 	memcpy(&buffer[9], &calc, 5);
 	

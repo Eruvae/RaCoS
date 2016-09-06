@@ -195,6 +195,7 @@ void MainWindow::serialConnect()
 
     file.setFileName("telemetry_" + com->text() + "_" + curTime.toString("dd-MM-yyyy-hh-mm-ss") + ".bin");
 
+    /*
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QMessageBox msgBox;
@@ -207,6 +208,7 @@ void MainWindow::serialConnect()
         msgBox.setText("File " + file.fileName() + " opened.");
         msgBox.exec();
     }
+    */
 
 }
 
@@ -335,6 +337,20 @@ void MainWindow::decodePT(const dpPresTemp *dataPT)
     }
 }
 
+QString decodeModulState(uint16_t code)
+{
+    if (code == OK)
+        return QString("OK");
+    if (code == NO_INIT)
+        return QString("NO_INIT");
+    if (code == INIT_FAILED)
+        return QString("INIT_FAILED");
+    if (code == COMM_ERROR)
+        return QString("COMM_ERROR");
+
+    return QString("NO_CODE");
+}
+
 void MainWindow::decodeCalc(const dpCalc *dataCalc)
 {
     uint32_t checksum = Murmur::mm_hash_32((uint8_t*)dataCalc, sizeof(dpCalc) - 4);
@@ -380,6 +396,23 @@ void MainWindow::decodeCalc(const dpCalc *dataCalc)
         wTestMode->setColor(Qt::green);
     else
         wTestMode->setColor(Qt::red);
+
+    uint16_t status = dataCalc->modulStates;
+
+    ui->txtIMUState->setPlainText(decodeModulState(status & 0b111));
+
+    status >>= 3;
+    ui->txtHkState->setPlainText(decodeModulState(status & 0b111));
+
+    status >>= 3;
+    ui->txtControlState->setPlainText(decodeModulState(status & 0b111));
+
+    status >>= 3;
+    ui->txtStorageState->setPlainText(decodeModulState(status & 0b111));
+
+    status >>= 3;
+    ui->txtTMState->setPlainText(decodeModulState(status & 0b111));
+
 
     if (file.isOpen())
     {
@@ -690,23 +723,23 @@ void MainWindow::initGUIWidgets()
 
     ui->txtIMUState->setDisabled(true);
     ui->txtIMUState->zoomIn(4);
-    ui->txtIMUState->setPlainText("ok");
+    ui->txtIMUState->setPlainText("NO_INIT");
 
     ui->txtHkState->setDisabled(true);
     ui->txtHkState->zoomIn(4);
-    ui->txtHkState->setPlainText("ok");
+    ui->txtHkState->setPlainText("NO_INIT");
 
     ui->txtControlState->setDisabled(true);
     ui->txtControlState->zoomIn(4);
-    ui->txtControlState->setPlainText("ok");
+    ui->txtControlState->setPlainText("NO_INIT");
 
     ui->txtStorageState->setDisabled(true);
     ui->txtStorageState->zoomIn(4);
-    ui->txtStorageState->setPlainText("ok");
+    ui->txtStorageState->setPlainText("NO_INIT");
 
     ui->txtTMState->setDisabled(true);
     ui->txtTMState->zoomIn(4);
-    ui->txtTMState->setPlainText("ok");
+    ui->txtTMState->setPlainText("NO_INIT");
 }
 
 void MainWindow::initCharts(Chart* widget)

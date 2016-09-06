@@ -1207,7 +1207,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>1700</x>
       <y>90</y>
-      <width>71</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -1217,7 +1217,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>1700</x>
       <y>130</y>
-      <width>71</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -1227,7 +1227,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>1700</x>
       <y>170</y>
-      <width>71</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -1237,7 +1237,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>1700</x>
       <y>210</y>
-      <width>71</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -1247,7 +1247,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>1700</x>
       <y>250</y>
-      <width>71</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>

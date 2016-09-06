@@ -18,6 +18,11 @@
 #define TEST_ACTIVATE   0x07
 #define TEST_LEAVE      0x08
 
+#define OK              0
+#define NO_INIT         1
+#define INIT_FAILED     2
+#define COMM_ERROR      3
+
 #pragma pack(push,1)
 
 struct dpIMU
