@@ -9,9 +9,9 @@
 StorageController storageController("Storage Controller", 100);
 
 #ifndef DEBUG_READ_TEST_MSG
-SyncFifo<IMUdata, 100> imuFifo;
-SyncFifo<HkData, 100> hkFifo;
-SyncFifo<CmdData, 100> controlFifo;
+Fifo<IMUdata, 100> imuFifo;
+Fifo<HkData, 100> hkFifo;
+Fifo<CmdData, 100> controlFifo;
 
 Subscriber imuFifoSub(IMUTopic, imuFifo);
 Subscriber hkFifoSub(hkTopic, hkFifo);
