@@ -36,12 +36,15 @@ void HealthWatchdog::sendCutoff(bool state)
     controlTopic.publish(out);
     emergencyCutoff = state;
 }
+
 void HealthWatchdog::setActuatorHandlerStatus(int error){
-
+	actuatorHandlerStatus = error;
 }
+
 void HealthWatchdog::setControlLoopStatus(int error){
-
+	controlLoopStatus = error;
 }
-void HealthWatchdog::setIMUStatus(int error){
 
+void HealthWatchdog::setIMUStatus(int error){
+	sensorIMUStatus = error;
 }

@@ -1090,11 +1090,11 @@ Discarded input sections
  .text._ZN14HealthWatchdog10sendCutoffEb
                 0x00000000       0x44 ./healthwatchdog.o
  .text._ZN14HealthWatchdog24setActuatorHandlerStatusEi
-                0x00000000       0x14 ./healthwatchdog.o
+                0x00000000       0x1c ./healthwatchdog.o
  .text._ZN14HealthWatchdog20setControlLoopStatusEi
-                0x00000000       0x14 ./healthwatchdog.o
+                0x00000000       0x1c ./healthwatchdog.o
  .text._ZN14HealthWatchdog12setIMUStatusEi
-                0x00000000       0x14 ./healthwatchdog.o
+                0x00000000       0x1c ./healthwatchdog.o
  .text._ZN5RODOS5TopicI7CmdDataE7publishERS1_b
                 0x00000000       0x28 ./healthwatchdog.o
  .debug_macro   0x00000000      0x86e ./healthwatchdog.o
@@ -9184,7 +9184,7 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_macro   0x0001aada      0x165 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
  .debug_macro   0x0001ac3f      0x735 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
-.debug_line     0x00000000    0x23a67
+.debug_line     0x00000000    0x23a6a
  .debug_line    0x00000000      0xc3e ./sdspicard/sdspicard.o
  .debug_line    0x00000c3e      0x99f ./onewire/onewire.o
  .debug_line    0x000015dd      0x99d ./fatfs/diskio.o
@@ -9193,59 +9193,59 @@ OUTPUT(On-Board-Software.elf elf32-littlearm)
  .debug_line    0x00003a36      0x908 ./actuatorhandler.o
  .debug_line    0x0000433e      0x8bb ./buzzer.o
  .debug_line    0x00004bf9      0x91f ./comminterfaces.o
- .debug_line    0x00005518      0xb92 ./healthwatchdog.o
- .debug_line    0x000060aa      0x870 ./murmur.o
- .debug_line    0x0000691a      0xb8c ./sensorIMU.o
- .debug_line    0x000074a6      0xa19 ./sensorhousekeeping.o
- .debug_line    0x00007ebf      0x950 ./spihelper.o
- .debug_line    0x0000880f      0xe6c ./storagecontroller.o
- .debug_line    0x0000967b      0x974 ./telecommand.o
- .debug_line    0x00009fef      0x9db ./telemetry.o
- .debug_line    0x0000a9ca      0xee6 ./topics.o
- .debug_line    0x0000b8b0      0x804 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
- .debug_line    0x0000c0b4      0x3ca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
- .debug_line    0x0000c47e      0x956 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
- .debug_line    0x0000cdd4      0x541 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
- .debug_line    0x0000d315      0x83c C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
- .debug_line    0x0000db51      0x95d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
- .debug_line    0x0000e4ae      0x801 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
- .debug_line    0x0000ecaf       0x47 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
- .debug_line    0x0000ecf6      0x31e C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
- .debug_line    0x0000f014      0x8cb C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
- .debug_line    0x0000f8df      0x82d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
- .debug_line    0x0001010c      0x935 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
- .debug_line    0x00010a41      0xa0d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
- .debug_line    0x0001144e      0xaca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
- .debug_line    0x00011f18      0x95a C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
- .debug_line    0x00012872       0xc9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
- .debug_line    0x0001293b       0x9e C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
- .debug_line    0x000129d9     0x1138 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
- .debug_line    0x00013b11     0x11ca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
- .debug_line    0x00014cdb     0x1187 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
- .debug_line    0x00015e62     0x17ee C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
- .debug_line    0x00017650      0x7a0 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
- .debug_line    0x00017df0      0x708 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
- .debug_line    0x000184f8      0x8b6 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
- .debug_line    0x00018dae      0xa05 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
- .debug_line    0x000197b3      0x81f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
- .debug_line    0x00019fd2      0x63a C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
- .debug_line    0x0001a60c      0x857 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
- .debug_line    0x0001ae63      0x844 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
- .debug_line    0x0001b6a7      0xd63 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
- .debug_line    0x0001c40a      0xcae C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
- .debug_line    0x0001d0b8      0x60f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
- .debug_line    0x0001d6c7      0x7c9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
- .debug_line    0x0001de90      0x6be C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
- .debug_line    0x0001e54e      0x8dd C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
- .debug_line    0x0001ee2b      0x874 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
- .debug_line    0x0001f69f      0xbfa C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
- .debug_line    0x00020299      0x92f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
- .debug_line    0x00020bc8      0x3e9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
- .debug_line    0x00020fb1      0x821 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
- .debug_line    0x000217d2      0x829 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
- .debug_line    0x00021ffb      0x627 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
- .debug_line    0x00022622      0x61c C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
- .debug_line    0x00022c3e      0xe29 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
+ .debug_line    0x00005518      0xb95 ./healthwatchdog.o
+ .debug_line    0x000060ad      0x870 ./murmur.o
+ .debug_line    0x0000691d      0xb8c ./sensorIMU.o
+ .debug_line    0x000074a9      0xa19 ./sensorhousekeeping.o
+ .debug_line    0x00007ec2      0x950 ./spihelper.o
+ .debug_line    0x00008812      0xe6c ./storagecontroller.o
+ .debug_line    0x0000967e      0x974 ./telecommand.o
+ .debug_line    0x00009ff2      0x9db ./telemetry.o
+ .debug_line    0x0000a9cd      0xee6 ./topics.o
+ .debug_line    0x0000b8b3      0x804 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(00globalobjects.o)
+ .debug_line    0x0000c0b7      0x3ca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(bytesex.o)
+ .debug_line    0x0000c481      0x956 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(debug.o)
+ .debug_line    0x0000cdd7      0x541 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(genericIO.o)
+ .debug_line    0x0000d318      0x83c C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(listelement.o)
+ .debug_line    0x0000db54      0x95d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main.o)
+ .debug_line    0x0000e4b1      0x801 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(main_usermain.o)
+ .debug_line    0x0000ecb2       0x47 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(printfverbosity.o)
+ .debug_line    0x0000ecf9      0x31e C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(string_pico.o)
+ .debug_line    0x0000f017      0x8cb C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(subscriber.o)
+ .debug_line    0x0000f8e2      0x82d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread.o)
+ .debug_line    0x0001010f      0x935 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timeevent.o)
+ .debug_line    0x00010a44      0xa0d C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(timemodel.o)
+ .debug_line    0x00011451      0xaca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(topic.o)
+ .debug_line    0x00011f1b      0x95a C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(yprintf.o)
+ .debug_line    0x00012875       0xc9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(call_constructors.o)
+ .debug_line    0x0001293e       0x9e C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(startup_stm32f4xx.o)
+ .debug_line    0x000129dc     0x1138 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_gpio.o)
+ .debug_line    0x00013b14     0x11ca C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_i2c.o)
+ .debug_line    0x00014cde     0x1187 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_spi.o)
+ .debug_line    0x00015e65     0x17ee C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hal_uart.o)
+ .debug_line    0x00017653      0x7a0 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dma.o)
+ .debug_line    0x00017df3      0x708 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_gpio.o)
+ .debug_line    0x000184fb      0x8b6 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_i2c.o)
+ .debug_line    0x00018db1      0xa05 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_rcc.o)
+ .debug_line    0x000197b6      0x81f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_spi.o)
+ .debug_line    0x00019fd5      0x63a C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_syscfg.o)
+ .debug_line    0x0001a60f      0x857 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_usart.o)
+ .debug_line    0x0001ae66      0x844 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hostinfos.o)
+ .debug_line    0x0001b6aa      0xd63 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_specific.o)
+ .debug_line    0x0001c40d      0xcae C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(hw_timer.o)
+ .debug_line    0x0001d0bb      0x60f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32xxx_it.o)
+ .debug_line    0x0001d6ca      0x7c9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(syscalls.o)
+ .debug_line    0x0001de93      0x6be C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(system_stm32f4xx.o)
+ .debug_line    0x0001e551      0x8dd C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(scheduler.o)
+ .debug_line    0x0001ee2e      0x874 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(semaphore.o)
+ .debug_line    0x0001f6a2      0xbfa C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(thread_on_hw.o)
+ .debug_line    0x0002029c      0x92f C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(application.o)
+ .debug_line    0x00020bcb      0x3e9 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(checksumes.o)
+ .debug_line    0x00020fb4      0x821 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(globaldata.o)
+ .debug_line    0x000217d5      0x829 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(miscs.o)
+ .debug_line    0x00021ffe      0x627 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_dbgmcu.o)
+ .debug_line    0x00022625      0x61c C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_misc.o)
+ .debug_line    0x00022c41      0xe29 C:\Users\Raptoaaah\Desktop\Eclipse Luna SR1 121\Workspace\rodos\Debug_STM32F4\librodos.a(stm32f4xx_tim.o)
 
 .debug_str      0x00000000    0x6a3ba
  .debug_str     0x00000000     0x560b ./sdspicard/sdspicard.o
