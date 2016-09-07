@@ -195,7 +195,7 @@ void MainWindow::serialConnect()
 
     file.setFileName("telemetry_" + com->text() + "_" + curTime.toString("dd-MM-yyyy-hh-mm-ss") + ".bin");
 
-    /*
+
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QMessageBox msgBox;
@@ -204,11 +204,11 @@ void MainWindow::serialConnect()
     }
     else
     {
-        QMessageBox msgBox;
+        /*QMessageBox msgBox;
         msgBox.setText("File " + file.fileName() + " opened.");
-        msgBox.exec();
+        msgBox.exec();*/
     }
-    */
+
 
 }
 

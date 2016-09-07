@@ -1,4 +1,5 @@
 #include "telemetry.h"
+#include "healthwatchdog.h"
 
 //#define DEBUG_SEND_NO_TELEMETRY
 
@@ -11,6 +12,7 @@ void Telemetry::run()
 	char imuBuf[34];
 	char ptBuf[26];
 	char calcBuf[16];
+	healthWatchdog.setTelemetryStatus(OK);
 	while(1)
 	{
 		#ifndef DEBUG_SEND_NO_TELEMETRY
