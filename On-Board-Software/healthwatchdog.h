@@ -28,7 +28,6 @@ private:
 public:
 	HealthWatchdog();
 	void run();
-	void initThreads();
 	bool selfcheck();
 	bool emergencyCutoffCheck();
 	void sendCutoff(bool state);
