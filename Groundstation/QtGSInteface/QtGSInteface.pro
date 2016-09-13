@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-QT       += serialport
+QT += core gui
+QT += 3dcore 3drender 3dinput 3dlogic 3dextras
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -57,3 +58,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     commandwindow.ui
+
+RESOURCES += \
+    rocket.qrc

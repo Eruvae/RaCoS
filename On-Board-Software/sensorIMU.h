@@ -32,9 +32,11 @@ private:
 
 public:
     //int initIMUs();
+	int readReg(SPI_SS id, uint8_t reg, void *buf, uint32_t cnt)
 	int configReg(SPI_SS id, uint8_t reg, uint8_t config);
     int initIMU(SPI_SS id);
-    int getIMU(SPI_SS id, IMUReadStruct *buffer);
+    int getIMU(SPI_SS id, IMUReadStruct *buf);
+    int getMagnetometer(SPI_SS id, void *buffer);
     int resetIMU(SPI_SS id);
     int calibrate();
     void fusionFilter(IMUdata &imu);

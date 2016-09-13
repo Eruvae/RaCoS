@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+		<file>assets/rocket/RX_Structure_Vehicle.obj</file>
+        <file>assets/rocket/mat.png</file>
+		<file>assets/rocket/Chest.obj</file>
+		<file>assets/rocket/roadV2.obj</file>
+		<file>assets/rocket/destination-moon.obj</file>
+    </qresource>
+</RCC>

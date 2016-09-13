@@ -20,6 +20,14 @@ SensorIMU sensorIMU;
 
 #define WHO_AM_I		0x75
 
+#define MPUREG_I2C_SLV0_ADDR       0x25
+#define MPUREG_I2C_SLV0_REG        0x26
+#define MPUREG_I2C_SLV0_CTRL       0x27
+#define MPUREG_EXT_SENS_DATA_00    0x49
+
+#define AK8963_I2C_ADDR             0x0C //0x18
+#define AK8963_HXL                  0x03
+
 #define BITS_FS_250DPS              0x00
 #define BITS_FS_500DPS              0x08
 #define BITS_FS_1000DPS             0x10
@@ -53,12 +61,12 @@ int dummy_cycle = 0;
 
 #endif
 
-double calibG1X = -1;
-double calibG1Y = -1;
-double calibG1Z = -1;
-double calibG2X = -1;
-double calibG2Y = -1;
-double calibG2Z = -1;
+double calibG1X = 0;
+double calibG1Y = 0;
+double calibG1Z = 0;
+double calibG2X = 0;
+double calibG2Y = 0;
+double calibG2Z = 0;
 int fusionCycle = 0;
 
 int SensorIMU::resetIMU(SPI_SS id) {
@@ -92,7 +100,25 @@ int SensorIMU::resetIMU(SPI_SS id) {
 	return retVal;
 }
 
-int SensorIMU::configReg(SPI_SS id, uint8_t reg, uint8_t config) {
+int SensorIMU::readReg(SPI_SS id, uint8_t reg, void *buf, uint32_t cnt)
+{
+	if (!(id == IMU1 || id == IMU2))
+		return -1;
+
+	uint8_t readAddr = reg | READ_FLAG;
+
+	spiHelper.selectSlave(id);
+
+	spi_bus.write(&readAddr, 1);
+	int result = spi_bus.read((uint8_t*)buf, cnt);
+
+	spiHelper.disableSlaves();
+
+	return result;
+}
+
+int SensorIMU::configReg(SPI_SS id, uint8_t reg, uint8_t config)
+{
 	if (!(id == IMU1 || id == IMU2))
 		return -1;
 
@@ -100,17 +126,15 @@ int SensorIMU::configReg(SPI_SS id, uint8_t reg, uint8_t config) {
 
 	spiHelper.selectSlave(id);
 
-	int retVal = 0;
-
-	if (spi_bus.write(regConfig, 2) == -1)
-		retVal = -1;
+	int result = spi_bus.write(regConfig, 2);
 
 	spiHelper.disableSlaves();
 
-	return retVal;
+	return result;
 }
 
-int SensorIMU::initIMU(SPI_SS id) {
+int SensorIMU::initIMU(SPI_SS id)
+{
 	if (resetIMU(id) == -1)
 		return -1;
 
@@ -134,35 +158,34 @@ int SensorIMU::initIMU(SPI_SS id) {
 	return 0;
 }
 
-int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buffer) {
+int SensorIMU::getIMU(SPI_SS id, IMUReadStruct *buf)
+{
 	if (!(id == IMU1 || id == IMU2))
 		return -1;
 
-	spiHelper.selectSlave(id);
+	readReg(id, ACC_OUT, buf, sizeof(IMUReadStruct));
 
-	uint8_t readAddr = ACC_OUT | READ_FLAG;
-
-	spi_bus.write(&readAddr, 1);
-
-	if (spi_bus.read((uint8_t*) buffer, sizeof(IMUReadStruct)) == -1) {
-		spiHelper.disableSlaves();
-		return -1;
-	}
-
-	spiHelper.disableSlaves();
-
-	buffer->gyroData[0] = swap16(buffer->gyroData[0]);
-	buffer->gyroData[1] = swap16(buffer->gyroData[1]);
-	buffer->gyroData[2] = swap16(buffer->gyroData[2]);
-	// buffer->tempData = swap16(buffer->tempData); // Temperature not needed
-	buffer->accData[0] = swap16(buffer->accData[0]);
-	buffer->accData[1] = swap16(buffer->accData[1]);
-	buffer->accData[2] = swap16(buffer->accData[2]);
+	buf->gyroData[0] = swap16(buf->gyroData[0]);
+	buf->gyroData[1] = swap16(buf->gyroData[1]);
+	buf->gyroData[2] = swap16(buf->gyroData[2]);
+	// buf->tempData = swap16(buf->tempData); // Temperature not needed
+	buf->accData[0] = swap16(buf->accData[0]);
+	buf->accData[1] = swap16(buf->accData[1]);
+	buf->accData[2] = swap16(buf->accData[2]);
 
 	return 0;
 }
 
-int SensorIMU::calibrate() {
+int SensorIMU::getMagnetometer(SPI_SS id, void *buffer)
+{
+	configReg(id, MPUREG_I2C_SLV0_ADDR, AK8963_I2C_ADDR | READ_FLAG); //Set the I2C slave addres of AK8963 and set for read.
+	configReg(id, MPUREG_I2C_SLV0_REG, AK8963_HXL); //I2C slave 0 register address from where to begin data transfer
+	configReg(id, MPUREG_I2C_SLV0_CTRL, 0x87); //Read 7 bytes from the magnetometer
+	readReg(id, MPUREG_EXT_SENS_DATA_00, buffer, 7);
+}
+
+int SensorIMU::calibrate()
+{
 	IMUReadStruct imu1_buf, imu2_buf;
 	double tempG1X = 0;
 	double tempG1Y = 0;
@@ -171,7 +194,8 @@ int SensorIMU::calibrate() {
 	double tempG2Y = 0;
 	double tempG2Z = 0;
 
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < 1000; i++)
+	{
 		getIMU(IMU1, &imu1_buf);
 		getIMU(IMU2, &imu2_buf);
 		tempG1X += imu1_buf.gyroData[0];
@@ -190,7 +214,8 @@ int SensorIMU::calibrate() {
 	calibG2Z = tempG2Z / 1000.0;
 }
 
-void SensorIMU::fusionFilter(IMUdata &imu) {
+void SensorIMU::fusionFilter(IMUdata &imu)
+{
 	GxHistory1[fusionCycle] = (imu.gyroData1[0] - calibG1X) * GYRO_FACTOR;
 	GyHistory1[fusionCycle] = (imu.gyroData1[1] - calibG1Y) * GYRO_FACTOR;
 	GzHistory1[fusionCycle] = (imu.gyroData1[2] - calibG1Z) * GYRO_FACTOR;
@@ -208,8 +233,10 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	double noiseG1[3] = { 0, 0, 0 };
 	double noiseG2[3] = { 0, 0, 0 };
 	//Average over the last 5 values of the specified IMU in 3 Axis
-	for (int i = 0; i < 5; i++) {
-		if (i > 0) {
+	for (int i = 0; i < 5; i++)
+	{
+		if (i > 0)
+		{
 			double temp = GxHistory1[i] - GxHistory1[i - 1];
 			noiseG1[0] += temp < 0 ? -temp : temp;
 			temp = GyHistory1[i] - GxHistory1[i - 1];
@@ -244,7 +271,8 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	noiseG2[2] /= 4;
 
 	double prescaler[9];
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 3; i++)
+	{
 		prescaler[i] = 0.5 / (1.0 + noiseG1[i]);
 		prescaler[i + 3] = 0.5 / (1.0 + noiseG2[i]);
 		prescaler[i + 6] = 1 - prescaler[i] - prescaler[i + 3];
@@ -260,7 +288,8 @@ void SensorIMU::fusionFilter(IMUdata &imu) {
 	filterZLast = imu.gyroFiltered[2];
 }
 
-void SensorIMU::run() {
+void SensorIMU::run()
+{
 	int result1, result2;
 	result1 = initIMU(IMU1);
 	result2 = initIMU(IMU2);
@@ -273,7 +302,8 @@ void SensorIMU::run() {
 	calibrate();
 	setPeriodicBeat(0, 10 * MILLISECONDS);
 	IMUReadStruct imu1_buf, imu2_buf;
-	while (1) {
+	while (1)
+	{
 		getIMU(IMU1, &imu1_buf);
 		getIMU(IMU2, &imu2_buf);
 

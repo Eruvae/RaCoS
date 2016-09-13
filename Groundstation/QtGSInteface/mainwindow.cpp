@@ -99,6 +99,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete view;
+    delete container;
     delete ui;
 }
 
@@ -270,6 +272,7 @@ void MainWindow::decodeIMU(const dpIMU *dataIMU)
 
     times.push_back(graph_index++);
     rates.push_back(roll_rate);
+    wChart->update();
 
     if (file.isOpen())
     {
@@ -740,6 +743,65 @@ void MainWindow::initGUIWidgets()
     ui->txtTMState->setDisabled(true);
     ui->txtTMState->zoomIn(4);
     ui->txtTMState->setPlainText("NO_INIT");
+
+    // 3D-Stuff
+
+
+    view = new Qt3DExtras::Qt3DWindow();
+    view->defaultFramegraph()->setClearColor(QColor(QRgb(0xffffff)));
+    container = QWidget::createWindowContainer(view);
+    ui->gridRocket->addWidget(container);
+    /*QSize screenSize = view->screen()->size();
+    container->setMinimumSize(QSize(200, 100));
+    container->setMaximumSize(screenSize);*/
+
+    input = new Qt3DInput::QInputAspect;
+    view->registerAspect(input);
+
+    // Root entity
+    rootEntity = new Qt3DCore::QEntity();
+
+    // Camera
+    cameraEntity = view->camera();
+
+    cameraEntity->lens()->setPerspectiveProjection(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
+    cameraEntity->setPosition(QVector3D(0, 0, 20.0f));
+    cameraEntity->setUpVector(QVector3D(0, 1, 0));
+    cameraEntity->setViewCenter(QVector3D(0, 0, 0));
+
+    // Set root object of the scene
+    view->setRootEntity(rootEntity);
+
+
+    // Create rocket
+    rocketEntity = new Qt3DCore::QEntity(rootEntity);
+    Qt3DRender::QMesh *rocketMesh = new Qt3DRender::QMesh();
+    Qt3DCore::QTransform *rocketTransform = new Qt3DCore::QTransform();
+    Qt3DExtras::QDiffuseMapMaterial *rocketMaterial = new Qt3DExtras::QDiffuseMapMaterial();
+    Qt3DRender::QTextureImage *rocketTexture = new Qt3DRender::QTextureImage();
+
+    rocketMesh->setSource(QUrl(QStringLiteral("file:C:/Users/TobiZ/RaCoS/Groundstation/QtGSInteface/assets/rocket/RX_Structure_Vehicle.obj")));
+    rocketTransform->setScale(0.0025f);
+    rocketTransform->setRotationZ(-90.0f);
+    rocketTexture->setSource(QUrl(QStringLiteral("file:C:/Users/TobiZ/RaCoS/Groundstation/QtGSInteface/assets/rocket/mat.png")));
+    rocketMaterial->diffuse()->addTextureImage(rocketTexture);
+
+    rocketEntity->addComponent(rocketMesh);
+    rocketEntity->addComponent(rocketTransform);
+    rocketEntity->addComponent(rocketMaterial);
+
+    /*
+    QPropertyAnimation *rocketAnimation = new QPropertyAnimation(rocketEntity);
+    rocketAnimation->setDuration(2000);
+    rocketAnimation->setStartValue(0.0f);
+    rocketAnimation->setEndValue(360.0f);
+    rocketAnimation->setLoopCount(-1);
+    rocketAnimation->setTargetObject(rocketEntity);
+    rocketAnimation->setPropertyName("");
+    rocketAnimation->start();
+    */
+
+
 }
 
 void MainWindow::initCharts(Chart* widget)

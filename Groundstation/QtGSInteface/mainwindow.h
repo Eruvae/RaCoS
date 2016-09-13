@@ -5,6 +5,12 @@
 #include <QLabel>
 #include <QSerialPort>
 
+#include <Qt3DCore>
+#include <Qt3DRender>
+#include <Qt3DInput>
+#include <Qt3DLogic>
+#include <Qt3DExtras>
+
 #include "GUIWidgets/qneedleindicator.h"
 #include "GUIWidgets/thermometer.h"
 #include "GUIWidgets/led.h"
@@ -56,6 +62,14 @@ private:
     Led *wValveRM;
     Led *wTestMode;
     Chart *wChart;
+
+    // 3d stuff
+    Qt3DExtras::Qt3DWindow *view;
+    QWidget *container;
+    Qt3DInput::QInputAspect *input;
+    Qt3DCore::QEntity *rootEntity;
+    Qt3DRender::QCamera *cameraEntity;
+    Qt3DCore::QEntity *rocketEntity;
 
     // QAction *menuSendCommand;
     QMenu *menuSendCommand;
