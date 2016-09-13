@@ -33,6 +33,7 @@ SOURCES += main.cpp \
     GUIWidgets/qneedleindicator.cpp \
     GUIWidgets/thermometer.cpp \
     GUIWidgets/widgetwithbackground.cpp \
+    rocket.cpp
 
 HEADERS  += mainwindow.h \
     murmur.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     GUIWidgets/qneedleindicator.h \
     GUIWidgets/thermometer.h \
     GUIWidgets/widgetwithbackground.h \
-    packages.h
+    packages.h \
+    rocket.h
 
 FORMS    += mainwindow.ui \
     commandwindow.ui

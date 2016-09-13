@@ -19,6 +19,7 @@
 
 #include "packages.h"
 #include "murmur.h"
+#include "rocket.h"
 
 namespace Ui {
 class MainWindow;
@@ -69,7 +70,7 @@ private:
     Qt3DInput::QInputAspect *input;
     Qt3DCore::QEntity *rootEntity;
     Qt3DRender::QCamera *cameraEntity;
-    Qt3DCore::QEntity *rocketEntity;
+    Rocket *rocket;
 
     // QAction *menuSendCommand;
     QMenu *menuSendCommand;

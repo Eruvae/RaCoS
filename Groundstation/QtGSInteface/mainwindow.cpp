@@ -774,32 +774,18 @@ void MainWindow::initGUIWidgets()
 
 
     // Create rocket
-    rocketEntity = new Qt3DCore::QEntity(rootEntity);
-    Qt3DRender::QMesh *rocketMesh = new Qt3DRender::QMesh();
-    Qt3DCore::QTransform *rocketTransform = new Qt3DCore::QTransform();
-    Qt3DExtras::QDiffuseMapMaterial *rocketMaterial = new Qt3DExtras::QDiffuseMapMaterial();
-    Qt3DRender::QTextureImage *rocketTexture = new Qt3DRender::QTextureImage();
+    rocket = new Rocket(rootEntity);
 
-    rocketMesh->setSource(QUrl(QStringLiteral("file:C:/Users/TobiZ/RaCoS/Groundstation/QtGSInteface/assets/rocket/RX_Structure_Vehicle.obj")));
-    rocketTransform->setScale(0.0025f);
-    rocketTransform->setRotationZ(-90.0f);
-    rocketTexture->setSource(QUrl(QStringLiteral("file:C:/Users/TobiZ/RaCoS/Groundstation/QtGSInteface/assets/rocket/mat.png")));
-    rocketMaterial->diffuse()->addTextureImage(rocketTexture);
 
-    rocketEntity->addComponent(rocketMesh);
-    rocketEntity->addComponent(rocketTransform);
-    rocketEntity->addComponent(rocketMaterial);
-
-    /*
-    QPropertyAnimation *rocketAnimation = new QPropertyAnimation(rocketEntity);
+    QPropertyAnimation *rocketAnimation = new QPropertyAnimation(rocket);
     rocketAnimation->setDuration(2000);
     rocketAnimation->setStartValue(0.0f);
     rocketAnimation->setEndValue(360.0f);
     rocketAnimation->setLoopCount(-1);
-    rocketAnimation->setTargetObject(rocketEntity);
-    rocketAnimation->setPropertyName("");
+    rocketAnimation->setTargetObject(rocket);
+    rocketAnimation->setPropertyName("theta");
     rocketAnimation->start();
-    */
+
 
 
 }
