@@ -36,9 +36,9 @@ const uint8_t TS_PDU_ROM[8]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 #define TS_CONFIG           0b01111111 // 9-bit configuration (93.75ms conversion time)
 
 #define TEMP_DIVIDER        16.0
-#define PRES_HIGH_FACTOR	0.009695752453125 // bar/bit
+#define PRES_HIGH_FACTOR	0.15513203925 // bar/bit
 #define PRES_HIGH_OFFSET	24.841810875 // bar
-#define PRES_LOW_FACTOR		0.0008079796875 // bar/bit
+#define PRES_LOW_FACTOR		0.012927675 // bar/bit
 #define PRES_LOW_OFFSET		2.1546125 // bar
 
 #ifdef DEBUG_TEMP_DUMMY_DATA
@@ -137,8 +137,8 @@ int SensorHousekeeping::getTankPressure(int16_t *presTank)
     	return result;
     }
 
-    int16_t tmp = swap16(*presTank);
-    *presTank = (tmp & 0x8000) | ((tmp >> 4) & 0x7FF);
+    int16_t tmp = swap16(*presTank) >> 4;
+    *presTank = (tmp & 0x0800) ? (tmp | 0xF800) : tmp;
 
     // config ADC for valves pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pv, 3)) < 0)
@@ -166,8 +166,8 @@ int SensorHousekeeping::getValvesPressure(int16_t *presValves)
     	return result;
     }
 
-    int16_t tmp = swap16(*presValves);
-    *presValves = (tmp & 0x8000) | ((tmp >> 4) & 0x7FF);
+    int16_t tmp = swap16(*presValves) >> 4;
+    *presValves = (tmp & 0x0800) ? (tmp | 0xF800) : tmp;
 
     // config ADC for tank pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)
