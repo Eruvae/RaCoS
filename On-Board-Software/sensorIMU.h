@@ -32,7 +32,7 @@ private:
 
 public:
     //int initIMUs();
-	int readReg(SPI_SS id, uint8_t reg, void *buf, uint32_t cnt)
+	int readReg(SPI_SS id, uint8_t reg, void *buf, uint32_t cnt);
 	int configReg(SPI_SS id, uint8_t reg, uint8_t config);
     int initIMU(SPI_SS id);
     int getIMU(SPI_SS id, IMUReadStruct *buf);

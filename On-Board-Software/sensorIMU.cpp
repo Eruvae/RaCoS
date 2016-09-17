@@ -360,13 +360,13 @@ void SensorIMU::run()
 
 		imu.sysTime = NOW();
 
-		PRINTF("Offset Gyro1: %f, %f, %f\n", calibG1X*GYRO_FACTOR, calibG1Y*GYRO_FACTOR, calibG1Z*GYRO_FACTOR);
+		/*PRINTF("Offset Gyro1: %f, %f, %f\n", calibG1X*GYRO_FACTOR, calibG1Y*GYRO_FACTOR, calibG1Z*GYRO_FACTOR);
 		PRINTF("Offset Gyro2: %f, %f, %f\n", calibG2X*GYRO_FACTOR, calibG2Y*GYRO_FACTOR, calibG2Z*GYRO_FACTOR);
 		PRINTF("Raw Gyro1: %f, %f, %f\n", imu.gyroData1[0]*GYRO_FACTOR, imu.gyroData1[1]*GYRO_FACTOR, imu.gyroData1[2]*GYRO_FACTOR);
 		PRINTF("Raw Gyro2: %f, %f, %f\n", imu.gyroData2[0]*GYRO_FACTOR, imu.gyroData2[1]*GYRO_FACTOR, imu.gyroData2[2]*GYRO_FACTOR);
 		PRINTF("Raw Acc1: %f, %f, %f\n", imu.accData1[0]*ACC_FACTOR, imu.accData1[1]*ACC_FACTOR, imu.accData1[2]*ACC_FACTOR);
 		PRINTF("Raw Acc2: %f, %f, %f\n", imu.accData2[0]*ACC_FACTOR, imu.accData2[1]*ACC_FACTOR, imu.accData2[2]*ACC_FACTOR);
-		PRINTF("Fusioned IMU: %f, %f, %f\n\n", imu.gyroFiltered[0], imu.gyroFiltered[1], imu.gyroFiltered[2]);
+		PRINTF("Fusioned IMU: %f, %f, %f\n\n", imu.gyroFiltered[0], imu.gyroFiltered[1], imu.gyroFiltered[2]);*/
 
 
 		IMUTopic.publish(imu);

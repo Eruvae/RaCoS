@@ -12,11 +12,11 @@ SensorHousekeeping sensorHousekeeping;
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
 
-#define ADC_CONFIG_PT_MSB 0b01000001
-#define ADC_CONFIG_PV_MSB 0b01010001
+#define ADC_CONFIG_PT_MSB 0b11000001
+#define ADC_CONFIG_PV_MSB 0b11010001
 //B15: 0-no effect, B14-12: 100-Ain0, 101-Ain1, B11-9: 000-FS+-6.144V, B8: 1-continuous conversion
 
-#define ADC_CONFIG_PTV_LSB 0b10000011
+#define ADC_CONFIG_PTV_LSB 0b00000011
 
 uint8_t adc_config_pt[] = {ADC_CONFIG_REG, ADC_CONFIG_PT_MSB, ADC_CONFIG_PTV_LSB};
 uint8_t adc_config_pv[] = {ADC_CONFIG_REG, ADC_CONFIG_PV_MSB, ADC_CONFIG_PTV_LSB};
@@ -137,6 +137,9 @@ int SensorHousekeeping::getTankPressure(uint16_t *presTank)
     }
 
     *presTank = swap16(*presTank);
+    //double calculatePress = *presTank;
+    //calculatePress = (calculatePress*PRES_HIGH_FACTOR)-PRES_HIGH_OFFSET;
+    //*presTank = 0 + calculatePress;
 
     // config ADC for valves pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pv, 3)) < 0)
@@ -165,6 +168,9 @@ int SensorHousekeeping::getValvesPressure(uint16_t *presValves)
     }
 
     *presValves = swap16(*presValves);
+    //double calculatePress = *presValves;
+    //calculatePress = (calculatePress*PRES_HIGH_FACTOR)-PRES_HIGH_OFFSET;
+    //*presValves = 0 + calculatePress;
 
     // config ADC for tank pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)
@@ -255,14 +261,15 @@ void SensorHousekeeping::run()
         {
             if ((result = getTankPressure(&(hk.presTank))) < 0)
             {
-            	//PRINTF("Getting tank pressure failed: %d\n", result);
+            	PRINTF("Getting tank pressure failed: %d\n", result);
             }
+            PRINTF("Tank Pressure: %d\n", hk.presTank);
         }
         else
         {
             if ((result = getValvesPressure(&(hk.presValves))) < 0)
             {
-            	//PRINTF("Getting valves pressure failed: %d\n", result);
+            	PRINTF("Getting valves pressure failed: %d\n", result);
             }
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
@@ -275,7 +282,7 @@ void SensorHousekeeping::run()
             	dummy_pres_cycle = 0;
 
 			#endif
-
+            PRINTF("Valves Pressure: %d\n", hk.presValves);
             hk.sysTime = NOW();
             hkTopic.publish(hk);
         }
