@@ -12,11 +12,12 @@ SensorHousekeeping sensorHousekeeping;
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
 
-#define ADC_CONFIG_PT_MSB 0b11000001
-#define ADC_CONFIG_PV_MSB 0b11010001
-//B15: 0-no effect, B14-12: 100-Ain0, 101-Ain1, B11-9: 000-FS+-6.144V, B8: 1-continuous conversion
+#define ADC_CONFIG_PT_MSB 0b01010000
+#define ADC_CONFIG_PV_MSB 0b01100000
+//B15: 0-no effect, B14-12: 101-Ain1, 110-Ain2, B11-9: 000-FS+-6.144V, B8: 0-continous conversion
 
-#define ADC_CONFIG_PTV_LSB 0b00000011
+#define ADC_CONFIG_PTV_LSB 0b10000011
+//B7-5: 100-1600SPS, B4: 0-traditional comparator, B3: 0-Alert/Ready active low, B2: 0-non-latching comparator, B1-0: 11-disable comparator
 
 uint8_t adc_config_pt[] = {ADC_CONFIG_REG, ADC_CONFIG_PT_MSB, ADC_CONFIG_PTV_LSB};
 uint8_t adc_config_pv[] = {ADC_CONFIG_REG, ADC_CONFIG_PV_MSB, ADC_CONFIG_PTV_LSB};
@@ -120,7 +121,7 @@ int16_t SensorHousekeeping::getTemperatureData(const uint8_t *rom_code)
 
 }
 
-int SensorHousekeeping::getTankPressure(uint16_t *presTank)
+int SensorHousekeeping::getTankPressure(int16_t *presTank)
 {
 	int result;
     // read tank pressure
@@ -136,10 +137,8 @@ int SensorHousekeeping::getTankPressure(uint16_t *presTank)
     	return result;
     }
 
-    *presTank = swap16(*presTank);
-    //double calculatePress = *presTank;
-    //calculatePress = (calculatePress*PRES_HIGH_FACTOR)-PRES_HIGH_OFFSET;
-    //*presTank = 0 + calculatePress;
+    int16_t tmp = swap16(*presTank);
+    *presTank = (tmp & 0x8000) | ((tmp >> 4) & 0x7FF);
 
     // config ADC for valves pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pv, 3)) < 0)
@@ -151,7 +150,7 @@ int SensorHousekeeping::getTankPressure(uint16_t *presTank)
     return result;
 }
 
-int SensorHousekeeping::getValvesPressure(uint16_t *presValves)
+int SensorHousekeeping::getValvesPressure(int16_t *presValves)
 {   
 	int result;
     // read valves pressure
@@ -167,10 +166,8 @@ int SensorHousekeeping::getValvesPressure(uint16_t *presValves)
     	return result;
     }
 
-    *presValves = swap16(*presValves);
-    //double calculatePress = *presValves;
-    //calculatePress = (calculatePress*PRES_HIGH_FACTOR)-PRES_HIGH_OFFSET;
-    //*presValves = 0 + calculatePress;
+    int16_t tmp = swap16(*presValves);
+    *presValves = (tmp & 0x8000) | ((tmp >> 4) & 0x7FF);
 
     // config ADC for tank pressure
     if ((result = i2c_bus.write(ADC_ITC_ADDR, adc_config_pt, 3)) < 0)

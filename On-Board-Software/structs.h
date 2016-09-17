@@ -43,8 +43,8 @@ struct __attribute__((packed)) IMUdata
 
 struct __attribute__((packed)) HkData
 {
-	uint16_t presTank;
-	uint16_t presValves;
+	int16_t presTank;
+	int16_t presValves;
 	int16_t tempTank;
 	int16_t tempNoz1;
 	int16_t tempNoz2;

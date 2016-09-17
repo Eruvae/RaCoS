@@ -12,8 +12,8 @@ class SensorHousekeeping : public Thread
 public:
     SensorHousekeeping();
     int configADC();
-    int getTankPressure(uint16_t *presTank);
-    int getValvesPressure(uint16_t *presValves);
+    int getTankPressure(int16_t *presTank);
+    int getValvesPressure(int16_t *presValves);
     void configTempSensor(const uint8_t *rom_code);
     void initTemperatureConv();
     int16_t getTemperatureData(const uint8_t *rom_code);
