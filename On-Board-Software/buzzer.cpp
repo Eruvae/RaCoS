@@ -8,7 +8,7 @@
 
 HAL_GPIO buzzerIO(GPIO_033);
 
-Buzzer buzzer;
+Buzzer buzzer("Buzzer",10000);
 
 const int c = 261;
 const int d = 294;
@@ -29,6 +29,7 @@ const int fSH = 740;
 const int gH = 784;
 const int gSH = 830;
 const int aH = 880;
+
 
 void Buzzer::init(){
 	buzzerIO.init(true,1,0);

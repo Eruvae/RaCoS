@@ -1,4 +1,6 @@
 #include "sensorhousekeeping.h"
+#include "stdio.h"
+#include "telemetry.h"
 
 //#define DEBUG_TEMP_DUMMY_DATA
 //#define DEBUG_PRES_DUMMY_DATA
@@ -12,8 +14,8 @@ SensorHousekeeping sensorHousekeeping;
 #define ADC_CONV_REG 0b00
 #define ADC_CONFIG_REG 0b01
 
-#define ADC_CONFIG_PT_MSB 0b01010000
-#define ADC_CONFIG_PV_MSB 0b01100000
+#define ADC_CONFIG_PT_MSB 0b01000000
+#define ADC_CONFIG_PV_MSB 0b01010000
 //B15: 0-no effect, B14-12: 101-Ain1, 110-Ain2, B11-9: 000-FS+-6.144V, B8: 0-continous conversion
 
 #define ADC_CONFIG_PTV_LSB 0b10000011
@@ -24,22 +26,19 @@ uint8_t adc_config_pv[] = {ADC_CONFIG_REG, ADC_CONFIG_PV_MSB, ADC_CONFIG_PTV_LSB
 uint8_t adc_read_mode[] = {ADC_CONV_REG};
 
 // TODO: Update these values with ROM-Codes
-const uint8_t TS_NOZ1_ROM[8] = {0x28, 0x76, 0x6C, 0xD7, 0x04, 0x00, 0x00, 0x1D};
-const uint8_t TS_NOZ2_ROM[8] = {0x28, 0x40, 0x3E, 0xAC, 0x04, 0x00, 0x00, 0x68};
-const uint8_t TS_NOZ3_ROM[8] = {0x28, 0x43, 0x24, 0x9A, 0x04, 0x00, 0x00, 0xB1};
-const uint8_t TS_NOZ4_ROM[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const uint8_t TS_TANK_ROM[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-const uint8_t TS_PDU_ROM[8]  = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t TS_TANK_ROM[8] = {0x28, 0xCD, 0x2A, 0x36, 0x07, 0x00, 0x00, 0xB5};//{0x28, 0x88, 0x37, 0x36, 0x07, 0x00, 0x00, 0xBB};
+const uint8_t TS_PDU_ROM[8]  = {0x28, 0x46, 0x33, 0x36, 0x07, 0x00, 0x00, 0x28};//{0x28, 0x3A, 0x7D, 0x35, 0x07, 0x00, 0x00, 0x0E};
+const uint8_t TS_VALVERP_ROM[8] = {0x28, 0xEF, 0x3B, 0x36, 0x07, 0x00, 0x00, 0xDC};//{0x28, 0x46, 0x33, 0x36, 0x07, 0x00, 0x00, 0x28};
+const uint8_t TS_VALVERM_ROM[8] = {0x28, 0x88, 0x37, 0x36, 0x07, 0x00, 0x00, 0xBB};//{0x28, 0xD9, 0x93, 0x35, 0x07, 0x00, 0x00, 0x06};
+const uint8_t TS_VALVEEC_ROM[8] = {0x28, 0x3A, 0x7D, 0x35, 0x07, 0x00, 0x00, 0x0E};//{0x28, 0xCD, 0x2A, 0x36, 0x07, 0x00, 0x00, 0xB5};
+const uint8_t TS_NOZ1_ROM[8] = {0x28, 0xC3, 0xA5, 0x36, 0x07, 0x00, 0x00, 0x02};//{0x28, 0xC3, 0xA5, 0x36, 0x07, 0x00, 0x00, 0x02};
+const uint8_t TS_NOZ2_ROM[8] = {0x28, 0xD9, 0x93, 0x35, 0x07, 0x00, 0x00, 0x06};//{0x28, 0xEF, 0x3B, 0x36, 0x07, 0x00, 0x00, 0xDC};
 
 #define TS_TH               0b01010101 // High-Temperature alarm, 85 degrees celsius
 #define TS_TL               0b11001001 // Low-Temperature alarm, -55 degrees celsius
 #define TS_CONFIG           0b01111111 // 9-bit configuration (93.75ms conversion time)
 
-#define TEMP_DIVIDER        16.0
-#define PRES_HIGH_FACTOR	0.15513203925 // bar/bit
-#define PRES_HIGH_OFFSET	24.841810875 // bar
-#define PRES_LOW_FACTOR		0.012927675 // bar/bit
-#define PRES_LOW_OFFSET		2.1546125 // bar
+
 
 #ifdef DEBUG_TEMP_DUMMY_DATA
 
@@ -121,6 +120,8 @@ int16_t SensorHousekeeping::getTemperatureData(const uint8_t *rom_code)
 
 }
 
+// Get ADC value (of tank pressure) and config ADC for valve read
+// stores value in presTank, returns positive integer on success
 int SensorHousekeeping::getTankPressure(int16_t *presTank)
 {
 	int result;
@@ -150,6 +151,8 @@ int SensorHousekeeping::getTankPressure(int16_t *presTank)
     return result;
 }
 
+// Get ADC value (of valve pressure) and config ADC for tank read
+// stores value in presValves, returns positive integer on success
 int SensorHousekeeping::getValvesPressure(int16_t *presValves)
 {   
 	int result;
@@ -194,46 +197,51 @@ int SensorHousekeeping::configADC()
 void SensorHousekeeping::run()
 {
 	/*
-	uint8_t sendBuf[20] = {0};
-	uint8_t readBuf[20] = {0};
-	uint8_t readBuf2[20] = {0};
-
-	uint8_t rom_to_read[8];
+	uint8_t rom_to_read[8] = {0};
 
 	while(1)
 	{
 		oneWire.reset();
-		//oneWire.selectROM(TS_NOZ1_ROM);
-		oneWire.skipROM();
-		oneWire.writeScratchpad(0x4B, 0x46, 0x3F);
-		//configTempSensor(TS_NOZ1_ROM);
-
-		PRINTF("Reset %d\n", oneWire.reset());
-		//oneWire.selectROM(TS_NOZ1_ROM);
-		oneWire.skipROM();
-		oneWire.convertT();
-
-		suspendCallerUntil(NOW() + 1500*MILLISECONDS);
-
-		PRINTF("Reset %d\n", oneWire.reset());
-		//oneWire.selectROM(TS_NOZ1_ROM);
-		oneWire.skipROM();
-		oneWire.readScratchpad(readBuf);
-
-		int16_t temp = *(int16_t*)readBuf;
-
-		PRINTF("%f\n", temp/TEMP_DIVIDER);
-
-		for(int i = 0; i < 9; i++)
-			PRINTF("%x ", readBuf[i]);
-
+		oneWire.readROM(rom_to_read);
+		for(int i = 0; i < 8; i++)
+			PRINTF("%x ", rom_to_read[i]);
 		PRINTF("\n");
-
-		PRINTF("CRC result: %x\n", oneWire.crc8(readBuf, 8));
-
-		suspendCallerUntil(NOW() + 0.5*SECONDS);
+		suspendCallerUntil(NOW() + 1*SECONDS);
 	}
 	*/
+
+	/*
+	int found_devices = 0;
+	uint8_t rom_list[7][8];
+	oneWire.reset_search();
+	oneWire.target_search(0x28);
+	for (int i = 0; i < 7; i++)
+	{
+		if (!oneWire.search(rom_list[i]))
+			break;
+
+		found_devices++;
+	}
+
+	while(1)
+	{
+		char id_str[59];
+		char temp[10];
+		sprintf(id_str, "Found devices: %d\n", found_devices);
+		telemetry.dl_debug(id_str);
+		for (int i = 0; i < found_devices; i++)
+		{
+			sprintf(id_str,"Device %d: %x %x %x %x %x %x %x %x \n", i,
+					rom_list[i][0], rom_list[i][1], rom_list[i][2], rom_list[i][3],
+					rom_list[i][4], rom_list[i][5], rom_list[i][6], rom_list[i][7]);
+
+			telemetry.dl_debug(id_str);
+		}
+		suspendCallerUntil(NOW() + 1*SECONDS);
+	}
+	*/
+
+	housekeepingStatusTopic.publishConst(NO_INIT);
 	int result;
 
 	for (int i = 0; i < 10 && (result = configADC()) < 0; i++)
@@ -242,13 +250,24 @@ void SensorHousekeeping::run()
 	}
 
 	PRINTF("Config ADC result: %d!\n", result);
+	if (result < 0)
+	{
+		housekeepingStatusTopic.publishConst(INIT_FAILED);
+		suspendCallerUntil();
+	}
+	else
+	{
+		housekeepingStatusTopic.publishConst(OK);
+	}
 
-	configTempSensor(TS_NOZ1_ROM);
-	configTempSensor(TS_NOZ2_ROM);
-	configTempSensor(TS_NOZ3_ROM);
-	configTempSensor(TS_NOZ4_ROM);
+
 	configTempSensor(TS_TANK_ROM);
 	configTempSensor(TS_PDU_ROM);
+	configTempSensor(TS_VALVERP_ROM);
+	configTempSensor(TS_VALVERM_ROM);
+	configTempSensor(TS_VALVEEC_ROM);
+	configTempSensor(TS_NOZ1_ROM);
+	configTempSensor(TS_NOZ2_ROM);
     setPeriodicBeat(0, 100*MILLISECONDS);
     bool presCycle = false;
     int tempCycle = 0;
@@ -258,18 +277,19 @@ void SensorHousekeeping::run()
         {
             if ((result = getTankPressure(&(hk.presTank))) < 0)
             {
-            	PRINTF("Getting tank pressure failed: %d\n", result);
+            	//PRINTF("Getting tank pressure failed: %d\n", result);
             }
-            PRINTF("Tank Pressure: %d\n", hk.presTank);
+            //PRINTF("Tank Pressure: %d\n", hk.presTank);
         }
         else
         {
             if ((result = getValvesPressure(&(hk.presValves))) < 0)
             {
-            	PRINTF("Getting valves pressure failed: %d\n", result);
+            	//PRINTF("Getting valves pressure failed: %d\n", result);
             }
 
 			#ifdef DEBUG_PRES_DUMMY_DATA
+            
 
             hk.presTank = (dummy_pres_tank[dummy_pres_cycle] + PRES_HIGH_OFFSET) / PRES_HIGH_FACTOR;
             hk.presValves = (dummy_pres_valves[dummy_pres_cycle] + PRES_LOW_OFFSET) / PRES_LOW_FACTOR;
@@ -279,7 +299,14 @@ void SensorHousekeeping::run()
             	dummy_pres_cycle = 0;
 
 			#endif
-            PRINTF("Valves Pressure: %d\n", hk.presValves);
+            //PRINTF("Valves Pressure: %d\n", hk.presValves);
+            
+            //Validate Valve-Pressure
+            double valvesPressure = hk.presValves * PRES_LOW_FACTOR - PRES_LOW_OFFSET;
+            if(valvesPressure > 9.0){
+                housekeepingStatusTopic.publishConst(CRITICAL_ERROR);
+            }
+            
             hk.sysTime = NOW();
             hkTopic.publish(hk);
         }
@@ -290,12 +317,14 @@ void SensorHousekeeping::run()
         }
         else if (tempCycle == 9)
         {
+        	hk.tempTank = getTemperatureData(TS_TANK_ROM);
+			hk.tempPDU = getTemperatureData(TS_PDU_ROM);
+			hk.tempValveRP = getTemperatureData(TS_VALVERP_ROM);
+			hk.tempValveRM = getTemperatureData(TS_VALVERM_ROM);
+			hk.tempValveEC = getTemperatureData(TS_VALVEEC_ROM);
             hk.tempNoz1 = getTemperatureData(TS_NOZ1_ROM);
             hk.tempNoz2 = getTemperatureData(TS_NOZ2_ROM);
-            hk.tempNoz3 = getTemperatureData(TS_NOZ3_ROM);
-            hk.tempNoz4 = getTemperatureData(TS_NOZ4_ROM);
-            hk.tempTank = getTemperatureData(TS_TANK_ROM);
-            hk.tempPDU = getTemperatureData(TS_PDU_ROM);
+
 
 			#ifdef DEBUG_TEMP_DUMMY_DATA
 

@@ -10,7 +10,9 @@
 class Rocket : public Qt3DCore::QEntity
 {
     Q_OBJECT
-    Q_PROPERTY(float theta READ theta WRITE setTheta NOTIFY thetaChanged)
+    Q_PROPERTY(float roll READ roll WRITE setRoll NOTIFY rollChanged)
+    //Q_PROPERTY(float yaw READ yaw WRITE setYaw NOTIFY yawChanged)
+    //Q_PROPERTY(float pitch READ pitch WRITE setPitch NOTIFY pitchChanged)
 
 public:
     explicit Rocket(Qt3DCore::QNode *parent = 0);
@@ -21,16 +23,24 @@ public:
     Qt3DExtras::QDiffuseMapMaterial *material;
     Qt3DRender::QTextureImage *texture;
 
-    float theta() const;
+    float roll() const;
+    //float yaw() const;
+    //float pitch() const;
 
 public slots:
-    void setTheta(float theta);
+    void setRoll(float roll);
+    //void setYaw(float yaw);
+    //void setPitch(float pitch);
 
 signals:
-    void thetaChanged(float theta);
+    void rollChanged(float roll);
+    //void yawChanged(float yaw);
+    //void pitchChanged(float pitch);
 
 private:
-    float ani_theta;
+    float ani_roll;
+    //float ani_yaw;
+    //float ani_pitch;
 
 protected:
     void updateTransform();

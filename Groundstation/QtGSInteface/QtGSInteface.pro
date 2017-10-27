@@ -17,7 +17,6 @@ TEMPLATE = app
 SOURCES += main.cpp \
     murmur.cpp \
     mainwindow.cpp \
-    commandwindow.cpp \
     GUIWidgets/chart/standard/channeldecorator.cpp \
     GUIWidgets/chart/standard/glassdecorator.cpp \
     GUIWidgets/chart/standard/labelsdecorator.cpp \
@@ -33,11 +32,11 @@ SOURCES += main.cpp \
     GUIWidgets/qneedleindicator.cpp \
     GUIWidgets/thermometer.cpp \
     GUIWidgets/widgetwithbackground.cpp \
-    rocket.cpp
+    rocket.cpp \
+    verticallabel.cpp
 
 HEADERS  += mainwindow.h \
     murmur.h \
-    commandwindow.h \
     GUIWidgets/chart/standard/channeldecorator.h \
     GUIWidgets/chart/standard/glassdecorator.h \
     GUIWidgets/chart/standard/labelsdecorator.h \
@@ -56,10 +55,10 @@ HEADERS  += mainwindow.h \
     GUIWidgets/thermometer.h \
     GUIWidgets/widgetwithbackground.h \
     packages.h \
-    rocket.h
+    rocket.h \
+    verticallabel.h
 
-FORMS    += mainwindow.ui \
-    commandwindow.ui
+FORMS    += mainwindow.ui
 
 RESOURCES += \
     rocket.qrc

@@ -28,6 +28,6 @@ void CommInterfaces::init()
     spi_bus.init(SPI_BAUDRATE); // TODO (optional): Buadrade angeben, Mode per config; TODO: error handling
     spi_bus.config(SPI_PARAMETER_MODE, 0);
     i2c_bus.init();
-    teleUART.init();
+    teleUART.init(38400);
     oneWire.init();
 }

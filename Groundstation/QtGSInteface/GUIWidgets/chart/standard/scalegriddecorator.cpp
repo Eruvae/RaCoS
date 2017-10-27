@@ -129,7 +129,7 @@ void ScalesGridDecorator::paintYScale(QPainter & painter, Chart * chart)
     
     if (i->showScale())
     {
-      painter.setPen(i->pen());
+      painter.setPen(chart->scaleGrid().m_pen /*i->pen()*/);
       double scalePos=m_max;
       double posStep = yScaleHeight /( yMesh+1), posText=posStep;
 

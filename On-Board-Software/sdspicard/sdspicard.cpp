@@ -392,7 +392,7 @@ bool SdSpiCard::readBlock(uint32_t blockNumber, uint8_t* dst) {
 	// use address if not SDHC card
 	if (type() != SD_CARD_TYPE_SDHC)
 	{
-		PRINTF("Ne, die ist HC!\n");
+		//PRINTF("Ne, die ist HC!\n");
 		blockNumber <<= 9;
 	}
 	if (cardCommand(CMD17, blockNumber))

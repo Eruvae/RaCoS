@@ -33,5 +33,6 @@ ScaleGrid::ScaleGrid ( )
     showGrid=true;
     showScale=true;
     //m_font.setPointSize(10);
-    m_pen.setColor(QColor(255,255,255));
+    //m_pen.setColor(QColor(255,255,255));
+    m_pen.setColor(QColor(200,200,255));
 }

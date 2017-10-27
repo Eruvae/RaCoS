@@ -1,5 +1,5 @@
 #include "telemetry.h"
-#include "healthwatchdog.h"
+#include "sensorIMU.h"
 
 //#define DEBUG_SEND_NO_TELEMETRY
 
@@ -8,34 +8,46 @@ Telemetry telemetry;
 void Telemetry::run()
 {
 	int sendCycle = 0;
-	setPeriodicBeat(0, 500*MILLISECONDS / 3);
-	char imuBuf[34];
-	char ptBuf[26];
-	char calcBuf[16];
-	healthWatchdog.setTelemetryStatus(OK);
+	setPeriodicBeat(0, 50*MILLISECONDS);
+	char imuBuf[40];
+	char ptBuf[28];
+	char calcBuf[25];
+	telemetryStatusTopic.publishConst(OK);
 	while(1)
 	{
 		#ifndef DEBUG_SEND_NO_TELEMETRY
 
-		if (sendCycle <= 0)
-		{
-			encodePresTemp(ptBuf);
-			teleUART.write(ptBuf, 26);
-			sendCycle++;
-		}
-		else if (sendCycle == 1)
+		Status stStatus;
+		storageControllerStatusBuffer.get(stStatus);
+		if (stStatus != SD_DL_PROGRESS)
 		{
 			encodeIMU(imuBuf);
-			teleUART.write(imuBuf, 34);
+			teleUART.write(imuBuf, 41);
+
+			if ((sendCycle % 4) == 0)
+			{
+				encodePresTemp(ptBuf);
+				teleUART.write(ptBuf, 28);
+			}
+
+			if ((sendCycle % 10) == 0)
+			{
+				encodeCalc(calcBuf);
+				teleUART.write(calcBuf, 25);
+			}
+
 			sendCycle++;
 		}
-		else if (sendCycle >= 2)
+
+		#ifdef ACTIVATE_DEBUG_DL
+		DpDebug dbg;
+		while (dlDebugFifo.get(dbg))
 		{
-			encodeCalc(calcBuf);
-			teleUART.write(calcBuf, 18);
-			sendCycle = 0;
+			teleUART.write((char*)&dbg, sizeof(DpDebug));
 		}
-		
+		#endif
+
+
 		#endif
 
 		suspendUntilNextBeat();
@@ -50,14 +62,20 @@ int Telemetry::encodeIMU(char *buffer)
 	
 	buffer[0] = SYNC_IMU;
 	
-	//uint64_t time = NOW() / MILLISECONDS;
-	buffer[1] = imu.sysTime & 0xFF;
-	buffer[2] = imu.sysTime & 0xFF00;
-	buffer[3] = imu.sysTime & 0xFF0000;
-	
+	uint32_t time = imu.sysTime / MILLISECONDS;
+	buffer[1] = time & 0xFF;
+	buffer[2] = (time & 0xFF00) >> 8;
+	buffer[3] = (time & 0xFF0000) >> 16;
+
 	*(uint16_t*)&buffer[4] = counter;
 	
 	memcpy(&buffer[6], &imu, 24);
+
+	*(int16_t*)&buffer[30] = (int16_t)(imu.gyroFiltered[0] / sensorIMU.getScale());
+	*(int16_t*)&buffer[32] = (int16_t)(imu.gyroFiltered[1] / sensorIMU.getScale());
+	*(int16_t*)&buffer[34] = (int16_t)(imu.gyroFiltered[2] / sensorIMU.getScale());
+	buffer[36] = imu.imu_config;
+
 	//PRINTF("Filtered IMU: X:%f Y:%f Z:%f\n", imu.gyroFiltered[0], imu.gyroFiltered[1], imu.gyroFiltered[2]);
 	
 	/**(uint16_t*)&buffer[6] = imu.gyroData1[0];
@@ -73,11 +91,14 @@ int Telemetry::encodeIMU(char *buffer)
 	*(uint16_t*)&buffer[26] = imu.accData2[1];
 	*(uint16_t*)&buffer[28] = imu.accData2[2];*/
 	
-	*(uint32_t*)&buffer[30] = generateChecksum(buffer, 30);
+	*(uint32_t*)&buffer[37] = generateChecksum(buffer, 37);
 	
 	counter++;
 	
-	return 34;
+	DownlinkIMU *dataPub = (DownlinkIMU*)buffer;
+	dlIMUTopic.publish(*dataPub);
+
+	return 41;
 }
 
 int Telemetry::encodePresTemp(char *buffer)
@@ -90,20 +111,23 @@ int Telemetry::encodePresTemp(char *buffer)
 	
 	buffer[0] = SYNC_PT;
 	
-	//uint64_t time = NOW() / MILLISECONDS;
-	buffer[1] = hk.sysTime & 0xFF;
-	buffer[2] = hk.sysTime & 0xFF00;
-	buffer[3] = hk.sysTime & 0xFF0000;
+	uint64_t time = hk.sysTime / MILLISECONDS;
+	buffer[1] = time & 0xFF;
+	buffer[2] = (time & 0xFF00) >> 8;
+	buffer[3] = (time & 0xFF0000) >> 16;
 	
 	*(uint16_t*)&buffer[4] = counter;
 	
-    memcpy(&buffer[6], &hk, 16);
+    memcpy(&buffer[6], &hk, 18);
 	
-	*(uint32_t*)&buffer[22] = generateChecksum(buffer, 22);
+	*(uint32_t*)&buffer[24] = generateChecksum(buffer, 24);
 	
 	counter++;
 	
-	return 26;
+	DownlinkPresTemp *dataPub = (DownlinkPresTemp*)buffer;
+	dlPTTopic.publish(*dataPub);
+
+	return 28;
 }
 
 int Telemetry::encodeCalc(char *buffer)
@@ -120,8 +144,8 @@ int Telemetry::encodeCalc(char *buffer)
 	
 	uint64_t time = NOW() / MILLISECONDS;
 	buffer[1] = time & 0xFF;
-	buffer[2] = time & 0xFF00;
-	buffer[3] = time & 0xFF0000;
+	buffer[2] = (time & 0xFF00) >> 8;
+	buffer[3] = (time & 0xFF0000) >> 16;
 	
 	*(uint16_t*)&buffer[4] = counter;
 	
@@ -129,14 +153,17 @@ int Telemetry::encodeCalc(char *buffer)
 
 	*(uint16_t*)&buffer[7] = modulState;
 
-	memcpy(&buffer[9], &calc, 5);
+	memcpy(&buffer[9], &calc, 12);
 	
 	
-	*(uint32_t*)&buffer[14] = generateChecksum(buffer, 14);
+	*(uint32_t*)&buffer[21] = generateChecksum(buffer, 21);
 	
 	counter++;
 	
-	return 16;
+	DownlinkCalc *dataPub = (DownlinkCalc*)buffer;
+	dlCalcTopic.publish(*dataPub);
+
+	return 25;
 	
 }
 

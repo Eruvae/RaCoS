@@ -1,4 +1,6 @@
 #include "telecommand.h"
+#include "storagecontroller.h"
+#include "sensorIMU.h"
 
 Telecommand telecommand;
 
@@ -11,8 +13,8 @@ int Telecommand::decodeCommand(DpCommand &comPack)
     if (comPack.sync != SYNC_COMM)
     	return -1;
 
-    //if (Murmur::mm_hash_32((uint8_t*)&comPack, 4) != comPack.sync)
-    //	return -1;
+    if (Murmur::mm_hash_32((uint8_t*)&comPack, sizeof(comPack) - sizeof(comPack.check)) != comPack.check)
+    	return -1;
 
     //PRINTF("Hash: %x", Murmur::mm_hash_32((uint8_t*)&comPack, 4));
 
@@ -20,12 +22,9 @@ int Telecommand::decodeCommand(DpCommand &comPack)
 
     switch(comPack.id)
     {
-    case DELETE_SD:
-        break;
-    case SHUTDOWN:
-        break;
-    case RESTART:
-        break;
+    case FORMAT_SD:
+    	storageController.format();
+    	break;
     case MODE_STANDBY:
     	modeTopic.publishConst(STAND_BY);
         break;
@@ -44,6 +43,37 @@ int Telecommand::decodeCommand(DpCommand &comPack)
     case TEST_LEAVE:
     	testTopic.publishConst(false);
         break;
+    case DOWNLINK_SD:
+    	storageController.downlinkData();
+    	break;
+    case REQUEST_PCK:
+    	//uint32_t pckCnt;
+    	//sdDLPackageBuffer.get(pckCnt);
+    	//if (comPack.argument > pckCnt)
+    	sdDLPackageTopic.publishConst(comPack.argument);
+    	//PRINTF("Package %d requested\n", comPack.argument);
+    	break;
+    case RESET_SD:
+    	storageController.reset();
+    	break;
+    case CALIBRATE_IMU:
+    	sensorIMU.setIMUCalibration();
+    	break;
+    case MODE_SPINUP:
+    	if (comPack.argument == 1)
+    	{
+    		spinupDirectionTopic.publishConst(true);
+    		modeTopic.publishConst(TEST_SPINUP);
+    	}
+    	else if (comPack.argument == -1)
+    	{
+    		spinupDirectionTopic.publishConst(false);
+    		modeTopic.publishConst(TEST_SPINUP);
+    	}
+    	break;
+    case RESET_CONTROL:
+    	resetControllerTopic.publishConst(true);
+    	break;
     default:
         return -1;
     }
@@ -69,35 +99,6 @@ void Telecommand::run()
 				c = teleUART.getcharNoWait();
 				((uint8_t*)&comPack)[i] = c & 0xFF;
         	}
-
-        	//PRINTF("I'm in if, yey :)");
-            /*comPack.sync = c & 0xFF;
-            teleUART.suspendUntilDataReady();
-            c = teleUART.getcharNoWait();
-            comPack.id = c & 0xFF;
-            teleUART.suspendUntilDataReady();
-			c = teleUART.getcharNoWait();
-			comPack.counter = c & 0xFF;
-            teleUART.suspendUntilDataReady();
-            c = teleUART.getcharNoWait();
-            comPack.counter &= (c << 8) & 0xFF00;
-            teleUART.suspendUntilDataReady();
-			c = teleUART.getcharNoWait();
-			comPack.check = c & 0xFF;
-			teleUART.suspendUntilDataReady();
-			c = teleUART.getcharNoWait();
-			comPack.check &= (c << 8) & 0x0000FF00;
-            teleUART.suspendUntilDataReady();
-			c = teleUART.getcharNoWait();
-			comPack.check &= (c << 16) & 0x00FF0000;
-			teleUART.suspendUntilDataReady();
-			c = teleUART.getcharNoWait();
-			comPack.check &= (c << 24) & 0xFF000000;*/
-
-        	for (int i = 0; i < sizeof(comPack); i++)
-			{
-				PRINTF("%x", ((uint8_t*)&comPack)[i] & 0xFF);
-			}
 
             decodeCommand(comPack);
         }

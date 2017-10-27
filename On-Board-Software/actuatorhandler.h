@@ -2,10 +2,14 @@
 #define ACTUATORHANDLER_H
 
 #include "rodos.h"
+#include "topics.h"
 
 class ActuatorHandler : public Initiator
 {
+
+	//CmdData cmd;
 public:
+	volatile uint8_t valveState;
     ActuatorHandler();
     void init();
     void setValve1(bool state);

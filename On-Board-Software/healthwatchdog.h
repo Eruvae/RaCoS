@@ -13,10 +13,8 @@
 
 class HealthWatchdog: public Thread {
 private:
-	bool pending;
-	uint32_t badCount;
-	bool noCriticalErrorOccurred;
 	bool emergencyCutoff;
+	bool ignorePendingCritical;
 	Status sensorIMUStatus;
 	Status housekeepingStatus;
 	Status controlLoopStatus;
@@ -26,17 +24,22 @@ private:
 	uint16_t encodeModulStates();
 
 public:
+	bool noCriticalErrorOccurred;
+	bool criticalErrorActive;
 	HealthWatchdog();
 	void run();
-	bool selfcheck();
+	//bool selfcheck();
 	bool emergencyCutoffCheck();
 	void sendCutoff(bool state);
 
-	void setIMUStatus(Status error);
-	void setHousekeepingStatus(Status error);
-	void setControlLoopStatus(Status error);
-	void setStorageControllerStatus(Status error);
-	void setTelemetryStatus(Status error);
+	//void setIMUStatus(Status error);
+	//void setHousekeepingStatus(Status error);
+	//void setControlLoopStatus(Status error);
+	//void setStorageControllerStatus(Status error);
+	//void setTelemetryStatus(Status error);
+
+	void checkCriticalErrorPending();
+	void overrideCutoffProtection(bool override);
 };
 
 extern HealthWatchdog healthWatchdog;

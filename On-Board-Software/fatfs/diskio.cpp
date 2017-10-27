@@ -131,6 +131,10 @@ DRESULT disk_write (
 		if (count == 1)
 			result = sd.writeBlock(sector, buff);
 		else if (count > 1)
+		/*{
+			for (int i = 0; i < count; i++)
+				sd.writeBlock(sector + i, buff);
+		}*/
 			result = sd.writeBlocks(sector, buff, count);
 		else
 			return RES_PARERR;
@@ -159,7 +163,7 @@ DRESULT disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	PRINTF("disk_ioctl called\n");
+	//PRINTF("disk_ioctl called\n");
 	DRESULT res = RES_PARERR;
 	int result;
 
@@ -178,7 +182,7 @@ DRESULT disk_ioctl (
 			}
 			else
 			{
-				PRINTF("Bloeder Fehler...\n");
+				PRINTF("ioctl card size fault\n");
 				res = RES_ERROR;
 			}
 		}

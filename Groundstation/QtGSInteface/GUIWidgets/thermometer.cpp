@@ -35,9 +35,9 @@ ThermoMeter::ThermoMeter(QWidget *parent)
 	m_maximum=80;
   	setMinimum(0);
 	setValue(0);
-        setNominal(30);
+    setNominal(18);
 	calcMaxMin();
-	setCritical(60);
+    setCritical(40);
 	setValueOffset(270);
 	setDigitOffset(10);
 	setSuffix(QString(" [C]"));
@@ -95,6 +95,7 @@ void ThermoMeter::paintBackground(QPainter & painter)
 	painter.drawEllipse(QRectF(-12.5,255.0,25.0,25.0));
 	*/
 	QPen pen;
+    pen.setColor(QColor(200, 200, 255));
 	int length = 12;
 	for (int i=0;i<=32;i++)
 	{
@@ -142,7 +143,11 @@ void ThermoMeter::paintEvent(QPaintEvent * )
 	if (valueOffset())
 	{
 	  painter.setFont(valueFont());
-          QString Str = prefix() + QString("%1").arg(value()) + suffix();
+          //QSting strVal;
+          //strVal.sprintf();
+          QString Str;
+          Str.sprintf("%s%.1f%s", prefix().toStdString().c_str(), value(), suffix().toStdString().c_str());
+          //QString Str = prefix() + QString("%1").arg(value()) + suffix();
           QSize Size = painter.fontMetrics().size(Qt::TextSingleLine, Str);
           painter.drawText(QPointF (Size.width() / -2,valueOffset() + Size.height()) , Str);
 	}

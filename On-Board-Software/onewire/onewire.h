@@ -28,6 +28,11 @@ class OneWire
 private:
 	HAL_UART *onewire_uart;
 
+	unsigned char ROM_NO[8];
+	uint8_t LastDiscrepancy;
+	uint8_t LastFamilyDiscrepancy;
+	uint8_t LastDeviceFlag;
+
 	/** Read a single bit over OneWire UART
 	 *
 	 * \return The read bit (1 or 0)
@@ -41,7 +46,7 @@ private:
 	void writeBit(uint8_t bit);
 
 public:
-	OneWire(HAL_UART *onewire_uart) : onewire_uart(onewire_uart) {}
+	OneWire(HAL_UART *onewire_uart) : onewire_uart(onewire_uart), LastDiscrepancy(0),  LastFamilyDiscrepancy(0), LastDeviceFlag(0){}
 
 	/** Initiate the OneWire UART and config to OneWire-Mode
 	 *
@@ -94,6 +99,23 @@ public:
 	void readScratchpad(void *recBuf);
 
 	void writeScratchpad(const uint8_t th, const uint8_t tl, const uint8_t config);
+
+	// Clear the search state so that if will start from the beginning again.
+	void reset_search();
+
+	// Setup the search to find the device type 'family_code' on the next call
+	// to search(*newAddr) if it is present.
+	void target_search(uint8_t family_code);
+
+	// Look for the next device. Returns 1 if a new address has been
+	// returned. A zero might mean that the bus is shorted, there are
+	// no devices, or you have already retrieved all of them.  It
+	// might be a good idea to check the CRC to make sure you didn't
+	// get garbage.  The order is deterministic. You will always get
+	// the same devices in the same order.
+	uint8_t search(uint8_t *newAddr, bool search_mode = true);
+
+
 };
 
 #endif /* ONEWIRE_ONEWIRE_H_ */

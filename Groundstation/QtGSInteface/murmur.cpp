@@ -18,6 +18,14 @@ uint32_t Murmur::fmix32(uint32_t h)
 
 uint32_t Murmur::mm_hash_32(const uint8_t *data, int len, uint32_t seed)
 {
+    /*
+    uint32_t hash = 0;
+    for (int i = 0; i < len; i++)
+        hash += data[i];
+
+    return hash;
+    */
+
     const int nblocks = len / 4;
     int i;
 
@@ -67,4 +75,5 @@ uint32_t Murmur::mm_hash_32(const uint8_t *data, int len, uint32_t seed)
     h1 = fmix32(h1);
 
     return h1;
+
 }

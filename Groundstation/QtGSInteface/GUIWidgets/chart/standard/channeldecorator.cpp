@@ -164,7 +164,7 @@ void ChannelDecorator::paintChannel ( QPainter & painter, Chart * /*chart*/, Cha
           line[i++]= ( QPoint ( current_x,current_y ) );
           if ( i > size )
           {
-            if ( channel.type() ==Channel::Line )
+            if ( channel.type() == Channel::Line )
               painter.drawPolyline ( line,size+1 );
             else
               painter.drawPoints ( line,size+1 );

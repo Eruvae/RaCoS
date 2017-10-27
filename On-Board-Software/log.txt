@@ -1,0 +1,179 @@
+Path: C:\Users\TobiZ\Dropbox (RaCoS)\Team-Ordner „RaCoS“\Software\RaCoS\On-Board-Software
+[-] \.settings\language.settings.xml
+[-] \Debug_STM32F4\fatfs\option\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\fatfs\option\subdir.mk
+[-] \Debug_STM32F4\fatfs\option\syscall.d
+[-] \Debug_STM32F4\fatfs\option\syscall.o
+[-] \Debug_STM32F4\fatfs\option\unicode.d
+[-] \Debug_STM32F4\fatfs\option\unicode.o
+[-] \Debug_STM32F4\fatfs\diskio (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\fatfs\diskio (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\fatfs\diskio.d
+[-] \Debug_STM32F4\fatfs\diskio.o
+[-] \Debug_STM32F4\fatfs\ff (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\fatfs\ff.d
+[-] \Debug_STM32F4\fatfs\ff.o
+[-] \Debug_STM32F4\fatfs\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\fatfs\subdir.mk
+[-] \Debug_STM32F4\onewire\arduino_lib\onewire.d
+[-] \Debug_STM32F4\onewire\arduino_lib\onewire.o
+[-] \Debug_STM32F4\onewire\arduino_lib\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\onewire\arduino_lib\subdir.mk
+[-] \Debug_STM32F4\onewire\onewire (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\onewire\onewire (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\onewire\onewire.d
+[-] \Debug_STM32F4\onewire\onewire.o
+[-] \Debug_STM32F4\onewire\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\onewire\subdir.mk
+[-] \Debug_STM32F4\sdspicard\sdspicard.d
+[-] \Debug_STM32F4\sdspicard\sdspicard.o
+[-] \Debug_STM32F4\sdspicard\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\sdspicard\subdir.mk
+[-] \Debug_STM32F4\.gitignore
+[-] \Debug_STM32F4\actuatorhandler (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\actuatorhandler (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\actuatorhandler.d
+[-] \Debug_STM32F4\actuatorhandler.o
+[-] \Debug_STM32F4\buzzer.d
+[-] \Debug_STM32F4\buzzer.o
+[-] \Debug_STM32F4\comminterfaces (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\comminterfaces (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\comminterfaces.d
+[-] \Debug_STM32F4\comminterfaces.o
+[-] \Debug_STM32F4\ControlLoop (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\ControlLoop (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\ControlLoop (Tobias W.s in Konflikt stehende Kopie 2017-01-24).o
+[-] \Debug_STM32F4\ControlLoop (Tobias Zaenkers in Konflikt stehende Kopie 2016-10-18).d
+[-] \Debug_STM32F4\ControlLoop (Tobias Zaenkers in Konflikt stehende Kopie 2016-10-18).o
+[-] \Debug_STM32F4\ControlLoop.d
+[-] \Debug_STM32F4\ControlLoop.o
+[-] \Debug_STM32F4\healthwatchdog.d
+[-] \Debug_STM32F4\healthwatchdog.o
+[-] \Debug_STM32F4\LEDcontroller (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\LEDcontroller (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\LEDcontroller.d
+[-] \Debug_STM32F4\LEDcontroller.o
+[-] \Debug_STM32F4\makefile
+[-] \Debug_STM32F4\makefile (Tobias W.s in Konflikt stehende Kopie 2017-01-24)
+[-] \Debug_STM32F4\murmur.d
+[-] \Debug_STM32F4\murmur.o
+[-] \Debug_STM32F4\objects.mk
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2016-12-13).elf
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2016-12-13).map
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2016-12-15).elf
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2016-12-15).map
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2017-01-24).elf
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2017-01-24).hex
+[-] \Debug_STM32F4\On-Board-Software (Tobias W.s in Konflikt stehende Kopie 2017-01-24).map
+[-] \Debug_STM32F4\On-Board-Software (Tobias Zaenkers in Konflikt stehende Kopie 2016-10-18).elf
+[-] \Debug_STM32F4\On-Board-Software (Tobias Zaenkers in Konflikt stehende Kopie 2016-10-18).map
+[-] \Debug_STM32F4\on-board-software.dfu
+[-] \Debug_STM32F4\On-Board-Software.elf
+[-] \Debug_STM32F4\On-Board-Software.hex
+[-] \Debug_STM32F4\On-Board-Software.map
+[-] \Debug_STM32F4\sensorhousekeeping.d
+[-] \Debug_STM32F4\sensorhousekeeping.o
+[-] \Debug_STM32F4\sensorIMU (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\sensorIMU (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\sensorIMU.d
+[-] \Debug_STM32F4\sensorIMU.o
+[-] \Debug_STM32F4\sources.mk
+[-] \Debug_STM32F4\spihelper (Tobias W.s in Konflikt stehende Kopie 2016-12-15).d
+[-] \Debug_STM32F4\spihelper (Tobias W.s in Konflikt stehende Kopie 2016-12-15).o
+[-] \Debug_STM32F4\spihelper.d
+[-] \Debug_STM32F4\spihelper.o
+[-] \Debug_STM32F4\STM32F4_RODOS_Template.map
+[-] \Debug_STM32F4\storagecontroller.d
+[-] \Debug_STM32F4\storagecontroller.o
+[-] \Debug_STM32F4\subdir (Tobias W.s in Konflikt stehende Kopie 2017-01-24).mk
+[-] \Debug_STM32F4\subdir.mk
+[-] \Debug_STM32F4\telecommand.d
+[-] \Debug_STM32F4\telecommand.o
+[-] \Debug_STM32F4\telemetry.d
+[-] \Debug_STM32F4\telemetry.o
+[-] \Debug_STM32F4\topics.d
+[-] \Debug_STM32F4\topics.o
+[-] \fatfs\option\syscall.cpp
+[*] \fatfs\option\syscall.cpp # 152
+[-] \fatfs\option\unicode.cpp
+[*] \fatfs\option\unicode.cpp # 17
+[-] \fatfs\00history.txt
+[*] \fatfs\00history.txt # 267
+[-] \fatfs\00readme.txt
+[*] \fatfs\00readme.txt # 21
+[-] \fatfs\diskio.cpp
+[*] \fatfs\diskio.cpp # 216
+[-] \fatfs\diskio.h
+[-] \fatfs\ff.cpp
+[*] \fatfs\ff.cpp # 6032
+[-] \fatfs\ff.h
+[-] \fatfs\ffconf.h
+[-] \fatfs\integer.h
+[-] \onewire\arduino_lib\onewire.cpp
+[*] \onewire\arduino_lib\onewire.cpp # 587
+[-] \onewire\arduino_lib\onewire.h
+[-] \onewire\onewire.cpp
+[*] \onewire\onewire.cpp # 339
+[-] \onewire\onewire.h
+[-] \sdspicard\sdinfo.h
+[-] \sdspicard\sdspicard.cpp
+[*] \sdspicard\sdspicard.cpp # 718
+[-] \sdspicard\sdspicard.h
+[-] \userconfs\racosconfig.h
+[-] \userconfs\userconfig.h
+[-] \.cproject
+[-] \.project
+[-] \actuatorhandler.cpp
+[*] \actuatorhandler.cpp # 65
+[-] \actuatorhandler.h
+[-] \buzzer.cpp
+[*] \buzzer.cpp # 105
+[-] \buzzer.h
+[-] \comminterfaces.cpp
+[*] \comminterfaces.cpp # 33
+[-] \comminterfaces.h
+[-] \ControlLoop.cpp
+[*] \ControlLoop.cpp # 495
+[-] \ControlLoop.h
+[-] \flash_script
+[-] \healthwatchdog.cpp
+[*] \healthwatchdog.cpp # 114
+[-] \healthwatchdog.h
+[-] \LEDcontroller.cpp
+[*] \LEDcontroller.cpp # 105
+[-] \LEDcontroller.h
+[-] \log.txt
+[*] \log.txt # 145
+[-] \Makefile
+[-] \murmur.cpp
+[*] \murmur.cpp # 83
+[-] \murmur.h
+[-] \On-Board-Software.pro
+[-] \On-Board-Software.pro.user
+[-] \sensorhousekeeping.cpp
+[*] \sensorhousekeeping.cpp # 353
+[-] \sensorhousekeeping.h
+[-] \sensorIMU.cpp
+[*] \sensorIMU.cpp # 696
+[-] \sensorIMU.h
+[-] \spihelper.cpp
+[*] \spihelper.cpp # 106
+[-] \spihelper.h
+[-] \storagecontroller.cpp
+[*] \storagecontroller.cpp # 722
+[-] \storagecontroller.h
+[-] \structs.h
+[-] \telecommand.cpp
+[*] \telecommand.cpp # 106
+[-] \telecommand.h
+[-] \telemetry.cpp
+[*] \telemetry.cpp # 173
+[-] \telemetry.h
+[-] \topics.cpp
+[*] \topics.cpp # 82
+[-] \topics.h
+[-] \ZeilenZaehler.exe
+
+Files: 24
+Lines: 11.732
+
